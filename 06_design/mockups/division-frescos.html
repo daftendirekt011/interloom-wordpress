@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contacto — Interloom</title>
+<title>División de Frescos — Interloom</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   INTERLOOM — Contacto
-   Header + footer = Bridge (Qode Options)
-   Everything between = Elementor Pro (form = WPForms restyled)
+   INTERLOOM — División de Frescos (división · template LDC-style)
+   Header + footer = Bridge (Qode Options) · contenido = Elementor Pro
 ============================================================ */
 
 :root {
@@ -352,246 +351,166 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 }
 
 
-/* Page hero (intimate editorial) */
-.page-hero {
-  position: relative;
-  width: 100%;
-  height: 44vh;
-  min-height: 340px;
-  max-height: 460px;
-  overflow: hidden;
-}
-.page-hero .hero-photo {
-  position: absolute; inset: 0;
-  background-image: url('../../03_assets/images/web_ready/nosotros_planta.jpg');
-  background-size: cover;
-  background-position: center;
-}
-.page-hero .hero-mask {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.62) 0%,
-    rgba(0,0,0,0.36) 24%,
-    rgba(0,0,0,0.04) 48%,
-    rgba(0,0,0,0) 65%
-  );
-}
-.page-hero .hero-content {
-  position: absolute;
-  left: 80px;
-  bottom: 72px;
-  max-width: 720px;
-  color: var(--white);
-}
-.page-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
-.page-hero h1 {
+.h1-hero-page {
   font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 52px;
-  line-height: 1.12;
-  color: var(--white);
+  font-weight: 400; font-size: 48px; line-height: 1.15; color: var(--white);
+}
+.breadcrumb {
+  background: #FAFAFA; height: 48px; display: flex; align-items: center;
+  padding: 0 var(--gutter-desktop);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 13px; color: var(--accent-warm);
+}
+.breadcrumb a { color: var(--accent-warm); }
+.breadcrumb a:hover { color: var(--accent-green); }
+.breadcrumb .sep { margin: 0 10px; color: var(--accent-warm); opacity: 0.6; }
+.breadcrumb .current { color: var(--accent-green); }
+
+.div-hero {
+  position: relative; width: 100%; height: 60vh;
+  min-height: 460px; max-height: 600px; overflow: hidden;
+}
+.div-hero .hero-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.div-hero .hero-photo--placeholder {
+  display: flex; align-items: flex-end;
+  background: linear-gradient(118deg, #5C3A1E, #3A2310, #1D1D1B);
+}
+.div-hero .hero-photo--placeholder span {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.10em; color: rgba(255,255,255,0.55); padding: 20px;
+}
+.div-hero .hero-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 24%, rgba(0,0,0,0.04) 48%, rgba(0,0,0,0) 65%);
+}
+.div-hero .hero-content { position: absolute; left: 80px; bottom: 96px; max-width: 720px; color: var(--white); }
+.div-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
+
+.intro-band { background: var(--white); padding: 96px var(--gutter-desktop) 64px; }
+.intro-band .inner { max-width: var(--max-width); margin: 0 auto; }
+.intro-band .lead { max-width: 760px; }
+
+.product-body { padding: 32px var(--gutter-desktop) 120px; }
+.product-body .inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 280px 1fr; gap: 96px; align-items: start;
+}
+.product-sidebar { position: sticky; top: 120px; }
+.product-sidebar .side-heading {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 16px;
+}
+.product-sidebar .side-nav { margin-bottom: 40px; }
+.product-sidebar .side-nav a {
+  display: block; padding: 12px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; color: var(--text-primary);
+  border-left: 4px solid transparent;
+  transition: color 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+.product-sidebar .side-nav a:hover { color: var(--accent-green); }
+.product-sidebar .side-nav a.is-active { background: var(--surface-warm); border-left-color: var(--accent-green); }
+.product-sidebar .side-certs { border-top: 1px solid var(--hairline); padding-top: 32px; }
+.product-sidebar .side-certs .side-heading { margin-bottom: 20px; }
+.product-sidebar .side-certs .certs-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.product-sidebar .side-certs .cert-mark {
+  height: 44px; background: var(--white); border: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  opacity: 0.85; padding: 0 6px; text-align: center;
 }
 
-/* Contact body — 2 column */
-.contact-body { padding: 112px var(--gutter-desktop); background: var(--white); }
-.contact-body .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 96px;
-  align-items: start;
+.product-content { min-width: 0; }
+.product-content .content-heading {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 32px;
+  color: var(--text-primary); margin-bottom: 56px;
 }
-
-/* Left — segmented contact cards */
-.contact-cards .eyebrow { margin-bottom: 18px; }
-.contact-cards h2 { margin-bottom: 16px; }
-.contact-cards .cards-intro {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  max-width: 420px;
-  margin-bottom: 40px;
+.product-row {
+  display: grid; grid-template-columns: 280px 1fr; gap: 48px;
+  padding: 56px 0; border-top: 1px solid var(--hairline); align-items: start;
 }
-.contact-card {
-  padding: 28px 0;
-  border-top: 1px solid var(--hairline);
+.product-row:first-of-type { border-top: 0; padding-top: 0; }
+.product-row .prow-image {
+  width: 280px; height: 280px; background: var(--white); border: 1px solid var(--hairline);
+  padding: 24px; display: flex; align-items: center; justify-content: center;
 }
-.contact-card:last-child { border-bottom: 1px solid var(--hairline); }
-.contact-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 20px;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-.contact-card p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  max-width: 380px;
-  margin-bottom: 12px;
-}
-.contact-card a.card-email {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--accent-green);
-  border-bottom: 1px solid var(--accent-green);
-  padding-bottom: 2px;
-}
-
-/* Right — form */
-.contact-form-wrap {
+.product-row .prow-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.product-row .prow-image .prow-photo-fallback {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   background: var(--surface-warm);
-  border: 1px solid var(--hairline);
-  padding: 48px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  text-align: center; padding: 16px;
 }
-.contact-form-wrap h2 { margin-bottom: 8px; font-size: 32px; }
-.contact-form-wrap .form-intro {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 36px;
+.product-row h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 26px;
+  color: var(--text-primary); margin-bottom: 12px;
 }
-.field { margin-bottom: 24px; }
-.field label {
-  display: block;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  margin-bottom: 8px;
+.product-row .prow-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.6;
+  color: var(--text-secondary); margin-bottom: 24px; max-width: 560px;
 }
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: var(--text-primary);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  padding: 13px 14px;
-  transition: border-color 200ms ease;
+.product-row .prow-meta {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.04em; color: var(--accent-warm); line-height: 1.6;
+  border-top: 1px solid var(--hairline); padding-top: 20px; max-width: 560px;
 }
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--accent-green);
+.product-row .prow-meta .sep { margin: 0 8px; color: var(--accent-warm); opacity: 0.5; }
+
+.product-cta {
+  margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
 }
-.field textarea { resize: vertical; min-height: 120px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.contact-form-wrap .btn { width: 100%; margin-top: 8px; }
-.form-note {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--accent-warm);
-  margin-top: 16px;
+.product-cta .cta-text h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 24px;
+  color: var(--text-primary); margin-bottom: 8px;
+}
+.product-cta .cta-text p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px;
+  color: var(--text-secondary); max-width: 480px;
+}
+.btn-whatsapp svg { width: 18px; height: 18px; margin-right: 8px; fill: currentColor; }
+
+.closing-band { position: relative; width: 100%; height: 50vh; min-height: 360px; overflow: hidden; }
+.closing-band .closing-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.closing-band .closing-photo--placeholder { background: linear-gradient(135deg, #6F8A6E, #4A6A52, #2E4A2C); }
+.closing-band .closing-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
+}
+.closing-band .closing-content {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  padding: 0 var(--gutter-tablet);
+}
+.closing-band blockquote {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: 28px; line-height: 1.4; color: var(--white); max-width: 780px; text-align: center;
 }
 
-/* Map block */
-.map-section { background: var(--white); }
-.map-block {
-  width: 100%;
-  height: 420px;
-  background:
-    repeating-linear-gradient(45deg, #F4F1EA 0 18px, #EDEAE3 18px 36px);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.map-block .map-label {
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  padding: 14px 22px;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  text-align: center;
-}
-.map-block .map-pin {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  border: 3px solid var(--white);
-  box-shadow: 0 2px 8px rgba(29,29,27,0.25);
-  position: absolute;
-  top: 46%;
-  left: 52%;
-}
-
-/* Offices strip */
-.offices { padding: 96px var(--gutter-desktop); background: var(--surface-warm); }
-.offices .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-.office-card .eyebrow { margin-bottom: 14px; }
-.office-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-.office-card p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-.office-card p a { color: var(--accent-green); }
-.office-card p a:hover { color: var(--accent-green-hover); }
-
-/* Responsive */
 @media (max-width: 900px) {
-  .page-hero { height: 36vh; min-height: 300px; }
-  .page-hero h1 { font-size: 36px; }
-  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 48px; }
-  .contact-body { padding: 72px var(--gutter-tablet); }
-  .contact-body .inner { grid-template-columns: 1fr; gap: 56px; }
-  .contact-form-wrap { padding: 36px; }
-  .offices { padding: 72px var(--gutter-tablet); }
-  .offices .inner { grid-template-columns: 1fr; gap: 48px; }
+  .div-hero { height: 50vh; }
+  .h1-hero-page { font-size: 36px; }
+  .div-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 64px; }
+  .breadcrumb { padding: 0 var(--gutter-tablet); }
+  .intro-band { padding: 64px var(--gutter-tablet) 32px; }
+  .intro-band .lead { font-size: 20px; }
+  .product-body { padding: 32px var(--gutter-tablet) 80px; }
+  .product-body .inner { grid-template-columns: 1fr; gap: 48px; }
+  .product-sidebar { position: static; }
+  .product-row { grid-template-columns: 1fr; gap: 24px; }
+  .product-row .prow-image { width: 100%; max-width: 320px; height: 320px; }
+  .product-cta { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 640px) {
-  .page-hero { height: 34vh; min-height: 260px; }
-  .page-hero h1 { font-size: 28px; }
-  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 40px; }
-  .contact-body { padding: 56px var(--gutter-mobile); }
-  .contact-cards h2 { font-size: 28px; }
-  .contact-form-wrap { padding: 28px var(--gutter-mobile); }
-  .contact-form-wrap h2 { font-size: 26px; }
-  .field-row { grid-template-columns: 1fr; gap: 0; }
-  .map-block { height: 300px; }
-  .offices { padding: 56px var(--gutter-mobile); }
+  .breadcrumb { padding: 0 var(--gutter-mobile); font-size: 12px; }
+  .div-hero { height: 45vh; min-height: 360px; }
+  .h1-hero-page { font-size: 28px; }
+  .div-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 48px; }
+  .intro-band { padding: 48px var(--gutter-mobile) 24px; }
+  .product-body { padding: 24px var(--gutter-mobile) 64px; }
+  .product-content .content-heading { font-size: 26px; margin-bottom: 32px; }
+  .product-row { padding: 40px 0; }
+  .product-row h3 { font-size: 22px; }
+  .closing-band blockquote { font-size: 20px; padding: 0 var(--gutter-mobile); }
 }
 
 </style>
@@ -619,18 +538,18 @@ footer .legal-strip a:hover { color: var(--accent-green); }
         <li><a href="home-version-a.html" class="">Inicio</a></li>
         <li><a href="nosotros.html" class="">Nosotros</a></li>
         <li class="has-caret has-dropdown">
-          <a href="#" class="">Divisiones</a>
+          <a href="#" class="is-active">Divisiones</a>
           <div class="dropdown-panel">
             <a href="division-delcampo.html" class="">DEL CAMPO</a>
             <a href="division-ingredientes.html" class="">División de Ingredientes</a>
             <a href="division-secos.html" class="">División de Secos</a>
-            <a href="division-frescos.html" class="">División de Frescos</a>
+            <a href="division-frescos.html" class="is-active">División de Frescos</a>
             <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
           </div>
         </li>
         <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
         <li><a href="clientes.html" class="">Clientes</a></li>
-        <li><a href="contacto.html" class="is-active">Contacto</a></li>
+        <li><a href="contacto.html" class="">Contacto</a></li>
       </ul>
       <span class="nav-divider" aria-hidden="true"></span>
       <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
@@ -640,137 +559,138 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </header>
 
 
-<!-- ============================================================
-     PAGE HERO
-============================================================ -->
-<section class="page-hero">
-  <div class="hero-photo" aria-hidden="true"></div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="home-version-a.html">Home</a>
+  <span class="sep">›</span>
+  <a href="#">Divisiones</a>
+  <span class="sep">›</span>
+  <span class="current">División de Frescos</span>
+</nav>
+
+<section class="div-hero">
+  <div class="hero-photo" style="background-image:url('../../03_assets/images/web_ready/hero_kion_aerial.jpg');" aria-hidden="true"></div>
   <div class="hero-mask" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="eyebrow hero-eyebrow">GRUPO INTERLOOM</div>
-    <h1>Contacto</h1>
+    <div class="eyebrow hero-eyebrow">DIVISIÓN · EXPORTACIÓN</div>
+    <h1 class="h1-hero-page">División de Frescos</h1>
   </div>
 </section>
 
-<!-- ============================================================
-     CONTACT BODY — segmented cards + form
-============================================================ -->
-<section class="contact-body">
+<section class="intro-band">
+  <div class="inner">
+    <p class="lead">Jengibre, cúrcuma, palta y cacao procesados en nuestra planta propia en Satipo, Junín. Trabajamos junto a los productores de la selva central para llevar producto fresco y deshidratado a mercados internacionales.</p>
+  </div>
+</section>
+
+<section class="product-body">
   <div class="inner">
 
-    <!-- Left — segmented contact cards -->
-    <div class="contact-cards">
-      <div class="eyebrow">ESCRÍBENOS</div>
-      <h2 class="h2-section">Hablemos.</h2>
-      <p class="cards-intro">Elige el equipo que necesitas. Todos los mensajes se atienden en menos de 24 horas hábiles desde nuestras oficinas en Lima y Miami.</p>
+    <aside class="product-sidebar">
+      <nav class="side-nav" aria-label="Productos">
+        <h4 class="side-heading">Productos</h4>
+        <a href="#jengibre-organico" class="is-active">Jengibre Orgánico</a>
+        <a href="#curcuma-fresca">Cúrcuma Fresca</a>
+        <a href="#palta-fresca">Palta Fresca</a>
+        <a href="#cacao-grano">Cacao en Grano</a>
+        <a href="#jengibre-deshidratado">Jengibre Deshidratado</a>
+        <a href="#curcuma-polvo">Cúrcuma en Polvo</a>
+        <a href="#cacao-polvo">Cacao en Polvo</a>
+      </nav>
 
-      <div class="contact-card">
-        <h3>Comercial — Mercado local</h3>
-        <p>DEL CAMPO e Ingredientes: arroces, aceites, manteca, azúcar y almidón para retail e industria peruana.</p>
-        <a class="card-email" href="mailto:comercial@interloom.com.pe">comercial@interloom.com.pe</a>
+      <div class="side-certs">
+        <h4 class="side-heading">Certificaciones de esta división</h4>
+        <div class="certs-row">
+          <div class="cert-mark">USDA Organic</div>
+          <div class="cert-mark">EU Bio</div>
+          <div class="cert-mark">GlobalG.A.P.</div>
+          <div class="cert-mark">SMETA</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="product-content">
+      <h2 class="content-heading">Productos</h2>
+
+      <article class="product-row" id="jengibre-organico">
+        <div class="prow-image"><img src="../../03_assets/images/web_ready/prod_kion.jpg" alt="Jengibre Orgánico" /></div>
+        <div class="prow-body">
+          <h3>Jengibre Orgánico</h3>
+          <p class="prow-desc">Jengibre (kion) fresco de la selva central, cultivo orgánico certificado. Lavado, seleccionado y empacado en nuestra planta de Satipo para exportación con cadena de frío. Calibre y presentación según destino.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: cajas 13 kg · contenedor refrigerado <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="curcuma-fresca">
+        <div class="prow-image"><img src="../../03_assets/images/web_ready/prod_curcuma.jpg" alt="Cúrcuma Fresca" /></div>
+        <div class="prow-body">
+          <h3>Cúrcuma Fresca</h3>
+          <p class="prow-desc">Rizoma de cúrcuma fresca cultivado en la selva central, con alto contenido de curcumina. Procesado en origen para exportación, con trazabilidad por lote y manejo orgánico.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: cajas 13 kg · contenedor refrigerado <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="palta-fresca">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Palta Fresca<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Palta Fresca</h3>
+          <p class="prow-desc">Palta Hass de exportación, calibrada y empacada bajo protocolo de calidad para mercados internacionales. Programas de temporada con ventana de cosecha peruana.</p>
+          <div class="prow-meta">Origen: Costa y sierra peruana <span class="sep">·</span> Presentación: cajas 4 kg / 10 kg <span class="sep">·</span> Certificación: GlobalG.A.P. · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="cacao-grano">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cacao en Grano<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cacao en Grano</h3>
+          <p class="prow-desc">Cacao en grano fermentado y secado, perfil aromático de origen peruano. Trazabilidad desde la parcela del productor, apto para chocolatería fina y procesamiento industrial.</p>
+          <div class="prow-meta">Origen: Selva central, Perú <span class="sep">·</span> Presentación: sacos 60 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="jengibre-deshidratado">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Jengibre Deshidratado<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Jengibre Deshidratado</h3>
+          <p class="prow-desc">Jengibre en hojuelas o polvo, deshidratado en nuestra planta de Satipo. Alternativa estable y de larga vida útil para la industria de infusiones, snacks y formulación.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="curcuma-polvo">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cúrcuma en Polvo<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cúrcuma en Polvo</h3>
+          <p class="prow-desc">Cúrcuma molida de origen peruano, con especificación de curcumina y granulometría a pedido. Producto para la industria de condimentos, suplementos y alimentos funcionales.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="cacao-polvo">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cacao en Polvo<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cacao en Polvo</h3>
+          <p class="prow-desc">Cacao en polvo natural o alcalinizado, obtenido de grano peruano trazable. Para la industria de bebidas, repostería y formulación de alimentos.</p>
+          <div class="prow-meta">Origen: Selva central, Perú <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <div class="product-cta">
+        <div class="cta-text">
+          <h3>¿Necesitas una cotización personalizada?</h3>
+          <p>Coordinamos programas de temporada y embarques refrigerados a Europa, Norteamérica y Asia. Respuesta en menos de 24 horas.</p>
+        </div>
+        <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
       </div>
 
-      <div class="contact-card">
-        <h3>Exportación</h3>
-        <p>Divisiones de Secos y Frescos: cotizaciones, programas anuales y embarques a Europa, Norteamérica y Asia.</p>
-        <a class="card-email" href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
-      </div>
-
-      <div class="contact-card">
-        <h3>Prensa y comunicación</h3>
-        <p>Consultas de medios, materiales de marca y vocería institucional del Grupo Interloom.</p>
-        <a class="card-email" href="mailto:prensa@interloom.com.pe">prensa@interloom.com.pe</a>
-      </div>
-
-      <div class="contact-card">
-        <h3>Trabaja con nosotros</h3>
-        <p>Súmate al equipo en planta, exportaciones u operaciones. Envíanos tu CV y área de interés.</p>
-        <a class="card-email" href="mailto:rrhh@interloom.com.pe">rrhh@interloom.com.pe</a>
-      </div>
     </div>
-
-    <!-- Right — form (WPForms restyled) -->
-    <div class="contact-form-wrap">
-      <h2 class="h2-section">Envíanos un mensaje</h2>
-      <p class="form-intro">Completa el formulario y el equipo correspondiente te responderá directamente. Los envíos llegan a contacto@interloom.com.pe.</p>
-      <form onsubmit="return false;">
-        <div class="field-row">
-          <div class="field">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" />
-          </div>
-          <div class="field">
-            <label for="empresa">Empresa</label>
-            <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" />
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="tu@empresa.com" />
-          </div>
-          <div class="field">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+51 ..." />
-          </div>
-        </div>
-        <div class="field">
-          <label for="area">Área de interés</label>
-          <select id="area" name="area">
-            <option>Exportación — Secos (quinua y granos andinos)</option>
-            <option>Exportación — Frescos (jengibre, cúrcuma, palta, cacao)</option>
-            <option>Mercado local — DEL CAMPO</option>
-            <option>Mercado local — Ingredientes (B2B)</option>
-            <option>Greenclover Naturals (EE.UU.)</option>
-            <option>Prensa y comunicación</option>
-            <option>Trabaja con nosotros</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas: producto, volumen estimado, mercado de destino..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-        <p class="form-note">Al enviar aceptas nuestra política de privacidad. Para consultas de DEL CAMPO también puedes escribirnos por WhatsApp Business.</p>
-      </form>
-    </div>
-
   </div>
 </section>
 
-<!-- ============================================================
-     MAP
-============================================================ -->
-<section class="map-section" aria-label="Ubicación">
-  <div class="map-block">
-    <div class="map-pin" aria-hidden="true"></div>
-    <div class="map-label">[GOOGLE MAPS · Av. Jorge Basadre 310, San Isidro · estilo personalizado · pin verde]</div>
-  </div>
-</section>
-
-<!-- ============================================================
-     OFFICES STRIP
-============================================================ -->
-<section class="offices">
-  <div class="inner">
-    <div class="office-card">
-      <div class="eyebrow">OFICINA PRINCIPAL</div>
-      <h3>Lima, Perú</h3>
-      <p>
-        Av. Jorge Basadre 310, Oficina 504<br/>
-        San Isidro, Lima – Perú<br/>
-        <a href="tel:+5113111730">(511) 311-1730</a><br/>
-        <a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a>
-      </p>
-    </div>
-    <div class="office-card">
-      <div class="eyebrow">SUBSIDIARIA EE.UU.</div>
-      <h3>Greenclover Naturals LLC</h3>
-      <p>
-        Distribución local y ventas por pallet con trazabilidad en el mercado de Estados Unidos.<br/>
-        <a href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
-      </p>
-    </div>
+<section class="closing-band">
+  <div class="closing-photo" style="background-image:url('../../03_assets/images/web_ready/hero_kion_field.jpg');" aria-hidden="true"></div>
+  <div class="closing-mask"></div>
+  <div class="closing-content">
+    <blockquote>"De la selva central de Satipo al mundo — fresco, trazable, nuestro."</blockquote>
   </div>
 </section>
 
@@ -856,7 +776,7 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </script>
 
 
-<div class="mockup-badge">Mockup · Contacto</div>
+<div class="mockup-badge">Mockup · División de Frescos</div>
 
 </body>
 </html>

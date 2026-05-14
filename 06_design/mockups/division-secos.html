@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   INTERLOOM — División de Secos (LDC-style template)
+   INTERLOOM — División de Secos (división · template LDC-style)
+   Header + footer = Bridge (Qode Options) · contenido = Elementor Pro
 ============================================================ */
 
 :root {
@@ -350,278 +351,141 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 }
 
 
-/* Override hero H1 size for division pages */
 .h1-hero-page {
   font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 1.15;
-  color: var(--white);
+  font-weight: 400; font-size: 48px; line-height: 1.15; color: var(--white);
 }
-
-/* Breadcrumb */
 .breadcrumb {
-  background: #FAFAFA;
-  height: 48px;
-  display: flex;
-  align-items: center;
+  background: #FAFAFA; height: 48px; display: flex; align-items: center;
   padding: 0 var(--gutter-desktop);
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  color: var(--accent-warm);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 13px; color: var(--accent-warm);
 }
 .breadcrumb a { color: var(--accent-warm); }
 .breadcrumb a:hover { color: var(--accent-green); }
 .breadcrumb .sep { margin: 0 10px; color: var(--accent-warm); opacity: 0.6; }
 .breadcrumb .current { color: var(--accent-green); }
 
-/* Division Hero (60vh) */
 .div-hero {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  min-height: 460px;
-  max-height: 600px;
-  overflow: hidden;
+  position: relative; width: 100%; height: 60vh;
+  min-height: 460px; max-height: 600px; overflow: hidden;
 }
-.div-hero .hero-photo {
-  position: absolute;
-  inset: 0;
-  background-image: url('../../03_assets/images/web_ready/hero_planta_2.jpg');
-  background-size: cover;
-  background-position: center;
+.div-hero .hero-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.div-hero .hero-photo--placeholder {
+  display: flex; align-items: flex-end;
+  background: linear-gradient(118deg, #5C3A1E, #3A2310, #1D1D1B);
+}
+.div-hero .hero-photo--placeholder span {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.10em; color: rgba(255,255,255,0.55); padding: 20px;
 }
 .div-hero .hero-mask {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.62) 0%,
-    rgba(0,0,0,0.36) 24%,
-    rgba(0,0,0,0.04) 48%,
-    rgba(0,0,0,0) 65%
-  );
+  background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 24%, rgba(0,0,0,0.04) 48%, rgba(0,0,0,0) 65%);
 }
-.div-hero .hero-content {
-  position: absolute;
-  left: 80px;
-  bottom: 96px;
-  max-width: 720px;
-  color: var(--white);
-}
+.div-hero .hero-content { position: absolute; left: 80px; bottom: 96px; max-width: 720px; color: var(--white); }
 .div-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
 
-/* Intro band */
-.intro-band {
-  background: var(--white);
-  padding: 96px var(--gutter-desktop) 64px;
-}
+.intro-band { background: var(--white); padding: 96px var(--gutter-desktop) 64px; }
 .intro-band .inner { max-width: var(--max-width); margin: 0 auto; }
 .intro-band .lead { max-width: 760px; }
 
-/* Two-column product body */
 .product-body { padding: 32px var(--gutter-desktop) 120px; }
 .product-body .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 96px;
-  align-items: start;
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 280px 1fr; gap: 96px; align-items: start;
 }
-
 .product-sidebar { position: sticky; top: 120px; }
 .product-sidebar .side-heading {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  margin-bottom: 16px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 16px;
 }
 .product-sidebar .side-nav { margin-bottom: 40px; }
 .product-sidebar .side-nav a {
-  display: block;
-  padding: 12px;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: var(--text-primary);
+  display: block; padding: 12px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; color: var(--text-primary);
   border-left: 4px solid transparent;
   transition: color 200ms ease, background 200ms ease, border-color 200ms ease;
 }
 .product-sidebar .side-nav a:hover { color: var(--accent-green); }
-.product-sidebar .side-nav a.is-active {
-  background: var(--surface-warm);
-  border-left-color: var(--accent-green);
-}
-.product-sidebar .side-certs {
-  border-top: 1px solid var(--hairline);
-  padding-top: 32px;
-}
+.product-sidebar .side-nav a.is-active { background: var(--surface-warm); border-left-color: var(--accent-green); }
+.product-sidebar .side-certs { border-top: 1px solid var(--hairline); padding-top: 32px; }
 .product-sidebar .side-certs .side-heading { margin-bottom: 20px; }
-.product-sidebar .side-certs .certs-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
+.product-sidebar .side-certs .certs-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .product-sidebar .side-certs .cert-mark {
-  height: 44px;
-  background: var(--white);
-  border: 1px solid var(--hairline);
+  height: 44px; background: var(--white); border: 1px solid var(--hairline);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  opacity: 0.85;
-  padding: 0 6px;
-  text-align: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  opacity: 0.85; padding: 0 6px; text-align: center;
 }
 
 .product-content { min-width: 0; }
 .product-content .content-heading {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 32px;
-  color: var(--text-primary);
-  margin-bottom: 56px;
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 32px;
+  color: var(--text-primary); margin-bottom: 56px;
 }
 .product-row {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
-  padding: 56px 0;
-  border-top: 1px solid var(--hairline);
-  align-items: start;
+  display: grid; grid-template-columns: 280px 1fr; gap: 48px;
+  padding: 56px 0; border-top: 1px solid var(--hairline); align-items: start;
 }
 .product-row:first-of-type { border-top: 0; padding-top: 0; }
 .product-row .prow-image {
-  width: 280px;
-  height: 280px;
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 280px; height: 280px; background: var(--white); border: 1px solid var(--hairline);
+  padding: 24px; display: flex; align-items: center; justify-content: center;
 }
-.product-row .prow-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
+.product-row .prow-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .product-row .prow-image .prow-photo-fallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
   background: var(--surface-warm);
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  text-align: center;
-  padding: 16px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  text-align: center; padding: 16px;
 }
 .product-row h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 26px;
-  color: var(--text-primary);
-  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 26px;
+  color: var(--text-primary); margin-bottom: 12px;
 }
 .product-row .prow-desc {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-  max-width: 560px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.6;
+  color: var(--text-secondary); margin-bottom: 24px; max-width: 560px;
 }
 .product-row .prow-meta {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--accent-warm);
-  line-height: 1.6;
-  border-top: 1px solid var(--hairline);
-  padding-top: 20px;
-  max-width: 560px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.04em; color: var(--accent-warm); line-height: 1.6;
+  border-top: 1px solid var(--hairline); padding-top: 20px; max-width: 560px;
 }
 .product-row .prow-meta .sep { margin: 0 8px; color: var(--accent-warm); opacity: 0.5; }
 
 .product-cta {
-  margin-top: 72px;
-  padding-top: 56px;
-  border-top: 1px solid var(--hairline);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
 }
 .product-cta .cta-text h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--text-primary);
-  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 24px;
+  color: var(--text-primary); margin-bottom: 8px;
 }
 .product-cta .cta-text p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  color: var(--text-secondary);
-  max-width: 480px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px;
+  color: var(--text-secondary); max-width: 480px;
 }
+.btn-whatsapp svg { width: 18px; height: 18px; margin-right: 8px; fill: currentColor; }
 
-/* Closing band */
-.closing-band {
-  position: relative;
-  width: 100%;
-  height: 50vh;
-  min-height: 360px;
-  overflow: hidden;
-}
-.closing-band .closing-photo {
-  position: absolute; inset: 0;
-  background-image: url('../../03_assets/images/web_ready/hero_kion_work.jpg');
-  background-size: cover;
-  background-position: center;
-}
+.closing-band { position: relative; width: 100%; height: 50vh; min-height: 360px; overflow: hidden; }
+.closing-band .closing-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.closing-band .closing-photo--placeholder { background: linear-gradient(135deg, #6F8A6E, #4A6A52, #2E4A2C); }
 .closing-band .closing-mask {
   position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
 }
 .closing-band .closing-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   padding: 0 var(--gutter-tablet);
 }
 .closing-band blockquote {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 28px;
-  line-height: 1.4;
-  color: var(--white);
-  max-width: 780px;
-  text-align: center;
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: 28px; line-height: 1.4; color: var(--white); max-width: 780px; text-align: center;
 }
 
-/* Responsive division */
 @media (max-width: 900px) {
   .div-hero { height: 50vh; }
   .h1-hero-page { font-size: 36px; }
@@ -676,15 +540,15 @@ footer .legal-strip a:hover { color: var(--accent-green); }
         <li class="has-caret has-dropdown">
           <a href="#" class="is-active">Divisiones</a>
           <div class="dropdown-panel">
-            <a href="#">DEL CAMPO</a>
-            <a href="#">División de Ingredientes</a>
+            <a href="division-delcampo.html" class="">DEL CAMPO</a>
+            <a href="division-ingredientes.html" class="">División de Ingredientes</a>
             <a href="division-secos.html" class="is-active">División de Secos</a>
-            <a href="#">División de Frescos</a>
-            <a href="#">Greenclover Naturals LLC</a>
+            <a href="division-frescos.html" class="">División de Frescos</a>
+            <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
           </div>
         </li>
-        <li><a href="#" class="">Sostenibilidad</a></li>
-        <li><a href="#" class="">Clientes</a></li>
+        <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
+        <li><a href="clientes.html" class="">Clientes</a></li>
         <li><a href="contacto.html" class="">Contacto</a></li>
       </ul>
       <span class="nav-divider" aria-hidden="true"></span>
@@ -695,9 +559,6 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </header>
 
 
-<!-- ============================================================
-     BREADCRUMB
-============================================================ -->
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="home-version-a.html">Home</a>
   <span class="sep">›</span>
@@ -706,11 +567,8 @@ footer .legal-strip a:hover { color: var(--accent-green); }
   <span class="current">División de Secos</span>
 </nav>
 
-<!-- ============================================================
-     DIVISION HERO (60vh)
-============================================================ -->
 <section class="div-hero">
-  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-photo" style="background-image:url('../../03_assets/images/web_ready/hero_planta_2.jpg');" aria-hidden="true"></div>
   <div class="hero-mask" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="eyebrow hero-eyebrow">DIVISIÓN · EXPORTACIÓN</div>
@@ -718,22 +576,15 @@ footer .legal-strip a:hover { color: var(--accent-green); }
   </div>
 </section>
 
-<!-- ============================================================
-     INTRO BAND
-============================================================ -->
 <section class="intro-band">
   <div class="inner">
     <p class="lead">Quinua y granos andinos certificados, procesados en nuestra planta propia en Callao y exportados a más de 25 mercados. Top 5 exportador peruano de quinua con 8,000+ toneladas en los últimos cuatro años.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     TWO-COLUMN BODY (sticky sidebar + product rows)
-============================================================ -->
 <section class="product-body">
   <div class="inner">
 
-    <!-- Sticky sidebar -->
     <aside class="product-sidebar">
       <nav class="side-nav" aria-label="Productos">
         <h4 class="side-heading">Productos</h4>
@@ -758,7 +609,6 @@ footer .legal-strip a:hover { color: var(--accent-green); }
       </div>
     </aside>
 
-    <!-- Content -->
     <div class="product-content">
       <h2 class="content-heading">Productos</h2>
 
@@ -834,7 +684,6 @@ footer .legal-strip a:hover { color: var(--accent-green); }
         </div>
       </article>
 
-      <!-- CTA -->
       <div class="product-cta">
         <div class="cta-text">
           <h3>¿Necesitas una cotización personalizada?</h3>
@@ -847,11 +696,8 @@ footer .legal-strip a:hover { color: var(--accent-green); }
   </div>
 </section>
 
-<!-- ============================================================
-     CLOSING BAND
-============================================================ -->
 <section class="closing-band">
-  <div class="closing-photo" aria-hidden="true"></div>
+  <div class="closing-photo" style="background-image:url('../../03_assets/images/web_ready/hero_kion_work.jpg');" aria-hidden="true"></div>
   <div class="closing-mask"></div>
   <div class="closing-content">
     <blockquote>"Toda la cadena, una sola firma — del altiplano andino al puerto del Callao."</blockquote>
@@ -877,11 +723,11 @@ footer .legal-strip a:hover { color: var(--accent-green); }
     <div>
       <h4 class="col-heading">Divisiones</h4>
       <ul>
-        <li><a href="#">DEL CAMPO</a></li>
-        <li><a href="#">Ingredientes</a></li>
+        <li><a href="division-delcampo.html">DEL CAMPO</a></li>
+        <li><a href="division-ingredientes.html">Ingredientes</a></li>
         <li><a href="division-secos.html">Secos</a></li>
-        <li><a href="#">Frescos</a></li>
-        <li><a href="#">Greenclover</a></li>
+        <li><a href="division-frescos.html">Frescos</a></li>
+        <li><a href="division-greenclover.html">Greenclover</a></li>
       </ul>
     </div>
 
@@ -889,8 +735,8 @@ footer .legal-strip a:hover { color: var(--accent-green); }
       <h4 class="col-heading">Empresa</h4>
       <ul>
         <li><a href="nosotros.html">Nosotros</a></li>
-        <li><a href="#">Sostenibilidad</a></li>
-        <li><a href="#">Clientes</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </div>
@@ -902,7 +748,7 @@ footer .legal-strip a:hover { color: var(--accent-green); }
         <li>San Isidro, Lima – Perú</li>
         <li><a href="tel:+5113111730">(511) 311-1730</a></li>
         <li><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></li>
-        <li><a href="#">WhatsApp · DEL CAMPO</a></li>
+        <li><a href="division-delcampo.html">WhatsApp · DEL CAMPO</a></li>
       </ul>
     </div>
 

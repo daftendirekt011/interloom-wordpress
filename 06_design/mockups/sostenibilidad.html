@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contacto — Interloom</title>
+<title>Sostenibilidad y Certificaciones — Interloom</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   INTERLOOM — Contacto
-   Header + footer = Bridge (Qode Options)
-   Everything between = Elementor Pro (form = WPForms restyled)
+   INTERLOOM — Sostenibilidad y Certificaciones
+   Header + footer = Bridge (Qode Options) · contenido = Elementor Pro
 ============================================================ */
 
 :root {
@@ -352,246 +351,116 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 }
 
 
-/* Page hero (intimate editorial) */
 .page-hero {
-  position: relative;
-  width: 100%;
-  height: 44vh;
-  min-height: 340px;
-  max-height: 460px;
-  overflow: hidden;
+  position: relative; width: 100%; height: 52vh;
+  min-height: 400px; max-height: 540px; overflow: hidden;
 }
 .page-hero .hero-photo {
   position: absolute; inset: 0;
-  background-image: url('../../03_assets/images/web_ready/nosotros_planta.jpg');
-  background-size: cover;
-  background-position: center;
+  background-image: url('../../03_assets/images/web_ready/hero_kion_field.jpg');
+  background-size: cover; background-position: center;
 }
 .page-hero .hero-mask {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.62) 0%,
-    rgba(0,0,0,0.36) 24%,
-    rgba(0,0,0,0.04) 48%,
-    rgba(0,0,0,0) 65%
-  );
+  background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 24%, rgba(0,0,0,0.04) 48%, rgba(0,0,0,0) 65%);
 }
-.page-hero .hero-content {
-  position: absolute;
-  left: 80px;
-  bottom: 72px;
-  max-width: 720px;
-  color: var(--white);
-}
+.page-hero .hero-content { position: absolute; left: 80px; bottom: 80px; max-width: 760px; color: var(--white); }
 .page-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
 .page-hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 52px;
-  line-height: 1.12;
-  color: var(--white);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: 52px; line-height: 1.12; color: var(--white);
 }
 
-/* Contact body — 2 column */
-.contact-body { padding: 112px var(--gutter-desktop); background: var(--white); }
-.contact-body .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 96px;
-  align-items: start;
+.sost-intro { padding: 112px var(--gutter-desktop) 80px; background: var(--white); }
+.sost-intro .inner { max-width: var(--max-width); margin: 0 auto; }
+.sost-intro .eyebrow { margin-bottom: 22px; }
+.sost-intro .lead { max-width: 760px; margin-bottom: 24px; }
+.sost-intro p.body {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.75;
+  color: var(--text-secondary); max-width: 680px;
 }
 
-/* Left — segmented contact cards */
-.contact-cards .eyebrow { margin-bottom: 18px; }
-.contact-cards h2 { margin-bottom: 16px; }
-.contact-cards .cards-intro {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--text-secondary);
-  max-width: 420px;
-  margin-bottom: 40px;
+.certs-section { padding: 24px var(--gutter-desktop) 120px; background: var(--white); }
+.certs-section .inner { max-width: var(--max-width); margin: 0 auto; }
+.certs-section .sec-head { margin-bottom: 56px; }
+.certs-section .sec-head .eyebrow { margin-bottom: 18px; }
+.certs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cert-card {
+  border: 1px solid var(--hairline); background: var(--white);
+  padding: 36px 32px; display: flex; flex-direction: column;
 }
-.contact-card {
-  padding: 28px 0;
-  border-top: 1px solid var(--hairline);
+.cert-card .cert-logo {
+  width: 64px; height: 64px; margin-bottom: 24px;
+  background: var(--surface-warm); border: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 8px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-warm); text-align: center; padding: 6px;
 }
-.contact-card:last-child { border-bottom: 1px solid var(--hairline); }
-.contact-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 20px;
-  color: var(--text-primary);
-  margin-bottom: 6px;
+.cert-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 22px;
+  color: var(--text-primary); margin-bottom: 12px;
 }
-.contact-card p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  max-width: 380px;
-  margin-bottom: 12px;
+.cert-card p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; line-height: 1.65;
+  color: var(--text-secondary); margin-bottom: 20px; flex: 1;
 }
-.contact-card a.card-email {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--accent-green);
-  border-bottom: 1px solid var(--accent-green);
-  padding-bottom: 2px;
+.cert-card .cert-divisions {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.04em; color: var(--accent-warm);
+  border-top: 1px solid var(--hairline); padding-top: 16px;
 }
 
-/* Right — form */
-.contact-form-wrap {
-  background: var(--surface-warm);
-  border: 1px solid var(--hairline);
-  padding: 48px;
+.practicas { padding: 112px var(--gutter-desktop); background: var(--surface-warm); border-top: 1px solid var(--hairline); }
+.practicas .inner { max-width: var(--max-width); margin: 0 auto; }
+.practicas .sec-head { margin-bottom: 56px; max-width: 620px; }
+.practicas .sec-head .eyebrow { margin-bottom: 18px; }
+.practicas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+.practica-item .practica-num {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 20px;
+  color: var(--accent-green); margin-bottom: 16px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--hairline);
 }
-.contact-form-wrap h2 { margin-bottom: 8px; font-size: 32px; }
-.contact-form-wrap .form-intro {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 36px;
+.practica-item h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 24px;
+  color: var(--text-primary); margin-bottom: 12px;
 }
-.field { margin-bottom: 24px; }
-.field label {
-  display: block;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  margin-bottom: 8px;
-}
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: var(--text-primary);
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  padding: 13px 14px;
-  transition: border-color 200ms ease;
-}
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--accent-green);
-}
-.field textarea { resize: vertical; min-height: 120px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.contact-form-wrap .btn { width: 100%; margin-top: 8px; }
-.form-note {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--accent-warm);
-  margin-top: 16px;
-}
-
-/* Map block */
-.map-section { background: var(--white); }
-.map-block {
-  width: 100%;
-  height: 420px;
-  background:
-    repeating-linear-gradient(45deg, #F4F1EA 0 18px, #EDEAE3 18px 36px);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.map-block .map-label {
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  padding: 14px 22px;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  text-align: center;
-}
-.map-block .map-pin {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  border: 3px solid var(--white);
-  box-shadow: 0 2px 8px rgba(29,29,27,0.25);
-  position: absolute;
-  top: 46%;
-  left: 52%;
-}
-
-/* Offices strip */
-.offices { padding: 96px var(--gutter-desktop); background: var(--surface-warm); }
-.offices .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-.office-card .eyebrow { margin-bottom: 14px; }
-.office-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-.office-card p {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.7;
+.practica-item p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7;
   color: var(--text-secondary);
 }
-.office-card p a { color: var(--accent-green); }
-.office-card p a:hover { color: var(--accent-green-hover); }
 
-/* Responsive */
+.contact-cta { padding: 128px var(--gutter-tablet); background: var(--white); text-align: center; }
+.contact-cta .eyebrow { margin-bottom: 24px; }
+.contact-cta h2 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.2;
+  color: var(--text-primary); max-width: 680px; margin: 0 auto 24px;
+}
+.contact-cta p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.6;
+  color: var(--text-secondary); max-width: 540px; margin: 0 auto 40px;
+}
+
 @media (max-width: 900px) {
-  .page-hero { height: 36vh; min-height: 300px; }
-  .page-hero h1 { font-size: 36px; }
-  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 48px; }
-  .contact-body { padding: 72px var(--gutter-tablet); }
-  .contact-body .inner { grid-template-columns: 1fr; gap: 56px; }
-  .contact-form-wrap { padding: 36px; }
-  .offices { padding: 72px var(--gutter-tablet); }
-  .offices .inner { grid-template-columns: 1fr; gap: 48px; }
+  .page-hero { height: 42vh; min-height: 340px; }
+  .page-hero h1 { font-size: 38px; }
+  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 56px; }
+  .sost-intro { padding: 72px var(--gutter-tablet) 56px; }
+  .certs-section { padding: 16px var(--gutter-tablet) 80px; }
+  .certs-cards { grid-template-columns: 1fr 1fr; }
+  .practicas { padding: 72px var(--gutter-tablet); }
+  .practicas-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-cta h2 { font-size: 34px; }
 }
 @media (max-width: 640px) {
-  .page-hero { height: 34vh; min-height: 260px; }
-  .page-hero h1 { font-size: 28px; }
-  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 40px; }
-  .contact-body { padding: 56px var(--gutter-mobile); }
-  .contact-cards h2 { font-size: 28px; }
-  .contact-form-wrap { padding: 28px var(--gutter-mobile); }
-  .contact-form-wrap h2 { font-size: 26px; }
-  .field-row { grid-template-columns: 1fr; gap: 0; }
-  .map-block { height: 300px; }
-  .offices { padding: 56px var(--gutter-mobile); }
+  .page-hero { height: 38vh; min-height: 280px; }
+  .page-hero h1 { font-size: 30px; }
+  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 44px; }
+  .sost-intro { padding: 56px var(--gutter-mobile) 40px; }
+  .certs-section { padding: 12px var(--gutter-mobile) 64px; }
+  .certs-cards { grid-template-columns: 1fr; }
+  .practicas { padding: 56px var(--gutter-mobile); }
+  .contact-cta { padding: 80px var(--gutter-mobile); }
+  .contact-cta h2 { font-size: 26px; }
 }
 
 </style>
@@ -628,9 +497,9 @@ footer .legal-strip a:hover { color: var(--accent-green); }
             <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
           </div>
         </li>
-        <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
+        <li><a href="sostenibilidad.html" class="is-active">Sostenibilidad</a></li>
         <li><a href="clientes.html" class="">Clientes</a></li>
-        <li><a href="contacto.html" class="is-active">Contacto</a></li>
+        <li><a href="contacto.html" class="">Contacto</a></li>
       </ul>
       <span class="nav-divider" aria-hidden="true"></span>
       <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
@@ -640,138 +509,101 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </header>
 
 
-<!-- ============================================================
-     PAGE HERO
-============================================================ -->
 <section class="page-hero">
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="hero-mask" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="eyebrow hero-eyebrow">GRUPO INTERLOOM</div>
-    <h1>Contacto</h1>
+    <h1>Sostenibilidad y Certificaciones</h1>
   </div>
 </section>
 
-<!-- ============================================================
-     CONTACT BODY — segmented cards + form
-============================================================ -->
-<section class="contact-body">
+<section class="sost-intro">
   <div class="inner">
-
-    <!-- Left — segmented contact cards -->
-    <div class="contact-cards">
-      <div class="eyebrow">ESCRÍBENOS</div>
-      <h2 class="h2-section">Hablemos.</h2>
-      <p class="cards-intro">Elige el equipo que necesitas. Todos los mensajes se atienden en menos de 24 horas hábiles desde nuestras oficinas en Lima y Miami.</p>
-
-      <div class="contact-card">
-        <h3>Comercial — Mercado local</h3>
-        <p>DEL CAMPO e Ingredientes: arroces, aceites, manteca, azúcar y almidón para retail e industria peruana.</p>
-        <a class="card-email" href="mailto:comercial@interloom.com.pe">comercial@interloom.com.pe</a>
-      </div>
-
-      <div class="contact-card">
-        <h3>Exportación</h3>
-        <p>Divisiones de Secos y Frescos: cotizaciones, programas anuales y embarques a Europa, Norteamérica y Asia.</p>
-        <a class="card-email" href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
-      </div>
-
-      <div class="contact-card">
-        <h3>Prensa y comunicación</h3>
-        <p>Consultas de medios, materiales de marca y vocería institucional del Grupo Interloom.</p>
-        <a class="card-email" href="mailto:prensa@interloom.com.pe">prensa@interloom.com.pe</a>
-      </div>
-
-      <div class="contact-card">
-        <h3>Trabaja con nosotros</h3>
-        <p>Súmate al equipo en planta, exportaciones u operaciones. Envíanos tu CV y área de interés.</p>
-        <a class="card-email" href="mailto:rrhh@interloom.com.pe">rrhh@interloom.com.pe</a>
-      </div>
-    </div>
-
-    <!-- Right — form (WPForms restyled) -->
-    <div class="contact-form-wrap">
-      <h2 class="h2-section">Envíanos un mensaje</h2>
-      <p class="form-intro">Completa el formulario y el equipo correspondiente te responderá directamente. Los envíos llegan a contacto@interloom.com.pe.</p>
-      <form onsubmit="return false;">
-        <div class="field-row">
-          <div class="field">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" />
-          </div>
-          <div class="field">
-            <label for="empresa">Empresa</label>
-            <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" />
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="tu@empresa.com" />
-          </div>
-          <div class="field">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+51 ..." />
-          </div>
-        </div>
-        <div class="field">
-          <label for="area">Área de interés</label>
-          <select id="area" name="area">
-            <option>Exportación — Secos (quinua y granos andinos)</option>
-            <option>Exportación — Frescos (jengibre, cúrcuma, palta, cacao)</option>
-            <option>Mercado local — DEL CAMPO</option>
-            <option>Mercado local — Ingredientes (B2B)</option>
-            <option>Greenclover Naturals (EE.UU.)</option>
-            <option>Prensa y comunicación</option>
-            <option>Trabaja con nosotros</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas: producto, volumen estimado, mercado de destino..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-        <p class="form-note">Al enviar aceptas nuestra política de privacidad. Para consultas de DEL CAMPO también puedes escribirnos por WhatsApp Business.</p>
-      </form>
-    </div>
-
+    <div class="eyebrow">NUESTRO ENFOQUE</div>
+    <p class="lead">La sostenibilidad no es decoración: es la forma en que controlamos el origen, cuidamos al productor y respondemos por cada lote.</p>
+    <p class="body">Para Interloom, operar de forma sostenible significa sostener en el tiempo lo que hace funcionar al negocio — una cadena de origen estable, plantas propias bien gestionadas y la confianza de clientes que compran a más de 25 mercados. Las certificaciones que mantenemos son la verificación externa de ese estándar.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     MAP
-============================================================ -->
-<section class="map-section" aria-label="Ubicación">
-  <div class="map-block">
-    <div class="map-pin" aria-hidden="true"></div>
-    <div class="map-label">[GOOGLE MAPS · Av. Jorge Basadre 310, San Isidro · estilo personalizado · pin verde]</div>
-  </div>
-</section>
-
-<!-- ============================================================
-     OFFICES STRIP
-============================================================ -->
-<section class="offices">
+<section class="certs-section">
   <div class="inner">
-    <div class="office-card">
-      <div class="eyebrow">OFICINA PRINCIPAL</div>
-      <h3>Lima, Perú</h3>
-      <p>
-        Av. Jorge Basadre 310, Oficina 504<br/>
-        San Isidro, Lima – Perú<br/>
-        <a href="tel:+5113111730">(511) 311-1730</a><br/>
-        <a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a>
-      </p>
+    <div class="sec-head">
+      <div class="eyebrow">CERTIFICACIONES</div>
+      <h2 class="h2-section">Verificadas por terceros, válidas en cada mercado.</h2>
     </div>
-    <div class="office-card">
-      <div class="eyebrow">SUBSIDIARIA EE.UU.</div>
-      <h3>Greenclover Naturals LLC</h3>
-      <p>
-        Distribución local y ventas por pallet con trazabilidad en el mercado de Estados Unidos.<br/>
-        <a href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
-      </p>
+    <div class="certs-cards">
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO USDA Organic]</div>
+        <h3>USDA Organic</h3>
+        <p>Certificación orgánica del Departamento de Agricultura de EE.UU. Acredita que el producto cumple los estándares orgánicos para el mercado norteamericano.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos · Greenclover</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO EU Bio]</div>
+        <h3>EU Bio</h3>
+        <p>Sello de agricultura ecológica de la Unión Europea. Habilita la comercialización de nuestros granos y frescos como orgánicos en el mercado europeo.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos · Greenclover</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO BRC Food]</div>
+        <h3>BRC Food</h3>
+        <p>Estándar global de seguridad alimentaria. Certifica el control de procesos e inocuidad en nuestra planta de procesamiento.</p>
+        <div class="cert-divisions">Aplica a: Secos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO Kiwa]</div>
+        <h3>Kiwa</h3>
+        <p>Certificadora internacional independiente que audita y respalda nuestros sistemas de calidad y trazabilidad.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO Kosher]</div>
+        <h3>Kosher</h3>
+        <p>Certificación de cumplimiento con la normativa alimentaria kosher, requerida por clientes y mercados específicos.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO SMETA]</div>
+        <h3>SMETA</h3>
+        <p>Auditoría ética de comercio de Sedex. Evalúa condiciones laborales, salud, seguridad y ética empresarial en nuestras operaciones.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
     </div>
   </div>
+</section>
+
+<section class="practicas">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="eyebrow">PRÁCTICAS</div>
+      <h2 class="h2-section">Tres principios que sostienen la operación.</h2>
+    </div>
+    <div class="practicas-grid">
+      <div class="practica-item">
+        <div class="practica-num">01</div>
+        <h3>Trazabilidad</h3>
+        <p>Cada lote se rastrea desde la parcela del productor andino o el campo de Satipo hasta el contenedor que llega al cliente. La trazabilidad no es un reporte: es la forma en que respondemos por lo que vendemos.</p>
+      </div>
+      <div class="practica-item">
+        <div class="practica-num">02</div>
+        <h3>Plantas propias</h3>
+        <p>Operamos dos plantas de procesamiento propias —Callao y Satipo— en lugar de tercerizar. El control directo de la planta es lo que nos permite sostener el estándar de calidad en cada embarque.</p>
+      </div>
+      <div class="practica-item">
+        <div class="practica-num">03</div>
+        <h3>Cadena de origen</h3>
+        <p>Trabajamos junto a los productores de la sierra y la selva central, no por encima de ellos. Una cadena de origen estable es lo que hace sostenible al negocio — para el productor y para Interloom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-cta">
+  <div class="eyebrow">CONTACTO</div>
+  <h2>¿Necesitas documentación o certificados?</h2>
+  <p>Compartimos fichas técnicas, certificados de análisis y documentación de origen por división. Escríbenos y te conectamos con el equipo correspondiente.</p>
+  <a href="contacto.html" class="btn btn-primary">Solicitar documentación</a>
 </section>
 
 
@@ -856,7 +688,7 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </script>
 
 
-<div class="mockup-badge">Mockup · Contacto</div>
+<div class="mockup-badge">Mockup · Sostenibilidad</div>
 
 </body>
 </html>
