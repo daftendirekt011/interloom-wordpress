@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>División de Frescos — Interloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — División de Frescos (división · template LDC-style)
+   Header + footer = Bridge (Qode Options) · contenido = Elementor Pro
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  --max-width:      1480px;
+  --gutter-desktop: 80px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- Type tokens ----- */
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+.h1-hero {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.h2-section {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.body-secondary {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary  { background: var(--accent-green); color: var(--white); }
+.btn-primary:hover { background: var(--accent-green-hover); }
+.btn-ghost    { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+.btn-ghost:hover { background: var(--text-primary); color: var(--white); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1DA851; }
+
+/* ============================================================
+   SHARED · Utility bar
+============================================================ */
+.utility-bar {
+  height: 32px;
+  background: var(--surface-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ============================================================
+   SHARED · Main header (sticky)
+============================================================ */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+  transition: box-shadow 200ms ease;
+}
+.main-header.is-scrolled { box-shadow: 0 1px 18px rgba(29,29,27,0.06); }
+.main-header .header-inner {
+  height: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo { display: inline-flex; align-items: center; height: 40px; }
+.brand-logo img { height: 40px; width: auto; display: block; }
+
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  padding: 28px 0;
+  display: inline-block;
+  transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.has-caret > a::after { content: "▾"; font-size: 10px; margin-left: 6px; color: var(--text-primary); }
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 280px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+  z-index: 110;
+  box-shadow: 0 12px 32px rgba(29,29,27,0.06);
+}
+.has-dropdown:hover > .dropdown-panel,
+.has-dropdown:focus-within > .dropdown-panel {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition-delay: 0s;
+}
+.dropdown-panel a {
+  display: block;
+  padding: 14px 24px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-left: 3px solid transparent;
+  letter-spacing: 0.01em;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.dropdown-panel a:hover,
+.dropdown-panel a.is-active {
+  color: var(--accent-green);
+  background: var(--surface-warm);
+  border-left-color: var(--accent-green);
+}
+
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.02em; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; color: var(--accent-warm); }
+
+.hamburger { display: none; background: transparent; border: 0; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); margin: 5px 0; }
+
+/* ============================================================
+   SHARED · Footer
+============================================================ */
+footer.site-footer {
+  background: var(--surface-warm);
+  border-top: 1px solid var(--hairline);
+  padding: 96px var(--gutter-desktop) 48px;
+}
+footer .footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr;
+  gap: 48px;
+}
+footer .col-heading {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 24px;
+}
+footer ul li {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+footer ul li a:hover { color: var(--accent-green); }
+
+footer .brand-block .footer-logo {
+  display: inline-flex; align-items: center;
+  height: 56px; margin-bottom: 24px;
+}
+footer .brand-block .footer-logo img { height: 56px; width: auto; }
+
+footer .brand-block .descriptor {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+footer .social-row { display: flex; gap: 16px; align-items: center; }
+footer .social-row a {
+  width: 24px; height: 24px;
+  color: var(--text-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+footer .social-row a:hover { color: var(--accent-green); }
+footer .social-row svg { width: 22px; height: 22px; fill: currentColor; }
+
+footer .certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+footer .certs-grid .cert-mark {
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  opacity: 0.85;
+  padding: 0 6px;
+  text-align: center;
+}
+
+footer .footer-divider { height: 1px; background: var(--hairline); margin: 56px 0 32px; }
+footer .legal-strip {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--accent-warm);
+}
+footer .legal-strip .legal-links { display: flex; gap: 24px; }
+footer .legal-strip a:hover { color: var(--accent-green); }
+
+/* ============================================================
+   SHARED · Responsive
+============================================================ */
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+  .utility-bar .util-right { gap: 12px; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+  .brand-logo img { height: 36px; }
+  footer.site-footer { padding: 64px var(--gutter-mobile) 32px; }
+  footer .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  footer .legal-strip { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+/* ============================================================
+   Mockup badge (remove on production build)
+============================================================ */
+.mockup-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 200;
+  background: var(--text-primary);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+
+.h1-hero-page {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400; font-size: 48px; line-height: 1.15; color: var(--white);
+}
+.breadcrumb {
+  background: #FAFAFA; height: 48px; display: flex; align-items: center;
+  padding: 0 var(--gutter-desktop);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 13px; color: var(--accent-warm);
+}
+.breadcrumb a { color: var(--accent-warm); }
+.breadcrumb a:hover { color: var(--accent-green); }
+.breadcrumb .sep { margin: 0 10px; color: var(--accent-warm); opacity: 0.6; }
+.breadcrumb .current { color: var(--accent-green); }
+
+.div-hero {
+  position: relative; width: 100%; height: 60vh;
+  min-height: 460px; max-height: 600px; overflow: hidden;
+}
+.div-hero .hero-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.div-hero .hero-photo--placeholder {
+  display: flex; align-items: flex-end;
+  background: linear-gradient(118deg, #5C3A1E, #3A2310, #1D1D1B);
+}
+.div-hero .hero-photo--placeholder span {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.10em; color: rgba(255,255,255,0.55); padding: 20px;
+}
+.div-hero .hero-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 24%, rgba(0,0,0,0.04) 48%, rgba(0,0,0,0) 65%);
+}
+.div-hero .hero-content { position: absolute; left: 80px; bottom: 96px; max-width: 720px; color: var(--white); }
+.div-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
+
+.intro-band { background: var(--white); padding: 96px var(--gutter-desktop) 64px; }
+.intro-band .inner { max-width: var(--max-width); margin: 0 auto; }
+.intro-band .lead { max-width: 760px; }
+
+.product-body { padding: 32px var(--gutter-desktop) 120px; }
+.product-body .inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 280px 1fr; gap: 96px; align-items: start;
+}
+.product-sidebar { position: sticky; top: 120px; }
+.product-sidebar .side-heading {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 16px;
+}
+.product-sidebar .side-nav { margin-bottom: 40px; }
+.product-sidebar .side-nav a {
+  display: block; padding: 12px;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; color: var(--text-primary);
+  border-left: 4px solid transparent;
+  transition: color 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+.product-sidebar .side-nav a:hover { color: var(--accent-green); }
+.product-sidebar .side-nav a.is-active { background: var(--surface-warm); border-left-color: var(--accent-green); }
+.product-sidebar .side-certs { border-top: 1px solid var(--hairline); padding-top: 32px; }
+.product-sidebar .side-certs .side-heading { margin-bottom: 20px; }
+.product-sidebar .side-certs .certs-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.product-sidebar .side-certs .cert-mark {
+  height: 44px; background: var(--white); border: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  opacity: 0.85; padding: 0 6px; text-align: center;
+}
+
+.product-content { min-width: 0; }
+.product-content .content-heading {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 32px;
+  color: var(--text-primary); margin-bottom: 56px;
+}
+.product-row {
+  display: grid; grid-template-columns: 280px 1fr; gap: 48px;
+  padding: 56px 0; border-top: 1px solid var(--hairline); align-items: start;
+}
+.product-row:first-of-type { border-top: 0; padding-top: 0; }
+.product-row .prow-image {
+  width: 280px; height: 280px; background: var(--white); border: 1px solid var(--hairline);
+  padding: 24px; display: flex; align-items: center; justify-content: center;
+}
+.product-row .prow-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.product-row .prow-image .prow-photo-fallback {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  background: var(--surface-warm);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm);
+  text-align: center; padding: 16px;
+}
+.product-row h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 26px;
+  color: var(--text-primary); margin-bottom: 12px;
+}
+.product-row .prow-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.6;
+  color: var(--text-secondary); margin-bottom: 24px; max-width: 560px;
+}
+.product-row .prow-meta {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.04em; color: var(--accent-warm); line-height: 1.6;
+  border-top: 1px solid var(--hairline); padding-top: 20px; max-width: 560px;
+}
+.product-row .prow-meta .sep { margin: 0 8px; color: var(--accent-warm); opacity: 0.5; }
+
+.product-cta {
+  margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.product-cta .cta-text h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 24px;
+  color: var(--text-primary); margin-bottom: 8px;
+}
+.product-cta .cta-text p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px;
+  color: var(--text-secondary); max-width: 480px;
+}
+.btn-whatsapp svg { width: 18px; height: 18px; margin-right: 8px; fill: currentColor; }
+
+.closing-band { position: relative; width: 100%; height: 50vh; min-height: 360px; overflow: hidden; }
+.closing-band .closing-photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.closing-band .closing-photo--placeholder { background: linear-gradient(135deg, #6F8A6E, #4A6A52, #2E4A2C); }
+.closing-band .closing-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
+}
+.closing-band .closing-content {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  padding: 0 var(--gutter-tablet);
+}
+.closing-band blockquote {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: 28px; line-height: 1.4; color: var(--white); max-width: 780px; text-align: center;
+}
+
+@media (max-width: 900px) {
+  .div-hero { height: 50vh; }
+  .h1-hero-page { font-size: 36px; }
+  .div-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 64px; }
+  .breadcrumb { padding: 0 var(--gutter-tablet); }
+  .intro-band { padding: 64px var(--gutter-tablet) 32px; }
+  .intro-band .lead { font-size: 20px; }
+  .product-body { padding: 32px var(--gutter-tablet) 80px; }
+  .product-body .inner { grid-template-columns: 1fr; gap: 48px; }
+  .product-sidebar { position: static; }
+  .product-row { grid-template-columns: 1fr; gap: 24px; }
+  .product-row .prow-image { width: 100%; max-width: 320px; height: 320px; }
+  .product-cta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  .breadcrumb { padding: 0 var(--gutter-mobile); font-size: 12px; }
+  .div-hero { height: 45vh; min-height: 360px; }
+  .h1-hero-page { font-size: 28px; }
+  .div-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 48px; }
+  .intro-band { padding: 48px var(--gutter-mobile) 24px; }
+  .product-body { padding: 24px var(--gutter-mobile) 64px; }
+  .product-content .content-heading { font-size: 26px; margin-bottom: 32px; }
+  .product-row { padding: 40px 0; }
+  .product-row h3 { font-size: 22px; }
+  .closing-band blockquote { font-size: 20px; padding: 0 var(--gutter-mobile); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html" aria-label="Interloom — Inicio">
+      <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+    </a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html" class="">Inicio</a></li>
+        <li><a href="nosotros.html" class="">Nosotros</a></li>
+        <li><a href="del-campo.html" class="">Del Campo</a></li>
+        <li class="has-caret has-dropdown">
+          <a href="#" class="is-active">Divisiones</a>
+          <div class="dropdown-panel">
+            <a href="division-ingredientes.html" class="">División de Ingredientes</a>
+            <a href="division-secos.html" class="">División de Secos</a>
+            <a href="division-frescos.html" class="is-active">División de Frescos</a>
+            <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
+          </div>
+        </li>
+        <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
+        <li><a href="clientes.html" class="">Clientes</a></li>
+        <li><a href="contacto.html" class="">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="home-version-a.html">Home</a>
+  <span class="sep">›</span>
+  <a href="#">Divisiones</a>
+  <span class="sep">›</span>
+  <span class="current">División de Frescos</span>
+</nav>
+
+<section class="div-hero">
+  <div class="hero-photo" style="background-image:url('assets/hero_kion_aerial.jpg');" aria-hidden="true"></div>
+  <div class="hero-mask" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-eyebrow">DIVISIÓN · EXPORTACIÓN</div>
+    <h1 class="h1-hero-page">División de Frescos</h1>
+  </div>
+</section>
+
+<section class="intro-band">
+  <div class="inner">
+    <p class="lead">Jengibre, cúrcuma, palta y cacao procesados en nuestra planta propia en Satipo, Junín. Trabajamos junto a los productores de la selva central para llevar producto fresco y deshidratado a mercados internacionales.</p>
+  </div>
+</section>
+
+<section class="product-body">
+  <div class="inner">
+
+    <aside class="product-sidebar">
+      <nav class="side-nav" aria-label="Productos">
+        <h4 class="side-heading">Productos</h4>
+        <a href="#jengibre-organico" class="is-active">Jengibre Orgánico</a>
+        <a href="#curcuma-fresca">Cúrcuma Fresca</a>
+        <a href="#palta-fresca">Palta Fresca</a>
+        <a href="#cacao-grano">Cacao en Grano</a>
+        <a href="#jengibre-deshidratado">Jengibre Deshidratado</a>
+        <a href="#curcuma-polvo">Cúrcuma en Polvo</a>
+        <a href="#cacao-polvo">Cacao en Polvo</a>
+      </nav>
+
+      <div class="side-certs">
+        <h4 class="side-heading">Certificaciones de esta división</h4>
+        <div class="certs-row">
+          <div class="cert-mark">USDA Organic</div>
+          <div class="cert-mark">EU Bio</div>
+          <div class="cert-mark">GlobalG.A.P.</div>
+          <div class="cert-mark">SMETA</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="product-content">
+      <h2 class="content-heading">Productos</h2>
+
+      <article class="product-row" id="jengibre-organico">
+        <div class="prow-image"><img src="assets/prod_kion.jpg" alt="Jengibre Orgánico" /></div>
+        <div class="prow-body">
+          <h3>Jengibre Orgánico</h3>
+          <p class="prow-desc">Jengibre (kion) fresco de la selva central, cultivo orgánico certificado. Lavado, seleccionado y empacado en nuestra planta de Satipo para exportación con cadena de frío. Calibre y presentación según destino.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: cajas 13 kg · contenedor refrigerado <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="curcuma-fresca">
+        <div class="prow-image"><img src="assets/prod_curcuma.jpg" alt="Cúrcuma Fresca" /></div>
+        <div class="prow-body">
+          <h3>Cúrcuma Fresca</h3>
+          <p class="prow-desc">Rizoma de cúrcuma fresca cultivado en la selva central, con alto contenido de curcumina. Procesado en origen para exportación, con trazabilidad por lote y manejo orgánico.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: cajas 13 kg · contenedor refrigerado <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="palta-fresca">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Palta Fresca<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Palta Fresca</h3>
+          <p class="prow-desc">Palta Hass de exportación, calibrada y empacada bajo protocolo de calidad para mercados internacionales. Programas de temporada con ventana de cosecha peruana.</p>
+          <div class="prow-meta">Origen: Costa y sierra peruana <span class="sep">·</span> Presentación: cajas 4 kg / 10 kg <span class="sep">·</span> Certificación: GlobalG.A.P. · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="cacao-grano">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cacao en Grano<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cacao en Grano</h3>
+          <p class="prow-desc">Cacao en grano fermentado y secado, perfil aromático de origen peruano. Trazabilidad desde la parcela del productor, apto para chocolatería fina y procesamiento industrial.</p>
+          <div class="prow-meta">Origen: Selva central, Perú <span class="sep">·</span> Presentación: sacos 60 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="jengibre-deshidratado">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Jengibre Deshidratado<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Jengibre Deshidratado</h3>
+          <p class="prow-desc">Jengibre en hojuelas o polvo, deshidratado en nuestra planta de Satipo. Alternativa estable y de larga vida útil para la industria de infusiones, snacks y formulación.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="curcuma-polvo">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cúrcuma en Polvo<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cúrcuma en Polvo</h3>
+          <p class="prow-desc">Cúrcuma molida de origen peruano, con especificación de curcumina y granulometría a pedido. Producto para la industria de condimentos, suplementos y alimentos funcionales.</p>
+          <div class="prow-meta">Origen: Satipo, Junín <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <article class="product-row" id="cacao-polvo">
+        <div class="prow-image"><div class="prow-photo-fallback">[FOTO Cacao en Polvo<br/>280×280 · fondo blanco]</div></div>
+        <div class="prow-body">
+          <h3>Cacao en Polvo</h3>
+          <p class="prow-desc">Cacao en polvo natural o alcalinizado, obtenido de grano peruano trazable. Para la industria de bebidas, repostería y formulación de alimentos.</p>
+          <div class="prow-meta">Origen: Selva central, Perú <span class="sep">·</span> Presentación: sacos 25 kg <span class="sep">·</span> Certificación: USDA Organic · EU Bio</div>
+        </div>
+      </article>
+
+      <div class="product-cta">
+        <div class="cta-text">
+          <h3>¿Necesitas una cotización personalizada?</h3>
+          <p>Coordinamos programas de temporada y embarques refrigerados a Europa, Norteamérica y Asia. Respuesta en menos de 24 horas.</p>
+        </div>
+        <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="closing-band">
+  <div class="closing-photo" style="background-image:url('assets/hero_kion_field.jpg');" aria-hidden="true"></div>
+  <div class="closing-mask"></div>
+  <div class="closing-content">
+    <blockquote>"De la selva central de Satipo al mundo — fresco, trazable, nuestro."</blockquote>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="brand-block">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+      </div>
+      <p class="descriptor">+30 años de agro peruano con trazabilidad real.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5V9h3v10zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.4-.1.2-.1.6-.1.9V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Divisiones</h4>
+      <ul>
+        <li><a href="division-ingredientes.html">Ingredientes</a></li>
+        <li><a href="division-secos.html">Secos</a></li>
+        <li><a href="division-frescos.html">Frescos</a></li>
+        <li><a href="division-greenclover.html">Greenclover</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Empresa</h4>
+      <ul>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html">Del Campo</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Contacto</h4>
+      <ul>
+        <li>Av. Jorge Basadre 310, Of. 504</li>
+        <li>San Isidro, Lima – Perú</li>
+        <li><a href="tel:+5113111730">(511) 311-1730</a></li>
+        <li><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></li>
+        <li><a href="del-campo.html">WhatsApp · Del Campo</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Certificaciones</h4>
+      <div class="certs-grid">
+        <div class="cert-mark">USDA Organic</div>
+        <div class="cert-mark">EU Bio</div>
+        <div class="cert-mark">BRC Food</div>
+        <div class="cert-mark">Kiwa</div>
+        <div class="cert-mark">Kosher</div>
+        <div class="cert-mark">SMETA</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="legal-strip">
+    <div>© 2026 Grupo Interloom. Todos los derechos reservados.</div>
+    <div class="legal-links">
+      <a href="#">Aviso legal</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var hdr = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 8) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
+  });
+</script>
+
+
+<div class="mockup-badge">Mockup · División de Frescos</div>
+
+</body>
+</html>

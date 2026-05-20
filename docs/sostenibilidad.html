@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sostenibilidad y Certificaciones — Interloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Sostenibilidad y Certificaciones
+   Header + footer = Bridge (Qode Options) · contenido = Elementor Pro
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  --max-width:      1480px;
+  --gutter-desktop: 80px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- Type tokens ----- */
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+.h1-hero {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.h2-section {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.body-secondary {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary  { background: var(--accent-green); color: var(--white); }
+.btn-primary:hover { background: var(--accent-green-hover); }
+.btn-ghost    { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+.btn-ghost:hover { background: var(--text-primary); color: var(--white); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1DA851; }
+
+/* ============================================================
+   SHARED · Utility bar
+============================================================ */
+.utility-bar {
+  height: 32px;
+  background: var(--surface-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ============================================================
+   SHARED · Main header (sticky)
+============================================================ */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+  transition: box-shadow 200ms ease;
+}
+.main-header.is-scrolled { box-shadow: 0 1px 18px rgba(29,29,27,0.06); }
+.main-header .header-inner {
+  height: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo { display: inline-flex; align-items: center; height: 40px; }
+.brand-logo img { height: 40px; width: auto; display: block; }
+
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  padding: 28px 0;
+  display: inline-block;
+  transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.has-caret > a::after { content: "▾"; font-size: 10px; margin-left: 6px; color: var(--text-primary); }
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 280px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+  z-index: 110;
+  box-shadow: 0 12px 32px rgba(29,29,27,0.06);
+}
+.has-dropdown:hover > .dropdown-panel,
+.has-dropdown:focus-within > .dropdown-panel {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition-delay: 0s;
+}
+.dropdown-panel a {
+  display: block;
+  padding: 14px 24px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-left: 3px solid transparent;
+  letter-spacing: 0.01em;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.dropdown-panel a:hover,
+.dropdown-panel a.is-active {
+  color: var(--accent-green);
+  background: var(--surface-warm);
+  border-left-color: var(--accent-green);
+}
+
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.02em; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; color: var(--accent-warm); }
+
+.hamburger { display: none; background: transparent; border: 0; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); margin: 5px 0; }
+
+/* ============================================================
+   SHARED · Footer
+============================================================ */
+footer.site-footer {
+  background: var(--surface-warm);
+  border-top: 1px solid var(--hairline);
+  padding: 96px var(--gutter-desktop) 48px;
+}
+footer .footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr;
+  gap: 48px;
+}
+footer .col-heading {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 24px;
+}
+footer ul li {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+footer ul li a:hover { color: var(--accent-green); }
+
+footer .brand-block .footer-logo {
+  display: inline-flex; align-items: center;
+  height: 56px; margin-bottom: 24px;
+}
+footer .brand-block .footer-logo img { height: 56px; width: auto; }
+
+footer .brand-block .descriptor {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+footer .social-row { display: flex; gap: 16px; align-items: center; }
+footer .social-row a {
+  width: 24px; height: 24px;
+  color: var(--text-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+footer .social-row a:hover { color: var(--accent-green); }
+footer .social-row svg { width: 22px; height: 22px; fill: currentColor; }
+
+footer .certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+footer .certs-grid .cert-mark {
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  opacity: 0.85;
+  padding: 0 6px;
+  text-align: center;
+}
+
+footer .footer-divider { height: 1px; background: var(--hairline); margin: 56px 0 32px; }
+footer .legal-strip {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--accent-warm);
+}
+footer .legal-strip .legal-links { display: flex; gap: 24px; }
+footer .legal-strip a:hover { color: var(--accent-green); }
+
+/* ============================================================
+   SHARED · Responsive
+============================================================ */
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+  .utility-bar .util-right { gap: 12px; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+  .brand-logo img { height: 36px; }
+  footer.site-footer { padding: 64px var(--gutter-mobile) 32px; }
+  footer .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  footer .legal-strip { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+/* ============================================================
+   Mockup badge (remove on production build)
+============================================================ */
+.mockup-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 200;
+  background: var(--text-primary);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+
+.page-hero {
+  position: relative; width: 100%; height: 52vh;
+  min-height: 400px; max-height: 540px; overflow: hidden;
+}
+.page-hero .hero-photo {
+  position: absolute; inset: 0;
+  background-image: url('assets/hero_sostenibilidad.jpg');
+  background-size: cover; background-position: center;
+}
+.page-hero .hero-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 24%, rgba(0,0,0,0.04) 48%, rgba(0,0,0,0) 65%);
+}
+.page-hero .hero-content { position: absolute; left: 80px; bottom: 80px; max-width: 760px; color: var(--white); }
+.page-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
+.page-hero h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: 52px; line-height: 1.12; color: var(--white);
+}
+
+.sost-intro { padding: 112px var(--gutter-desktop) 80px; background: var(--white); }
+.sost-intro .inner { max-width: var(--max-width); margin: 0 auto; }
+.sost-intro .eyebrow { margin-bottom: 22px; }
+.sost-intro .lead { max-width: 760px; margin-bottom: 24px; }
+.sost-intro p.body {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.75;
+  color: var(--text-secondary); max-width: 680px;
+}
+
+.certs-section { padding: 24px var(--gutter-desktop) 120px; background: var(--white); }
+.certs-section .inner { max-width: var(--max-width); margin: 0 auto; }
+.certs-section .sec-head { margin-bottom: 56px; }
+.certs-section .sec-head .eyebrow { margin-bottom: 18px; }
+.certs-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cert-card {
+  border: 1px solid var(--hairline); background: var(--white);
+  padding: 36px 32px; display: flex; flex-direction: column;
+}
+.cert-card .cert-logo {
+  width: 64px; height: 64px; margin-bottom: 24px;
+  background: var(--surface-warm); border: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 8px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-warm); text-align: center; padding: 6px;
+}
+.cert-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 22px;
+  color: var(--text-primary); margin-bottom: 12px;
+}
+.cert-card p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; line-height: 1.65;
+  color: var(--text-secondary); margin-bottom: 20px; flex: 1;
+}
+.cert-card .cert-divisions {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  letter-spacing: 0.04em; color: var(--accent-warm);
+  border-top: 1px solid var(--hairline); padding-top: 16px;
+}
+
+.practicas { padding: 112px var(--gutter-desktop); background: var(--surface-warm); border-top: 1px solid var(--hairline); }
+.practicas .inner { max-width: var(--max-width); margin: 0 auto; }
+.practicas .sec-head { margin-bottom: 56px; max-width: 620px; }
+.practicas .sec-head .eyebrow { margin-bottom: 18px; }
+.practicas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+.practica-item .practica-num {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 20px;
+  color: var(--accent-green); margin-bottom: 16px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--hairline);
+}
+.practica-item h3 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 24px;
+  color: var(--text-primary); margin-bottom: 12px;
+}
+.practica-item p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.contact-cta { padding: 128px var(--gutter-tablet); background: var(--white); text-align: center; }
+.contact-cta .eyebrow { margin-bottom: 24px; }
+.contact-cta h2 {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.2;
+  color: var(--text-primary); max-width: 680px; margin: 0 auto 24px;
+}
+.contact-cta p {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.6;
+  color: var(--text-secondary); max-width: 540px; margin: 0 auto 40px;
+}
+
+@media (max-width: 900px) {
+  .page-hero { height: 42vh; min-height: 340px; }
+  .page-hero h1 { font-size: 38px; }
+  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 56px; }
+  .sost-intro { padding: 72px var(--gutter-tablet) 56px; }
+  .certs-section { padding: 16px var(--gutter-tablet) 80px; }
+  .certs-cards { grid-template-columns: 1fr 1fr; }
+  .practicas { padding: 72px var(--gutter-tablet); }
+  .practicas-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-cta h2 { font-size: 34px; }
+}
+@media (max-width: 640px) {
+  .page-hero { height: 38vh; min-height: 280px; }
+  .page-hero h1 { font-size: 30px; }
+  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 44px; }
+  .sost-intro { padding: 56px var(--gutter-mobile) 40px; }
+  .certs-section { padding: 12px var(--gutter-mobile) 64px; }
+  .certs-cards { grid-template-columns: 1fr; }
+  .practicas { padding: 56px var(--gutter-mobile); }
+  .contact-cta { padding: 80px var(--gutter-mobile); }
+  .contact-cta h2 { font-size: 26px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html" aria-label="Interloom — Inicio">
+      <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+    </a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html" class="">Inicio</a></li>
+        <li><a href="nosotros.html" class="">Nosotros</a></li>
+        <li><a href="del-campo.html" class="">Del Campo</a></li>
+        <li class="has-caret has-dropdown">
+          <a href="#" class="">Divisiones</a>
+          <div class="dropdown-panel">
+            <a href="division-ingredientes.html" class="">División de Ingredientes</a>
+            <a href="division-secos.html" class="">División de Secos</a>
+            <a href="division-frescos.html" class="">División de Frescos</a>
+            <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
+          </div>
+        </li>
+        <li><a href="sostenibilidad.html" class="is-active">Sostenibilidad</a></li>
+        <li><a href="clientes.html" class="">Clientes</a></li>
+        <li><a href="contacto.html" class="">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-mask" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-eyebrow">GRUPO INTERLOOM</div>
+    <h1>Sostenibilidad y Certificaciones</h1>
+  </div>
+</section>
+
+<section class="sost-intro">
+  <div class="inner">
+    <div class="eyebrow">NUESTRO ENFOQUE</div>
+    <p class="lead">La sostenibilidad es la forma en que controlamos el origen, cuidamos al productor y respondemos por cada lote.</p>
+    <p class="body">Para Interloom, operar de forma sostenible significa sostener en el tiempo lo que hace funcionar al negocio — una cadena de origen estable, plantas propias bien gestionadas y la confianza de clientes que compran a más de 25 mercados. Las certificaciones que mantenemos son la verificación externa de ese estándar.</p>
+  </div>
+</section>
+
+<section class="certs-section">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="eyebrow">CERTIFICACIONES</div>
+      <h2 class="h2-section">Verificadas por terceros, válidas en cada mercado.</h2>
+    </div>
+    <div class="certs-cards">
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO USDA Organic]</div>
+        <h3>USDA Organic</h3>
+        <p>Certificación orgánica del Departamento de Agricultura de EE.UU. Acredita que el producto cumple los estándares orgánicos para el mercado norteamericano.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos · Greenclover</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO EU Bio]</div>
+        <h3>EU Bio</h3>
+        <p>Sello de agricultura ecológica de la Unión Europea. Habilita la comercialización de nuestros granos y frescos como orgánicos en el mercado europeo.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos · Greenclover</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO BRC Food]</div>
+        <h3>BRC Food</h3>
+        <p>Estándar global de seguridad alimentaria. Certifica el control de procesos e inocuidad en nuestra planta de procesamiento.</p>
+        <div class="cert-divisions">Aplica a: Secos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO Kiwa]</div>
+        <h3>Kiwa</h3>
+        <p>Certificadora internacional independiente que audita y respalda nuestros sistemas de calidad y trazabilidad.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO Kosher]</div>
+        <h3>Kosher</h3>
+        <p>Certificación de cumplimiento con la normativa alimentaria kosher, requerida por clientes y mercados específicos.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">[LOGO SMETA]</div>
+        <h3>SMETA</h3>
+        <p>Auditoría ética de comercio de Sedex. Evalúa condiciones laborales, salud, seguridad y ética empresarial en nuestras operaciones.</p>
+        <div class="cert-divisions">Aplica a: Secos · Frescos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="practicas">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="eyebrow">PRÁCTICAS</div>
+      <h2 class="h2-section">Tres principios que sostienen la operación.</h2>
+    </div>
+    <div class="practicas-grid">
+      <div class="practica-item">
+        <div class="practica-num">01</div>
+        <h3>Trazabilidad</h3>
+        <p>Cada lote se rastrea desde la parcela del productor andino o el campo de Satipo hasta el contenedor que llega al cliente. La trazabilidad no es un reporte: es la forma en que respondemos por lo que vendemos.</p>
+      </div>
+      <div class="practica-item">
+        <div class="practica-num">02</div>
+        <h3>Plantas propias</h3>
+        <p>Operamos dos plantas de procesamiento propias —Callao y Satipo— en lugar de tercerizar. El control directo de la planta es lo que nos permite sostener el estándar de calidad en cada embarque.</p>
+      </div>
+      <div class="practica-item">
+        <div class="practica-num">03</div>
+        <h3>Cadena de origen</h3>
+        <p>Trabajamos junto a los productores de la sierra y la selva central, no por encima de ellos. Una cadena de origen estable es lo que hace sostenible al negocio — para el productor y para Interloom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-cta">
+  <div class="eyebrow">CONTACTO</div>
+  <h2>¿Necesitas documentación o certificados?</h2>
+  <p>Compartimos fichas técnicas, certificados de análisis y documentación de origen por división. Escríbenos y te conectamos con el equipo correspondiente.</p>
+  <a href="contacto.html" class="btn btn-primary">Solicitar documentación</a>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="brand-block">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+      </div>
+      <p class="descriptor">+30 años de agro peruano con trazabilidad real.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5V9h3v10zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.4-.1.2-.1.6-.1.9V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Divisiones</h4>
+      <ul>
+        <li><a href="division-ingredientes.html">Ingredientes</a></li>
+        <li><a href="division-secos.html">Secos</a></li>
+        <li><a href="division-frescos.html">Frescos</a></li>
+        <li><a href="division-greenclover.html">Greenclover</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Empresa</h4>
+      <ul>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html">Del Campo</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Contacto</h4>
+      <ul>
+        <li>Av. Jorge Basadre 310, Of. 504</li>
+        <li>San Isidro, Lima – Perú</li>
+        <li><a href="tel:+5113111730">(511) 311-1730</a></li>
+        <li><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></li>
+        <li><a href="del-campo.html">WhatsApp · Del Campo</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Certificaciones</h4>
+      <div class="certs-grid">
+        <div class="cert-mark">USDA Organic</div>
+        <div class="cert-mark">EU Bio</div>
+        <div class="cert-mark">BRC Food</div>
+        <div class="cert-mark">Kiwa</div>
+        <div class="cert-mark">Kosher</div>
+        <div class="cert-mark">SMETA</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="legal-strip">
+    <div>© 2026 Grupo Interloom. Todos los derechos reservados.</div>
+    <div class="legal-links">
+      <a href="#">Aviso legal</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var hdr = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 8) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
+  });
+</script>
+
+
+<div class="mockup-badge">Mockup · Sostenibilidad</div>
+
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contacto — Interloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Contacto
+   Header + footer = Bridge (Qode Options)
+   Everything between = Elementor Pro (form = WPForms restyled)
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  --max-width:      1480px;
+  --gutter-desktop: 80px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- Type tokens ----- */
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+.h1-hero {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.h2-section {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.body-secondary {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary  { background: var(--accent-green); color: var(--white); }
+.btn-primary:hover { background: var(--accent-green-hover); }
+.btn-ghost    { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+.btn-ghost:hover { background: var(--text-primary); color: var(--white); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1DA851; }
+
+/* ============================================================
+   SHARED · Utility bar
+============================================================ */
+.utility-bar {
+  height: 32px;
+  background: var(--surface-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ============================================================
+   SHARED · Main header (sticky)
+============================================================ */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+  transition: box-shadow 200ms ease;
+}
+.main-header.is-scrolled { box-shadow: 0 1px 18px rgba(29,29,27,0.06); }
+.main-header .header-inner {
+  height: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo { display: inline-flex; align-items: center; height: 40px; }
+.brand-logo img { height: 40px; width: auto; display: block; }
+
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  padding: 28px 0;
+  display: inline-block;
+  transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.has-caret > a::after { content: "▾"; font-size: 10px; margin-left: 6px; color: var(--text-primary); }
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 280px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+  z-index: 110;
+  box-shadow: 0 12px 32px rgba(29,29,27,0.06);
+}
+.has-dropdown:hover > .dropdown-panel,
+.has-dropdown:focus-within > .dropdown-panel {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition-delay: 0s;
+}
+.dropdown-panel a {
+  display: block;
+  padding: 14px 24px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-left: 3px solid transparent;
+  letter-spacing: 0.01em;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.dropdown-panel a:hover,
+.dropdown-panel a.is-active {
+  color: var(--accent-green);
+  background: var(--surface-warm);
+  border-left-color: var(--accent-green);
+}
+
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.02em; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; color: var(--accent-warm); }
+
+.hamburger { display: none; background: transparent; border: 0; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); margin: 5px 0; }
+
+/* ============================================================
+   SHARED · Footer
+============================================================ */
+footer.site-footer {
+  background: var(--surface-warm);
+  border-top: 1px solid var(--hairline);
+  padding: 96px var(--gutter-desktop) 48px;
+}
+footer .footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr;
+  gap: 48px;
+}
+footer .col-heading {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 24px;
+}
+footer ul li {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+footer ul li a:hover { color: var(--accent-green); }
+
+footer .brand-block .footer-logo {
+  display: inline-flex; align-items: center;
+  height: 56px; margin-bottom: 24px;
+}
+footer .brand-block .footer-logo img { height: 56px; width: auto; }
+
+footer .brand-block .descriptor {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+footer .social-row { display: flex; gap: 16px; align-items: center; }
+footer .social-row a {
+  width: 24px; height: 24px;
+  color: var(--text-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+footer .social-row a:hover { color: var(--accent-green); }
+footer .social-row svg { width: 22px; height: 22px; fill: currentColor; }
+
+footer .certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+footer .certs-grid .cert-mark {
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  opacity: 0.85;
+  padding: 0 6px;
+  text-align: center;
+}
+
+footer .footer-divider { height: 1px; background: var(--hairline); margin: 56px 0 32px; }
+footer .legal-strip {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--accent-warm);
+}
+footer .legal-strip .legal-links { display: flex; gap: 24px; }
+footer .legal-strip a:hover { color: var(--accent-green); }
+
+/* ============================================================
+   SHARED · Responsive
+============================================================ */
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+  .utility-bar .util-right { gap: 12px; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+  .brand-logo img { height: 36px; }
+  footer.site-footer { padding: 64px var(--gutter-mobile) 32px; }
+  footer .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  footer .legal-strip { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+/* ============================================================
+   Mockup badge (remove on production build)
+============================================================ */
+.mockup-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 200;
+  background: var(--text-primary);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+
+/* Page hero (intimate editorial) */
+.page-hero {
+  position: relative;
+  width: 100%;
+  height: 44vh;
+  min-height: 340px;
+  max-height: 460px;
+  overflow: hidden;
+}
+.page-hero .hero-photo {
+  position: absolute; inset: 0;
+  background-image: url('assets/nosotros_planta.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.page-hero .hero-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.62) 0%,
+    rgba(0,0,0,0.36) 24%,
+    rgba(0,0,0,0.04) 48%,
+    rgba(0,0,0,0) 65%
+  );
+}
+.page-hero .hero-content {
+  position: absolute;
+  left: 80px;
+  bottom: 72px;
+  max-width: 720px;
+  color: var(--white);
+}
+.page-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
+.page-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.12;
+  color: var(--white);
+}
+
+/* Contact body — 2 column */
+.contact-body { padding: 112px var(--gutter-desktop); background: var(--white); }
+.contact-body .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 96px;
+  align-items: start;
+}
+
+/* Left — segmented contact cards */
+.contact-cards .eyebrow { margin-bottom: 18px; }
+.contact-cards h2 { margin-bottom: 16px; }
+.contact-cards .cards-intro {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+.contact-card {
+  padding: 28px 0;
+  border-top: 1px solid var(--hairline);
+}
+.contact-card:last-child { border-bottom: 1px solid var(--hairline); }
+.contact-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.contact-card p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 380px;
+  margin-bottom: 12px;
+}
+.contact-card a.card-email {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--accent-green);
+  border-bottom: 1px solid var(--accent-green);
+  padding-bottom: 2px;
+}
+
+/* Right — form */
+.contact-form-wrap {
+  background: var(--surface-warm);
+  border: 1px solid var(--hairline);
+  padding: 48px;
+}
+.contact-form-wrap h2 { margin-bottom: 8px; font-size: 32px; }
+.contact-form-wrap .form-intro {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+.field { margin-bottom: 24px; }
+.field label {
+  display: block;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 8px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  padding: 13px 14px;
+  transition: border-color 200ms ease;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent-green);
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.contact-form-wrap .btn { width: 100%; margin-top: 8px; }
+.form-note {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--accent-warm);
+  margin-top: 16px;
+}
+
+/* Map block */
+.map-section { background: var(--white); }
+.map-block {
+  width: 100%;
+  height: 420px;
+  background:
+    repeating-linear-gradient(45deg, #F4F1EA 0 18px, #EDEAE3 18px 36px);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.map-block .map-label {
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  padding: 14px 22px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  text-align: center;
+}
+.map-block .map-pin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  border: 3px solid var(--white);
+  box-shadow: 0 2px 8px rgba(29,29,27,0.25);
+  position: absolute;
+  top: 46%;
+  left: 52%;
+}
+
+/* Offices strip */
+.offices { padding: 96px var(--gutter-desktop); background: var(--surface-warm); }
+.offices .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+.office-card .eyebrow { margin-bottom: 14px; }
+.office-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.office-card p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.office-card p a { color: var(--accent-green); }
+.office-card p a:hover { color: var(--accent-green-hover); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-hero { height: 36vh; min-height: 300px; }
+  .page-hero h1 { font-size: 36px; }
+  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 48px; }
+  .contact-body { padding: 72px var(--gutter-tablet); }
+  .contact-body .inner { grid-template-columns: 1fr; gap: 56px; }
+  .contact-form-wrap { padding: 36px; }
+  .offices { padding: 72px var(--gutter-tablet); }
+  .offices .inner { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 640px) {
+  .page-hero { height: 34vh; min-height: 260px; }
+  .page-hero h1 { font-size: 28px; }
+  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 40px; }
+  .contact-body { padding: 56px var(--gutter-mobile); }
+  .contact-cards h2 { font-size: 28px; }
+  .contact-form-wrap { padding: 28px var(--gutter-mobile); }
+  .contact-form-wrap h2 { font-size: 26px; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .map-block { height: 300px; }
+  .offices { padding: 56px var(--gutter-mobile); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html" aria-label="Interloom — Inicio">
+      <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+    </a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html" class="">Inicio</a></li>
+        <li><a href="nosotros.html" class="">Nosotros</a></li>
+        <li><a href="del-campo.html" class="">Del Campo</a></li>
+        <li class="has-caret has-dropdown">
+          <a href="#" class="">Divisiones</a>
+          <div class="dropdown-panel">
+            <a href="division-ingredientes.html" class="">División de Ingredientes</a>
+            <a href="division-secos.html" class="">División de Secos</a>
+            <a href="division-frescos.html" class="">División de Frescos</a>
+            <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
+          </div>
+        </li>
+        <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
+        <li><a href="clientes.html" class="">Clientes</a></li>
+        <li><a href="contacto.html" class="is-active">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     PAGE HERO
+============================================================ -->
+<section class="page-hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-mask" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-eyebrow">GRUPO INTERLOOM</div>
+    <h1>Contacto</h1>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT BODY — segmented cards + form
+============================================================ -->
+<section class="contact-body">
+  <div class="inner">
+
+    <!-- Left — segmented contact cards -->
+    <div class="contact-cards">
+      <div class="eyebrow">ESCRÍBENOS</div>
+      <h2 class="h2-section">Hablemos.</h2>
+      <p class="cards-intro">Elige el equipo que necesitas. Todos los mensajes se atienden en menos de 24 horas hábiles desde nuestras oficinas en Lima y Miami.</p>
+
+      <div class="contact-card">
+        <h3>Comercial — Mercado local</h3>
+        <p>DEL CAMPO e Ingredientes: arroces, aceites, manteca, azúcar y almidón para retail e industria peruana.</p>
+        <a class="card-email" href="mailto:comercial@interloom.com.pe">comercial@interloom.com.pe</a>
+      </div>
+
+      <div class="contact-card">
+        <h3>Exportación</h3>
+        <p>Divisiones de Secos y Frescos: cotizaciones, programas anuales y embarques a Europa, Norteamérica y Asia.</p>
+        <a class="card-email" href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
+      </div>
+
+      <div class="contact-card">
+        <h3>Prensa y comunicación</h3>
+        <p>Consultas de medios, materiales de marca y vocería institucional del Grupo Interloom.</p>
+        <a class="card-email" href="mailto:prensa@interloom.com.pe">prensa@interloom.com.pe</a>
+      </div>
+
+      <div class="contact-card">
+        <h3>Trabaja con nosotros</h3>
+        <p>Súmate al equipo en planta, exportaciones u operaciones. Envíanos tu CV y área de interés.</p>
+        <a class="card-email" href="mailto:rrhh@interloom.com.pe">rrhh@interloom.com.pe</a>
+      </div>
+    </div>
+
+    <!-- Right — form (WPForms restyled) -->
+    <div class="contact-form-wrap">
+      <h2 class="h2-section">Envíanos un mensaje</h2>
+      <p class="form-intro">Completa el formulario y el equipo correspondiente te responderá directamente. Los envíos llegan a contacto@interloom.com.pe.</p>
+      <form onsubmit="return false;">
+        <div class="field-row">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" />
+          </div>
+          <div class="field">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@empresa.com" />
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 ..." />
+          </div>
+        </div>
+        <div class="field">
+          <label for="area">Área de interés</label>
+          <select id="area" name="area">
+            <option>Exportación — Secos (quinua y granos andinos)</option>
+            <option>Exportación — Frescos (jengibre, cúrcuma, palta, cacao)</option>
+            <option>Mercado local — DEL CAMPO</option>
+            <option>Mercado local — Ingredientes (B2B)</option>
+            <option>Greenclover Naturals (EE.UU.)</option>
+            <option>Prensa y comunicación</option>
+            <option>Trabaja con nosotros</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas: producto, volumen estimado, mercado de destino..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        <p class="form-note">Al enviar aceptas nuestra política de privacidad. Para consultas de DEL CAMPO también puedes escribirnos por WhatsApp Business.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     MAP
+============================================================ -->
+<section class="map-section" aria-label="Ubicación">
+  <div class="map-block">
+    <div class="map-pin" aria-hidden="true"></div>
+    <div class="map-label">[GOOGLE MAPS · Av. Jorge Basadre 310, San Isidro · estilo personalizado · pin verde]</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OFFICES STRIP
+============================================================ -->
+<section class="offices">
+  <div class="inner">
+    <div class="office-card">
+      <div class="eyebrow">OFICINA PRINCIPAL</div>
+      <h3>Lima, Perú</h3>
+      <p>
+        Av. Jorge Basadre 310, Oficina 504<br/>
+        San Isidro, Lima – Perú<br/>
+        <a href="tel:+5113111730">(511) 311-1730</a><br/>
+        <a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a>
+      </p>
+    </div>
+    <div class="office-card">
+      <div class="eyebrow">SUBSIDIARIA EE.UU.</div>
+      <h3>Greenclover Naturals LLC</h3>
+      <p>
+        Distribución local y ventas por pallet con trazabilidad en el mercado de Estados Unidos.<br/>
+        <a href="mailto:exportaciones@interloom.com.pe">exportaciones@interloom.com.pe</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="brand-block">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+      </div>
+      <p class="descriptor">+30 años de agro peruano con trazabilidad real.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5V9h3v10zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.4-.1.2-.1.6-.1.9V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Divisiones</h4>
+      <ul>
+        <li><a href="division-ingredientes.html">Ingredientes</a></li>
+        <li><a href="division-secos.html">Secos</a></li>
+        <li><a href="division-frescos.html">Frescos</a></li>
+        <li><a href="division-greenclover.html">Greenclover</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Empresa</h4>
+      <ul>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html">Del Campo</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Contacto</h4>
+      <ul>
+        <li>Av. Jorge Basadre 310, Of. 504</li>
+        <li>San Isidro, Lima – Perú</li>
+        <li><a href="tel:+5113111730">(511) 311-1730</a></li>
+        <li><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></li>
+        <li><a href="del-campo.html">WhatsApp · Del Campo</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Certificaciones</h4>
+      <div class="certs-grid">
+        <div class="cert-mark">USDA Organic</div>
+        <div class="cert-mark">EU Bio</div>
+        <div class="cert-mark">BRC Food</div>
+        <div class="cert-mark">Kiwa</div>
+        <div class="cert-mark">Kosher</div>
+        <div class="cert-mark">SMETA</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="legal-strip">
+    <div>© 2026 Grupo Interloom. Todos los derechos reservados.</div>
+    <div class="legal-links">
+      <a href="#">Aviso legal</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var hdr = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 8) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
+  });
+</script>
+
+
+<div class="mockup-badge">Mockup · Contacto</div>
+
+</body>
+</html>

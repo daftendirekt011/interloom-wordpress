@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nosotros — Interloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Nosotros / About
+   Header + footer = Bridge (Qode Options)
+   Everything between = Elementor Pro
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  --max-width:      1480px;
+  --gutter-desktop: 80px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- Type tokens ----- */
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+.h1-hero {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.h2-section {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.body-secondary {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary  { background: var(--accent-green); color: var(--white); }
+.btn-primary:hover { background: var(--accent-green-hover); }
+.btn-ghost    { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+.btn-ghost:hover { background: var(--text-primary); color: var(--white); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1DA851; }
+
+/* ============================================================
+   SHARED · Utility bar
+============================================================ */
+.utility-bar {
+  height: 32px;
+  background: var(--surface-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ============================================================
+   SHARED · Main header (sticky)
+============================================================ */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+  transition: box-shadow 200ms ease;
+}
+.main-header.is-scrolled { box-shadow: 0 1px 18px rgba(29,29,27,0.06); }
+.main-header .header-inner {
+  height: 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo { display: inline-flex; align-items: center; height: 40px; }
+.brand-logo img { height: 40px; width: auto; display: block; }
+
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  padding: 28px 0;
+  display: inline-block;
+  transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.has-caret > a::after { content: "▾"; font-size: 10px; margin-left: 6px; color: var(--text-primary); }
+
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 280px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+  z-index: 110;
+  box-shadow: 0 12px 32px rgba(29,29,27,0.06);
+}
+.has-dropdown:hover > .dropdown-panel,
+.has-dropdown:focus-within > .dropdown-panel {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition-delay: 0s;
+}
+.dropdown-panel a {
+  display: block;
+  padding: 14px 24px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-left: 3px solid transparent;
+  letter-spacing: 0.01em;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.dropdown-panel a:hover,
+.dropdown-panel a.is-active {
+  color: var(--accent-green);
+  background: var(--surface-warm);
+  border-left-color: var(--accent-green);
+}
+
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; letter-spacing: 0.02em; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; color: var(--accent-warm); }
+
+.hamburger { display: none; background: transparent; border: 0; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); margin: 5px 0; }
+
+/* ============================================================
+   SHARED · Footer
+============================================================ */
+footer.site-footer {
+  background: var(--surface-warm);
+  border-top: 1px solid var(--hairline);
+  padding: 96px var(--gutter-desktop) 48px;
+}
+footer .footer-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr;
+  gap: 48px;
+}
+footer .col-heading {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 24px;
+}
+footer ul li {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+footer ul li a:hover { color: var(--accent-green); }
+
+footer .brand-block .footer-logo {
+  display: inline-flex; align-items: center;
+  height: 56px; margin-bottom: 24px;
+}
+footer .brand-block .footer-logo img { height: 56px; width: auto; }
+
+footer .brand-block .descriptor {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+footer .social-row { display: flex; gap: 16px; align-items: center; }
+footer .social-row a {
+  width: 24px; height: 24px;
+  color: var(--text-primary);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+footer .social-row a:hover { color: var(--accent-green); }
+footer .social-row svg { width: 22px; height: 22px; fill: currentColor; }
+
+footer .certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+footer .certs-grid .cert-mark {
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  opacity: 0.85;
+  padding: 0 6px;
+  text-align: center;
+}
+
+footer .footer-divider { height: 1px; background: var(--hairline); margin: 56px 0 32px; }
+footer .legal-strip {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--accent-warm);
+}
+footer .legal-strip .legal-links { display: flex; gap: 24px; }
+footer .legal-strip a:hover { color: var(--accent-green); }
+
+/* ============================================================
+   SHARED · Responsive
+============================================================ */
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+  .utility-bar .util-right { gap: 12px; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+  .brand-logo img { height: 36px; }
+  footer.site-footer { padding: 64px var(--gutter-mobile) 32px; }
+  footer .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  footer .legal-strip { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+/* ============================================================
+   Mockup badge (remove on production build)
+============================================================ */
+.mockup-badge {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 200;
+  background: var(--text-primary);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+
+/* Page hero with photo */
+.page-hero {
+  position: relative;
+  width: 100%;
+  height: 56vh;
+  min-height: 420px;
+  max-height: 560px;
+  overflow: hidden;
+}
+.page-hero .hero-photo {
+  position: absolute; inset: 0;
+  background-image: url('assets/hero_nosotros_manos.jpg');
+  background-size: cover;
+  background-position: center 78%;
+}
+.page-hero .hero-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.62) 0%,
+    rgba(0,0,0,0.36) 24%,
+    rgba(0,0,0,0.04) 48%,
+    rgba(0,0,0,0) 65%
+  );
+}
+.page-hero .hero-content {
+  position: absolute;
+  left: 80px;
+  bottom: 88px;
+  max-width: 720px;
+  color: var(--white);
+}
+.page-hero .hero-eyebrow { color: rgba(255,255,255,0.82); margin-bottom: 16px; letter-spacing: 0.14em; }
+.page-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.12;
+  color: var(--white);
+}
+
+/* Historia — 2 column */
+.historia { padding: 120px var(--gutter-desktop); background: var(--white); }
+.historia .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 96px;
+  align-items: start;
+}
+.historia .eyebrow { margin-bottom: 24px; }
+.historia h2 { max-width: 320px; }
+.historia .lead { margin-bottom: 28px; }
+.historia p.body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+  max-width: 640px;
+}
+.historia p.body:last-child { margin-bottom: 0; }
+
+/* Stats band (shared visual language with home) */
+.stats-band { background: var(--surface-warm); padding: 96px var(--gutter-tablet); }
+.stats-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+.stat-item .stat-number {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.05;
+  color: var(--accent-green);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.stat-item .stat-number .unit { font-size: 28px; color: var(--accent-green); }
+.stat-item .stat-label {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 240px;
+}
+
+/* Operaciones — 2-up */
+.operaciones { padding: 120px var(--gutter-desktop); background: var(--white); }
+.operaciones .op-head { max-width: var(--max-width); margin: 0 auto 64px; }
+.operaciones .op-head .eyebrow { margin-bottom: 18px; }
+.operaciones .op-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.op-card .op-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--surface-warm);
+  margin-bottom: 24px;
+}
+.op-card .op-image .photo-fill {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transition: transform 400ms ease-out;
+}
+.op-card:hover .op-image .photo-fill { transform: scale(1.03); }
+.op-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.op-card p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+.op-card .op-link {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--accent-green);
+  border-bottom: 1px solid var(--accent-green);
+  padding-bottom: 2px;
+}
+
+/* Sostenibilidad excerpt */
+.sus-excerpt {
+  background: var(--surface-warm);
+  padding: 112px var(--gutter-tablet);
+  text-align: center;
+  border-top: 1px solid var(--hairline);
+}
+.sus-excerpt .inner { max-width: 820px; margin: 0 auto; }
+.sus-excerpt .eyebrow { margin-bottom: 24px; }
+.sus-excerpt blockquote {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+}
+.sus-excerpt .sus-link {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--accent-green);
+  border-bottom: 1px solid var(--accent-green);
+  padding-bottom: 2px;
+}
+
+/* Mercados */
+.mercados { padding: 120px var(--gutter-desktop); background: var(--white); }
+.mercados .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: center;
+}
+.mercados .eyebrow { margin-bottom: 18px; }
+.mercados h2 { margin-bottom: 24px; max-width: 380px; }
+.mercados p.body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.mercados .market-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+.mercados .market-list li {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-primary);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.mercados .map-block {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: var(--surface-warm);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  text-align: center;
+  padding: 24px;
+}
+
+/* Equipo */
+.equipo { padding: 120px var(--gutter-desktop); background: var(--surface-warm); border-top: 1px solid var(--hairline); }
+.equipo .eq-head { max-width: var(--max-width); margin: 0 auto 56px; }
+.equipo .eq-head .eyebrow { margin-bottom: 18px; }
+.equipo .eq-group { max-width: var(--max-width); margin: 0 auto; }
+.equipo .eq-group + .eq-group { margin-top: 72px; }
+.equipo .eq-group-label {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.equipo .eq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.eq-card { display: flex; gap: 24px; align-items: flex-start; }
+.eq-card .eq-photo {
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+  background: var(--white);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  text-align: center;
+  padding: 12px;
+}
+.eq-card.eq-card--sm .eq-photo { width: 104px; height: 104px; }
+.eq-card .eq-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.eq-card.eq-card--sm .eq-name { font-size: 19px; }
+.eq-card .eq-role {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent-green);
+  margin-bottom: 12px;
+}
+.eq-card .eq-bio {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 360px;
+}
+
+/* Contact CTA (shared visual language with home) */
+.contact-cta {
+  padding: 128px var(--gutter-tablet);
+  background: var(--white);
+  text-align: center;
+}
+.contact-cta .eyebrow { margin-bottom: 24px; }
+.contact-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+.contact-cta p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto 40px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-hero { height: 46vh; min-height: 360px; }
+  .page-hero h1 { font-size: 38px; }
+  .page-hero .hero-content { left: var(--gutter-tablet); right: var(--gutter-tablet); bottom: 56px; }
+  .historia { padding: 80px var(--gutter-tablet); }
+  .historia .inner { grid-template-columns: 1fr; gap: 40px; }
+  .historia h2 { max-width: none; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item .stat-number { font-size: 48px; }
+  .operaciones { padding: 80px var(--gutter-tablet); }
+  .operaciones .op-grid { grid-template-columns: 1fr; gap: 48px; }
+  .mercados { padding: 80px var(--gutter-tablet); }
+  .mercados .inner { grid-template-columns: 1fr; gap: 48px; }
+  .sus-excerpt blockquote { font-size: 24px; }
+  .equipo { padding: 80px var(--gutter-tablet); }
+  .equipo .eq-grid { grid-template-columns: 1fr; gap: 36px; }
+  .contact-cta h2 { font-size: 34px; }
+}
+@media (max-width: 640px) {
+  .page-hero { height: 42vh; min-height: 320px; }
+  .page-hero h1 { font-size: 30px; }
+  .page-hero .hero-content { left: var(--gutter-mobile); right: var(--gutter-mobile); bottom: 44px; }
+  .historia { padding: 64px var(--gutter-mobile); }
+  .historia h2, .mercados h2 { font-size: 28px; }
+  .stats-band { padding: 64px var(--gutter-mobile); }
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .stat-item .stat-number { font-size: 38px; }
+  .operaciones { padding: 64px var(--gutter-mobile); }
+  .mercados { padding: 64px var(--gutter-mobile); }
+  .mercados .market-list { grid-template-columns: 1fr; }
+  .sus-excerpt { padding: 80px var(--gutter-mobile); }
+  .sus-excerpt blockquote { font-size: 21px; }
+  .equipo { padding: 64px var(--gutter-mobile); }
+  .eq-card { flex-direction: column; gap: 16px; }
+  .contact-cta { padding: 80px var(--gutter-mobile); }
+  .contact-cta h2 { font-size: 26px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header" id="siteHeader">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html" aria-label="Interloom — Inicio">
+      <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+    </a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html" class="">Inicio</a></li>
+        <li><a href="nosotros.html" class="is-active">Nosotros</a></li>
+        <li><a href="del-campo.html" class="">Del Campo</a></li>
+        <li class="has-caret has-dropdown">
+          <a href="#" class="">Divisiones</a>
+          <div class="dropdown-panel">
+            <a href="division-ingredientes.html" class="">División de Ingredientes</a>
+            <a href="division-secos.html" class="">División de Secos</a>
+            <a href="division-frescos.html" class="">División de Frescos</a>
+            <a href="division-greenclover.html" class="">Greenclover Naturals LLC</a>
+          </div>
+        </li>
+        <li><a href="sostenibilidad.html" class="">Sostenibilidad</a></li>
+        <li><a href="clientes.html" class="">Clientes</a></li>
+        <li><a href="contacto.html" class="">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     PAGE HERO
+============================================================ -->
+<section class="page-hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-mask" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-eyebrow">GRUPO INTERLOOM</div>
+    <h1>Nosotros</h1>
+  </div>
+</section>
+
+<!-- ============================================================
+     HISTORIA
+============================================================ -->
+<section class="historia">
+  <div class="inner">
+    <div class="hist-head">
+      <div class="eyebrow">NUESTRA HISTORIA</div>
+      <h2 class="h2-section">Tres décadas de agro peruano.</h2>
+    </div>
+    <div class="hist-body">
+      <p class="lead">Interloom es un grupo agrotrading peruano con más de 30 años de experiencia en la comercialización local e internacional de alimentos.</p>
+      <p class="body">Lo que comenzó como un negocio de comercialización local se transformó en un grupo con cinco divisiones especializadas, dos plantas de procesamiento propias y una subsidiaria en Estados Unidos. En el camino nos convertimos en uno de los diez principales exportadores peruanos de granos andinos y en el top 5 de quinua.</p>
+      <p class="body">Hoy operamos el ciclo completo: desde el productor andino y el campo de Satipo hasta el contenedor que llega al cliente en Europa, Norteamérica y Asia. Cada división mantiene el mismo estándar de control de procesos, trazabilidad de origen y formalidad operativa — porque para nosotros la solidez no es un mensaje, es la forma de trabajar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NÚMEROS (Bridge counter section)
+============================================================ -->
+<section class="stats-band" aria-label="Cifras Interloom">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">+30</div>
+      <div class="stat-label">años de experiencia en agrotrading</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">8,000<span class="unit">t</span></div>
+      <div class="stat-label">exportadas en los últimos 4 años</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">25<span class="unit">+</span></div>
+      <div class="stat-label">mercados en cuatro continentes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">divisiones bajo una sola firma</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPERACIONES — Plantas propias
+============================================================ -->
+<section class="operaciones">
+  <div class="op-head">
+    <div class="eyebrow">OPERACIONES</div>
+    <h2 class="h2-section">Dos plantas propias, control de punta a punta.</h2>
+  </div>
+  <div class="op-grid">
+
+    <a class="op-card" href="division-secos.html">
+      <div class="op-image">
+        <div class="photo-fill" style="background-image:url('assets/nosotros_editorial.jpg');"></div>
+      </div>
+      <h3>Planta de Secos — Callao</h3>
+      <p>Procesamiento de quinua y granos andinos: limpieza por densidad, escarificado en seco, control microbiológico y empaque para exportación. El punto de salida de nuestra División de Secos hacia más de 25 mercados.</p>
+      <span class="op-link">División de Secos →</span>
+    </a>
+
+    <a class="op-card" href="#">
+      <div class="op-image">
+        <div class="photo-fill" style="background-image:url('assets/nosotros_cosecha.jpg');"></div>
+      </div>
+      <h3>Planta de Frescos — Satipo, Junín</h3>
+      <p>Acopio y procesamiento de jengibre, cúrcuma, palta y cacao en la selva central. Lavado, selección, deshidratado y molienda en origen, junto a los productores de la zona.</p>
+      <span class="op-link">División de Frescos →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SOSTENIBILIDAD EXCERPT
+============================================================ -->
+<section class="sus-excerpt">
+  <div class="inner">
+    <div class="eyebrow">SOSTENIBILIDAD</div>
+    <blockquote>"Sostenibilidad es la forma en que controlamos el origen, cuidamos al productor y respondemos por cada lote."</blockquote>
+    <a href="#" class="sus-link">Sostenibilidad y certificaciones →</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     MERCADOS
+============================================================ -->
+<section class="mercados">
+  <div class="inner">
+    <div class="mkt-copy">
+      <div class="eyebrow">MERCADOS</div>
+      <h2 class="h2-section">De los Andes a cuatro continentes.</h2>
+      <p class="body">Exportamos granos andinos, frescos e ingredientes a más de 25 países, y distribuimos en el mercado de Estados Unidos a través de Greenclover Naturals LLC.</p>
+      <ul class="market-list">
+        <li>Estados Unidos</li>
+        <li>Alemania</li>
+        <li>Países Bajos</li>
+        <li>Reino Unido</li>
+        <li>Francia</li>
+        <li>España</li>
+        <li>Italia</li>
+        <li>Canadá</li>
+        <li>Japón</li>
+        <li>Corea del Sur</li>
+        <li>Australia</li>
+        <li>Brasil</li>
+      </ul>
+    </div>
+    <div class="map-block"><img src="assets/nosotros_mapa.png" alt="Mercados Interloom — mapa mundial" style="width:100%;height:auto;display:block;" /></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EQUIPO
+============================================================ -->
+<section class="equipo">
+  <div class="eq-head">
+    <div class="eyebrow">EQUIPO</div>
+    <h2 class="h2-section">Las personas detrás de la firma.</h2>
+  </div>
+
+  <div class="eq-group">
+    <div class="eq-group-label">Liderazgo</div>
+    <div class="eq-grid">
+      <div class="eq-card">
+        <div class="eq-photo" style="padding:0;overflow:hidden;"><img src="assets/team_antonio.jpg" alt="Antonio Cook Hardy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="eq-info">
+          <div class="eq-name">Antonio Cook Hardy</div>
+          <div class="eq-role">CEO</div>
+          <p class="eq-bio">Dirige la estrategia del grupo y la relación con clientes internacionales, sosteniendo el estándar operativo que distingue a Interloom desde sus inicios.</p>
+        </div>
+      </div>
+      <div class="eq-card">
+        <div class="eq-photo" style="padding:0;overflow:hidden;"><img src="assets/team_alexia.jpg" alt="Alexia Cook Hardy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="eq-info">
+          <div class="eq-name">Alexia Cook Hardy</div>
+          <div class="eq-role">CEO</div>
+          <p class="eq-bio">Lidera la operación de las divisiones y las plantas propias, asegurando trazabilidad y control de procesos de punta a punta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eq-group">
+    <div class="eq-group-label">Exportaciones</div>
+    <div class="eq-grid">
+      <div class="eq-card eq-card--sm">
+        <div class="eq-photo" style="padding:0;overflow:hidden;"><img src="assets/team_aranzazu.jpg" alt="Aranzazu Muelle" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="eq-info">
+          <div class="eq-name">Aranzazu Muelle</div>
+          <div class="eq-role">Exportaciones</div>
+          <p class="eq-bio">Coordina programas de exportación y la atención comercial a clientes en Europa, Norteamérica y Asia.</p>
+        </div>
+      </div>
+      <div class="eq-card eq-card--sm">
+        <div class="eq-photo" style="padding:0;overflow:hidden;"><img src="assets/team_juanjose.jpg" alt="Juan José Zevallos" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="eq-info">
+          <div class="eq-name">Juan José Zevallos</div>
+          <div class="eq-role">Exportaciones</div>
+          <p class="eq-bio">Gestiona logística internacional y documentación de embarque, asegurando entregas a tiempo y conformes a especificación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT CTA
+============================================================ -->
+<section class="contact-cta">
+  <div class="eyebrow">CONTACTO</div>
+  <h2>¿Trabajamos juntos?</h2>
+  <p>Equipos comerciales en Lima y Miami listos para responder en menos de 24 horas. Solicita una cotización o coordina una visita a planta.</p>
+  <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="brand-block">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Interloom" style="height:200px;width:auto;" />
+      </div>
+      <p class="descriptor">+30 años de agro peruano con trazabilidad real.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5V9h3v10zM6.5 7.5C5.7 7.5 5 6.8 5 6s.7-1.5 1.5-1.5S8 5.2 8 6s-.7 1.5-1.5 1.5zM19 19h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.4-.1.2-.1.6-.1.9V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Divisiones</h4>
+      <ul>
+        <li><a href="division-ingredientes.html">Ingredientes</a></li>
+        <li><a href="division-secos.html">Secos</a></li>
+        <li><a href="division-frescos.html">Frescos</a></li>
+        <li><a href="division-greenclover.html">Greenclover</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Empresa</h4>
+      <ul>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html">Del Campo</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Contacto</h4>
+      <ul>
+        <li>Av. Jorge Basadre 310, Of. 504</li>
+        <li>San Isidro, Lima – Perú</li>
+        <li><a href="tel:+5113111730">(511) 311-1730</a></li>
+        <li><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></li>
+        <li><a href="del-campo.html">WhatsApp · Del Campo</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="col-heading">Certificaciones</h4>
+      <div class="certs-grid">
+        <div class="cert-mark">USDA Organic</div>
+        <div class="cert-mark">EU Bio</div>
+        <div class="cert-mark">BRC Food</div>
+        <div class="cert-mark">Kiwa</div>
+        <div class="cert-mark">Kosher</div>
+        <div class="cert-mark">SMETA</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="legal-strip">
+    <div>© 2026 Grupo Interloom. Todos los derechos reservados.</div>
+    <div class="legal-links">
+      <a href="#">Aviso legal</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var hdr = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 8) hdr.classList.add('is-scrolled'); else hdr.classList.remove('is-scrolled');
+  });
+</script>
+
+
+<div class="mockup-badge">Mockup · Nosotros</div>
+
+</body>
+</html>
+                      
