@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interloom — Home · Grid Options (A · B · C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Home · Divisions section · 3 design options
+   Comparison page · for internal design review only
+   Uses the locked Interloom design system (matches home-version-a.html)
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  /* DEL CAMPO tint — only used inside DEL CAMPO contexts.
+     Stays very subtle so it never competes with Interloom's white canvas. */
+  --delcampo-tint:   #F4F6FB;
+  --delcampo-blue:   #003399;
+
+  --max-width:      1480px;
+  --gutter-desktop: 80px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- Type tokens (mirror home-version-a) ----- */
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+.h2-section {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary  { background: var(--accent-green); color: var(--white); }
+.btn-primary:hover { background: var(--accent-green-hover); }
+.btn-ghost    { background: transparent; color: var(--text-primary); border-color: var(--text-primary); }
+.btn-ghost:hover { background: var(--text-primary); color: var(--white); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1DA851; }
+
+/* ============================================================
+   PAGE FRAME — internal review only (not part of production)
+============================================================ */
+.review-bar {
+  background: var(--text-primary);
+  color: var(--white);
+  padding: 14px var(--gutter-tablet);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+.review-bar .review-title { color: var(--white); }
+.review-bar .review-meta { color: rgba(255,255,255,0.6); }
+
+.intro-band {
+  padding: 64px var(--gutter-tablet) 48px;
+  background: var(--surface-warm);
+  border-bottom: 1px solid var(--hairline);
+}
+.intro-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.intro-band .eyebrow { margin-bottom: 16px; }
+.intro-band h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.intro-band p {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 720px;
+}
+.intro-band .quick-jump {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.intro-band .quick-jump a {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border: 1px solid var(--hairline);
+  background: var(--white);
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.intro-band .quick-jump a:hover {
+  color: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+/* Option wrapper */
+.option {
+  position: relative;
+  border-top: 1px solid var(--hairline);
+}
+.option-tag {
+  position: absolute;
+  top: 32px;
+  left: var(--gutter-tablet);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--text-primary);
+  padding: 8px 14px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.option-tag .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+}
+
+.option-note {
+  background: var(--surface-warm);
+  padding: 32px var(--gutter-tablet);
+  border-top: 1px solid var(--hairline);
+}
+.option-note .note-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.option-note .note-label {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  padding-top: 4px;
+}
+.option-note .note-body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 820px;
+}
+.option-note .note-body strong {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+/* ============================================================
+   SHARED · Divisions section base styles
+   (matches home-version-a)
+============================================================ */
+.divisions {
+  padding: 128px var(--gutter-tablet) 96px;
+  background: var(--white);
+}
+.divisions-head { text-align: center; margin-bottom: 64px; }
+.divisions-head .eyebrow { margin-bottom: 18px; }
+.divisions h2 { margin-bottom: 20px; }
+.divisions .section-sub {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Card primitives (used by B + C) */
+.division-card { display: flex; flex-direction: column; cursor: pointer; }
+.division-card .card-image {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-warm);
+  position: relative;
+}
+.division-card .card-image .photo-fill {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 400ms ease-out;
+}
+.division-card:hover .card-image .photo-fill { transform: scale(1.03); }
+.division-card .card-body { padding: 24px 0 0 0; }
+.division-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.division-card .card-desc {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  min-height: 42px;
+}
+.division-card .card-arrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--accent-green);
+  display: inline-block;
+  transition: transform 300ms ease;
+}
+.division-card:hover .card-arrow { transform: translateX(4px); }
+
+/* ============================================================
+   OPTION A — Featured band + 4-card grid
+   DEL CAMPO gets its own full-width band BEFORE the export grid
+============================================================ */
+.opt-a .featured-band {
+  max-width: var(--max-width);
+  margin: 0 auto 96px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  align-items: stretch;
+  background: var(--surface-warm);
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.opt-a .featured-photo {
+  background-image: url('assets/division-delcampo.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 480px;
+}
+.opt-a .featured-content {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.opt-a .featured-content .eyebrow {
+  color: var(--delcampo-blue);
+  letter-spacing: 0.14em;
+  margin-bottom: 20px;
+}
+.opt-a .featured-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.opt-a .featured-content .lead {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  max-width: 440px;
+}
+.opt-a .featured-content .body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 460px;
+}
+.opt-a .featured-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.opt-a .divisions-sub-head {
+  max-width: var(--max-width);
+  margin: 0 auto 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+}
+.opt-a .divisions-sub-head .eyebrow { margin-bottom: 14px; }
+.opt-a .divisions-sub-head h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.opt-a .export-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ============================================================
+   OPTION B — Asymmetric grid
+   DEL CAMPO occupies left column (2 width units, full height);
+   4 export divisions in 2×2 grid on the right
+============================================================ */
+.opt-b .asym-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+.opt-b .feature-card {
+  position: relative;
+  background: var(--surface-warm);
+  border: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 720px;
+  transition: transform 400ms ease-out;
+}
+.opt-b .feature-card .feat-photo {
+  flex: 1 1 auto;
+  background-image: url('assets/division-delcampo.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 60%;
+  transition: transform 500ms ease-out;
+}
+.opt-b .feature-card:hover .feat-photo { transform: scale(1.02); }
+.opt-b .feature-card .feat-body {
+  padding: 40px 44px 48px;
+  background: var(--white);
+  position: relative;
+}
+.opt-b .feature-card .feat-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: var(--white);
+  border: 1px solid var(--delcampo-blue);
+  color: var(--delcampo-blue);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+}
+.opt-b .feature-card .eyebrow {
+  color: var(--accent-warm);
+  margin-bottom: 14px;
+}
+.opt-b .feature-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.opt-b .feature-card .feat-desc {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  max-width: 480px;
+}
+.opt-b .feature-card .feat-arrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--accent-green);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 250ms ease;
+}
+.opt-b .feature-card:hover .feat-arrow { gap: 14px; }
+
+.opt-b .export-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ============================================================
+   OPTION C — 5-card grid with DEL CAMPO differentiation
+   Same 5-column layout, DEL CAMPO gets subtle blue tint + "Marca propia" badge
+============================================================ */
+.opt-c .divisions-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+.opt-c .division-card--delcampo .card-image {
+  background: var(--delcampo-tint);
+}
+.opt-c .division-card--delcampo {
+  position: relative;
+  padding: 16px 16px 20px;
+  margin: -16px -16px -20px;
+  background: var(--delcampo-tint);
+  transition: background 220ms ease;
+}
+.opt-c .division-card--delcampo:hover {
+  background: #ECEFF7;
+}
+.opt-c .division-card--delcampo .badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 3;
+  background: var(--white);
+  color: var(--delcampo-blue);
+  border: 1px solid var(--delcampo-blue);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+.opt-c .division-card--delcampo h3 {
+  color: var(--text-primary);
+}
+.opt-c .division-card--delcampo .card-arrow {
+  color: var(--delcampo-blue);
+}
+
+/* Card fills ---- */
+.card-fill--delcampo { background-image: url('assets/division-delcampo.jpg'); background-size: cover; background-position: center; }
+.card-fill--ingred   { background-image: url('assets/division-ingredientes.jpg'); background-size: cover; background-position: center; }
+.card-fill--secos    { background-image: url('assets/division-secos.jpg'); background-size: cover; background-position: center; }
+.card-fill--frescos  { background-image: url('assets/division-frescos.jpg'); background-size: cover; background-position: center; }
+.card-fill--green    { background-image: url('assets/division-greenclover.jpg'); background-size: cover; background-position: center; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1100px) {
+  .opt-a .featured-band { grid-template-columns: 1fr; }
+  .opt-a .featured-photo { min-height: 360px; }
+  .opt-a .featured-content { padding: 56px 40px; }
+  .opt-a .export-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .opt-b .asym-grid { grid-template-columns: 1fr; }
+  .opt-b .feature-card { min-height: 560px; }
+  .opt-c .divisions-grid { grid-template-columns: repeat(3, 1fr); }
+  .opt-c .division-card--delcampo { grid-column: span 3; }
+}
+@media (max-width: 768px) {
+  .divisions { padding: 80px var(--gutter-tablet) 64px; }
+  .divisions-head { margin-bottom: 48px; }
+  .divisions h2 { font-size: 30px; }
+  .option-tag { top: 20px; left: var(--gutter-mobile); padding: 6px 12px; font-size: 10px; }
+  .opt-a .featured-content h3 { font-size: 32px; }
+  .opt-a .featured-content { padding: 40px 24px; }
+  .opt-a .export-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .opt-b .feature-card .feat-body { padding: 28px 24px 32px; }
+  .opt-b .feature-card h3 { font-size: 28px; }
+  .opt-b .export-2x2 { grid-template-columns: 1fr 1fr; }
+  .opt-c .divisions-grid { grid-template-columns: 1fr 1fr; }
+  .opt-c .division-card--delcampo { grid-column: span 2; }
+  .option-note .note-inner { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 480px) {
+  .divisions { padding: 64px var(--gutter-mobile) 48px; }
+  .opt-a .export-grid { grid-template-columns: 1fr; }
+  .opt-b .export-2x2 { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .opt-c .divisions-grid { grid-template-columns: 1fr; }
+  .opt-c .division-card--delcampo { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     INTERNAL REVIEW BAR
+============================================================ -->
+<div class="review-bar">
+  <div class="review-title">Interloom · Home · Sección "Nuestras Divisiones"</div>
+  <div class="review-meta">Comparación A · B · C — Para decisión interna</div>
+</div>
+
+<section class="intro-band">
+  <div class="intro-inner">
+    <div class="eyebrow">Briefing del cambio</div>
+    <h1>DEL CAMPO sale del dropdown de Divisiones y pasa al nav principal.</h1>
+    <p>
+      DEL CAMPO es una marca de consumo masivo para el mercado peruano local — distinta a las cuatro divisiones B2B / exportación. Por pedido del cliente, sale del menú "Divisiones" y se eleva a ítem propio en la navegación principal. Esto deja un grid de 5 cards en el home con una pieza que ya no pertenece editorialmente al mismo grupo. Tres opciones para resolverlo, todas buildables en Elementor Pro sin plugins extra. Elegir una.
+    </p>
+    <div class="quick-jump">
+      <a href="#opt-a">↓ Opción A — Banda destacada</a>
+      <a href="#opt-b">↓ Opción B — Grid asimétrico</a>
+      <a href="#opt-c">↓ Opción C — Grid de 5 diferenciado</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPTION A — Featured band + 4-card grid
+============================================================ -->
+<section class="option opt-a" id="opt-a">
+  <div class="option-tag"><span class="dot"></span>Opción A · Banda destacada</div>
+
+  <div class="divisions">
+    <div class="divisions-head">
+      <div class="eyebrow">NUESTRAS DIVISIONES</div>
+      <h2 class="h2-section">Cinco unidades, una sola firma.</h2>
+      <p class="section-sub">Del campo a más de 25 mercados — granos andinos, frescos, ingredientes y consumo local bajo el mismo estándar de trazabilidad.</p>
+    </div>
+
+    <!-- DEL CAMPO featured band (full-width, before grid) -->
+    <a class="featured-band" href="del-campo.html" aria-label="DEL CAMPO · Marca propia de consumo masivo">
+      <div class="featured-photo" aria-hidden="true"></div>
+      <div class="featured-content">
+        <div class="eyebrow">MARCA PROPIA · MERCADO LOCAL</div>
+        <h3>Del Campo</h3>
+        <p class="lead">Lo natural a tu mesa.</p>
+        <p class="body">Arroces, aceites y manteca vegetal para hogares peruanos. Distribución mayorista a bodegones, minimarkets y distribuidores locales — pedidos directos por WhatsApp Business.</p>
+        <div class="featured-actions">
+          <span class="btn btn-whatsapp">WhatsApp Business</span>
+          <span class="btn btn-ghost">Conocer la marca →</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="divisions-sub-head">
+      <div class="eyebrow">B2B · EXPORTACIÓN</div>
+      <h4>Cuatro divisiones para mercados internacionales</h4>
+    </div>
+
+    <!-- Export-only grid: 4 cards -->
+    <div class="export-grid">
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--ingred"></div></div>
+        <div class="card-body">
+          <h3>División de Ingredientes</h3>
+          <p class="card-desc">Azúcar, almidón de papa y glutamato para industria B2B.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+      <a class="division-card" href="division-secos.html">
+        <div class="card-image"><div class="photo-fill card-fill--secos"></div></div>
+        <div class="card-body">
+          <h3>División de Secos</h3>
+          <p class="card-desc">Quinua y granos andinos certificados, exportación global.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--frescos"></div></div>
+        <div class="card-body">
+          <h3>División de Frescos</h3>
+          <p class="card-desc">Jengibre, cúrcuma, palta y cacao desde Satipo, Junín.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--green"></div></div>
+        <div class="card-body">
+          <h3>Greenclover Naturals</h3>
+          <p class="card-desc">Distribución y ventas por pallet con trazabilidad en EE.UU.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="option-note">
+    <div class="note-inner">
+      <div class="note-label">Decisión de diseño</div>
+      <div class="note-body">
+        <strong>Banda destacada antes del grid.</strong> DEL CAMPO se separa visualmente de las cuatro divisiones de exportación y se le da el peso de su propia historia: una banda full-width con foto y contenido editorial, terminada por el botón de WhatsApp como CTA primario. El grid inferior queda parejo con 4 cards exportadoras, cada una con el mismo tratamiento. <strong>Funciona si:</strong> queremos comunicar que DEL CAMPO es una marca, no una división — diferente naturaleza, diferente público (consumo vs. B2B). <strong>Riesgo:</strong> agrega altura a la sección de home; resta protagonismo a las divisiones de exportación si la banda crece mucho.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPTION B — Asymmetric grid
+============================================================ -->
+<section class="option opt-b" id="opt-b">
+  <div class="option-tag"><span class="dot"></span>Opción B · Grid asimétrico</div>
+
+  <div class="divisions">
+    <div class="divisions-head">
+      <div class="eyebrow">NUESTRAS DIVISIONES</div>
+      <h2 class="h2-section">Cinco unidades, una sola firma.</h2>
+      <p class="section-sub">Del campo a más de 25 mercados — granos andinos, frescos, ingredientes y consumo local bajo el mismo estándar de trazabilidad.</p>
+    </div>
+
+    <div class="asym-grid">
+      <!-- DEL CAMPO feature card (left, full-height) -->
+      <a class="feature-card" href="del-campo.html" aria-label="DEL CAMPO · Marca propia">
+        <div class="feat-badge">MARCA PROPIA</div>
+        <div class="feat-photo" aria-hidden="true"></div>
+        <div class="feat-body">
+          <div class="eyebrow">CONSUMO LOCAL · PERÚ</div>
+          <h3>Del Campo</h3>
+          <p class="feat-desc">Lo natural a tu mesa. Arroces, aceites y manteca para el hogar peruano — pedidos mayoristas por WhatsApp Business.</p>
+          <span class="feat-arrow">Conocer la marca →</span>
+        </div>
+      </a>
+
+      <!-- Export divisions 2x2 -->
+      <div class="export-2x2">
+        <a class="division-card" href="#">
+          <div class="card-image"><div class="photo-fill card-fill--ingred"></div></div>
+          <div class="card-body">
+            <h3>División de Ingredientes</h3>
+            <p class="card-desc">Azúcar, almidón de papa, glutamato — B2B.</p>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+        <a class="division-card" href="division-secos.html">
+          <div class="card-image"><div class="photo-fill card-fill--secos"></div></div>
+          <div class="card-body">
+            <h3>División de Secos</h3>
+            <p class="card-desc">Quinua y granos andinos · exportación.</p>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+        <a class="division-card" href="#">
+          <div class="card-image"><div class="photo-fill card-fill--frescos"></div></div>
+          <div class="card-body">
+            <h3>División de Frescos</h3>
+            <p class="card-desc">Jengibre, cúrcuma, palta y cacao desde Satipo.</p>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+        <a class="division-card" href="#">
+          <div class="card-image"><div class="photo-fill card-fill--green"></div></div>
+          <div class="card-body">
+            <h3>Greenclover Naturals</h3>
+            <p class="card-desc">Distribución y pallets en EE.UU.</p>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="option-note">
+    <div class="note-inner">
+      <div class="note-label">Decisión de diseño</div>
+      <div class="note-body">
+        <strong>Layout asimétrico, una sola fila.</strong> DEL CAMPO ocupa la columna izquierda completa con un tratamiento más rico (foto grande arriba + body card abajo, badge "Marca propia"); las cuatro de exportación se acomodan en una matriz 2×2 a la derecha. Toda la sección entra en una sola fila editorial — más comprimida verticalmente que A, más impactante visualmente. <strong>Funciona si:</strong> queremos que la sección "Divisiones" del home sea una sola pieza visual confiada, no dos capas separadas. <strong>Riesgo:</strong> los cuatro cards de exportación quedan más chicos que en A — pierden detalle de foto. En mobile se desarma a un stack vertical, igual que A.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPTION C — 5-grid with visual differentiation
+============================================================ -->
+<section class="option opt-c" id="opt-c">
+  <div class="option-tag"><span class="dot"></span>Opción C · Grid de 5 diferenciado</div>
+
+  <div class="divisions">
+    <div class="divisions-head">
+      <div class="eyebrow">NUESTRAS DIVISIONES</div>
+      <h2 class="h2-section">Cinco unidades, una sola firma.</h2>
+      <p class="section-sub">Del campo a más de 25 mercados — granos andinos, frescos, ingredientes y consumo local bajo el mismo estándar de trazabilidad.</p>
+    </div>
+
+    <div class="divisions-grid">
+
+      <a class="division-card division-card--delcampo" href="del-campo.html">
+        <div class="badge">MARCA PROPIA</div>
+        <div class="card-image">
+          <div class="photo-fill card-fill--delcampo"></div>
+        </div>
+        <div class="card-body">
+          <h3>Del Campo</h3>
+          <p class="card-desc">Arroces, aceites y manteca para el hogar peruano.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--ingred"></div></div>
+        <div class="card-body">
+          <h3>División de Ingredientes</h3>
+          <p class="card-desc">Azúcar, almidón de papa y glutamato para industria B2B.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="division-card" href="division-secos.html">
+        <div class="card-image"><div class="photo-fill card-fill--secos"></div></div>
+        <div class="card-body">
+          <h3>División de Secos</h3>
+          <p class="card-desc">Quinua y granos andinos certificados, exportación global.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--frescos"></div></div>
+        <div class="card-body">
+          <h3>División de Frescos</h3>
+          <p class="card-desc">Jengibre, cúrcuma, palta y cacao desde Satipo, Junín.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="division-card" href="#">
+        <div class="card-image"><div class="photo-fill card-fill--green"></div></div>
+        <div class="card-body">
+          <h3>Greenclover Naturals</h3>
+          <p class="card-desc">Distribución y ventas por pallet con trazabilidad en EE.UU.</p>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="option-note">
+    <div class="note-inner">
+      <div class="note-label">Decisión de diseño</div>
+      <div class="note-body">
+        <strong>Cinco cards, una diferenciada.</strong> El grid se mantiene como está (parity editorial — cinco columnas iguales), pero la card de DEL CAMPO recibe un fondo muy sutil con tinte azul (referencia al color de la marca), un badge "Marca propia" arriba a la izquierda y la flecha del CTA en azul DEL CAMPO en vez de verde Interloom. Las otras cuatro quedan idénticas a la versión actual del home. <strong>Funciona si:</strong> queremos el cambio menos disruptivo — el redesign del home se mantiene casi 1:1 con el aprobado, sólo se diferencia visualmente DEL CAMPO sin sacarlo del conjunto. <strong>Riesgo:</strong> contradice levemente el mensaje del cambio en nav (si la sacamos del dropdown porque "no es una división más", quizás también deba salir del grid de divisiones). Es la opción más conservadora.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="review-bar">
+  <div class="review-title">Próximo paso</div>
+  <div class="review-meta">Elegir opción · aplicar al home-version-a.html final</div>
+</div>
+
+</body>
+</html>
