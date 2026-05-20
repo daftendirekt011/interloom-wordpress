@@ -513,6 +513,119 @@ footer .legal-strip a:hover { color: var(--accent-green); }
   .closing-band blockquote { font-size: 20px; padding: 0 var(--gutter-mobile); }
 }
 
+/* ============================================================
+   PRODUCT MODAL
+============================================================ */
+/* Row click affordance */
+.product-row { cursor: pointer; }
+.product-row:hover .prow-image { border-color: var(--accent-green); transition: border-color 220ms ease; }
+.product-row .prow-image { position: relative; overflow: hidden; }
+.product-row .prow-image::after {
+  content: "Ver ficha";
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--accent-green);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 10px; text-align: center;
+  transform: translateY(100%);
+  transition: transform 220ms ease;
+}
+.product-row:hover .prow-image::after { transform: translateY(0); }
+
+/* Modal backdrop */
+.prod-modal-backdrop {
+  position: fixed; inset: 0; z-index: 800;
+  background: rgba(29,29,27,0.72);
+  backdrop-filter: blur(4px) saturate(0.85);
+  -webkit-backdrop-filter: blur(4px) saturate(0.85);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 300ms ease, visibility 0s linear 300ms;
+}
+.prod-modal-backdrop.is-open {
+  opacity: 1; visibility: visible;
+  transition: opacity 300ms ease;
+}
+
+/* Modal box */
+.prod-modal {
+  background: var(--white);
+  max-width: 1040px; width: 100%;
+  display: grid; grid-template-columns: 420px 1fr;
+  overflow: hidden; max-height: 88vh;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.prod-modal-backdrop.is-open .prod-modal { transform: translateY(0) scale(1); }
+
+/* Left: image panel */
+.pm-img-panel {
+  background: var(--surface-warm);
+  border-right: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  padding: 56px 40px; min-height: 460px;
+}
+.pm-img-panel img { max-width: 100%; max-height: 340px; object-fit: contain; }
+.pm-img-fallback {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-warm); text-align: center; padding: 16px;
+}
+
+/* Right: content panel */
+.pm-body {
+  display: flex; flex-direction: column;
+  padding: 48px 40px 40px;
+  overflow-y: auto; max-height: 88vh;
+}
+.pm-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.pm-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-warm); padding-top: 4px;
+}
+.pm-close {
+  flex-shrink: 0; background: transparent; border: none; cursor: pointer;
+  width: 40px; height: 40px; margin: -8px -8px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-primary); border-radius: 50%;
+  transition: background 180ms ease;
+}
+.pm-close:hover { background: var(--surface-warm); }
+.pm-close svg { width: 20px; height: 20px; }
+.pm-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: 34px; line-height: 1.15; color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.pm-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 15px; line-height: 1.75; color: var(--text-secondary);
+  margin-bottom: 28px; flex-grow: 1;
+}
+.pm-divider { height: 1px; background: var(--hairline); margin-bottom: 20px; }
+.pm-meta {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.03em; line-height: 1.9;
+  color: var(--accent-warm); margin-bottom: 32px;
+}
+.pm-meta .sep { margin: 0 6px; opacity: 0.5; }
+.pm-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.pm-actions .btn { font-size: 13px; padding: 12px 24px; }
+
+@media (max-width: 780px) {
+  .prod-modal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
+  .pm-img-panel { min-height: 220px; padding: 32px 24px; border-right: 0; border-bottom: 1px solid var(--hairline); }
+  .pm-img-panel img { max-height: 200px; }
+  .pm-body { max-height: none; padding: 32px 24px 28px; }
+  .pm-title { font-size: 26px; }
+}
+
 </style>
 </head>
 <body>
@@ -857,6 +970,96 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 
 
 <div class="mockup-badge">Mockup · División de Secos</div>
+
+<!-- ===== Product Modal ===== -->
+<div class="prod-modal-backdrop" id="prodModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="prod-modal">
+    <div class="pm-img-panel" id="pmImgPanel"></div>
+    <div class="pm-body">
+      <div class="pm-header">
+        <span class="pm-eyebrow" id="pmEyebrow"></span>
+        <button class="pm-close" id="pmCloseBtn" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h2 class="pm-title" id="pmTitle"></h2>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="pm-divider"></div>
+      <div class="pm-meta" id="pmMeta"></div>
+      <div class="pm-actions">
+        <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
+        <a href="#" class="btn btn-ghost" id="pmWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var backdrop = document.getElementById('prodModalBackdrop');
+  var pmImgPanel = document.getElementById('pmImgPanel');
+  var pmEyebrow = document.getElementById('pmEyebrow');
+  var pmTitle = document.getElementById('pmTitle');
+  var pmDesc = document.getElementById('pmDesc');
+  var pmMeta = document.getElementById('pmMeta');
+  var pmWhatsapp = document.getElementById('pmWhatsapp');
+  var closeBtn = document.getElementById('pmCloseBtn');
+  var lastFocused;
+
+  var heroEyebrow = document.querySelector('.hero-eyebrow');
+  var divLabel = heroEyebrow ? heroEyebrow.textContent.trim() : 'INTERLOOM · EXPORTACIÓN';
+
+  function openModal(row) {
+    lastFocused = document.activeElement;
+    var imgEl = row.querySelector('.prow-image img');
+    pmImgPanel.innerHTML = '';
+    if (imgEl) {
+      var img = document.createElement('img');
+      img.src = imgEl.src; img.alt = imgEl.alt;
+      pmImgPanel.appendChild(img);
+    } else {
+      var fb = document.createElement('div');
+      fb.className = 'pm-img-fallback';
+      fb.textContent = row.querySelector('h3').textContent;
+      pmImgPanel.appendChild(fb);
+    }
+    pmEyebrow.textContent = divLabel;
+    pmTitle.textContent = row.querySelector('h3').textContent;
+    pmDesc.textContent = row.querySelector('.prow-desc').textContent;
+    pmMeta.innerHTML = row.querySelector('.prow-meta').innerHTML;
+    pmWhatsapp.href = 'https://wa.me/5113111730?text=Hola%2C%20me%20interesa%20el%20producto%3A%20' + encodeURIComponent(row.querySelector('h3').textContent);
+    backdrop.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.product-row').forEach(function (row) {
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'button');
+    row.setAttribute('aria-label', 'Ver ficha: ' + row.querySelector('h3').textContent);
+    row.addEventListener('click', function (e) {
+      if (e.target.closest('a, button')) return;
+      openModal(row);
+    });
+    row.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(row); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function (e) {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closeModal();
+  });
+}());
+</script>
 
 </body>
 </html>

@@ -797,6 +797,92 @@ footer .legal-strip a:hover { color: var(--accent-green); }
   border-radius: 2px;
   opacity: 0.9;
 }
+
+/* ============================================================
+   PRODUCT MODAL (Del Campo)
+============================================================ */
+/* Card hover affordance */
+.product-card .pc-media::after {
+  content: "Ver detalles";
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,51,153,0.88);
+  color: var(--white);
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 10px; text-align: center;
+  transform: translateY(100%);
+  transition: transform 220ms ease;
+}
+.product-card:hover .pc-media::after { transform: translateY(0); }
+
+.prod-modal-backdrop {
+  position: fixed; inset: 0; z-index: 800;
+  background: rgba(29,29,27,0.72);
+  backdrop-filter: blur(4px) saturate(0.85);
+  -webkit-backdrop-filter: blur(4px) saturate(0.85);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 300ms ease, visibility 0s linear 300ms;
+}
+.prod-modal-backdrop.is-open { opacity: 1; visibility: visible; transition: opacity 300ms ease; }
+.prod-modal {
+  background: var(--white);
+  max-width: 1040px; width: 100%;
+  display: grid; grid-template-columns: 420px 1fr;
+  overflow: hidden; max-height: 88vh;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.prod-modal-backdrop.is-open .prod-modal { transform: translateY(0) scale(1); }
+/* Left: full-bleed image panel */
+.pm-img-panel {
+  background: var(--delcampo-tint);
+  border-right: 1px solid var(--hairline);
+  position: relative;
+  min-height: 460px;
+  overflow: hidden;
+}
+.pm-img-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pm-img-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-warm); text-align: center; padding: 16px;
+}
+.pm-body { display: flex; flex-direction: column; padding: 48px 40px 40px; overflow-y: auto; max-height: 88vh; }
+.pm-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
+.pm-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--delcampo-blue); padding-top: 4px;
+}
+.pm-close {
+  flex-shrink: 0; background: transparent; border: none; cursor: pointer;
+  width: 40px; height: 40px; margin: -8px -8px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-primary); border-radius: 50%; transition: background 180ms ease;
+}
+.pm-close:hover { background: var(--surface-warm); }
+.pm-close svg { width: 20px; height: 20px; }
+.pm-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 34px; line-height: 1.15; color: var(--text-primary); margin-bottom: 20px; }
+.pm-desc { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 28px; flex-grow: 1; }
+.pm-divider { height: 1px; background: var(--hairline); margin-bottom: 20px; }
+.pm-meta {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent-warm); margin-bottom: 32px;
+}
+.pm-meta .label { color: var(--delcampo-blue); margin-right: 8px; }
+.pm-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.pm-actions .btn { font-size: 13px; padding: 12px 24px; }
+@media (max-width: 780px) {
+  .prod-modal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
+  .pm-img-panel { min-height: 260px; border-right: 0; border-bottom: 1px solid var(--hairline); }
+  .pm-body { max-height: none; padding: 32px 24px 28px; }
+  .pm-title { font-size: 26px; }
+}
 </style>
 </head>
 <body>
@@ -1108,6 +1194,95 @@ footer .legal-strip a:hover { color: var(--accent-green); }
 </script>
 
 <div class="mockup-badge">Mockup · Del Campo</div>
+
+<!-- ===== Product Modal ===== -->
+<div class="prod-modal-backdrop" id="prodModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="prod-modal">
+    <div class="pm-img-panel" id="pmImgPanel"></div>
+    <div class="pm-body">
+      <div class="pm-header">
+        <span class="pm-eyebrow" id="pmEyebrow"></span>
+        <button class="pm-close" id="pmCloseBtn" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <h2 class="pm-title" id="pmTitle"></h2>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="pm-divider"></div>
+      <div class="pm-meta" id="pmMeta"></div>
+      <div class="pm-actions">
+        <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
+        <a href="#" class="btn btn-ghost" id="pmWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var backdrop = document.getElementById('prodModalBackdrop');
+  var pmImgPanel = document.getElementById('pmImgPanel');
+  var pmEyebrow = document.getElementById('pmEyebrow');
+  var pmTitle = document.getElementById('pmTitle');
+  var pmDesc = document.getElementById('pmDesc');
+  var pmMeta = document.getElementById('pmMeta');
+  var pmWhatsapp = document.getElementById('pmWhatsapp');
+  var closeBtn = document.getElementById('pmCloseBtn');
+  var lastFocused;
+
+  function openModal(card) {
+    lastFocused = document.activeElement;
+    var fillEl = card.querySelector('.pc-fill');
+    pmImgPanel.innerHTML = '';
+    if (fillEl) {
+      var bgImg = fillEl.style.backgroundImage.replace(/url\(['"]?([^'"]+)['"]?\)/, '$1');
+      var img = document.createElement('img');
+      img.src = bgImg;
+      img.alt = card.querySelector('h3').textContent;
+      pmImgPanel.appendChild(img);
+    } else {
+      var fb = document.createElement('div');
+      fb.className = 'pm-img-fallback';
+      fb.textContent = card.querySelector('h3').textContent;
+      pmImgPanel.appendChild(fb);
+    }
+    var catEl = card.querySelector('.pc-cat');
+    pmEyebrow.textContent = catEl ? catEl.textContent.trim() : 'DEL CAMPO';
+    pmTitle.textContent = card.querySelector('h3').textContent;
+    pmDesc.textContent = card.querySelector('.pc-desc').textContent;
+    var presEl = card.querySelector('.pc-presentations');
+    pmMeta.innerHTML = presEl ? presEl.innerHTML : '';
+    pmWhatsapp.href = 'https://wa.me/5113111730?text=Hola%2C%20me%20interesa%20el%20producto%3A%20' + encodeURIComponent(card.querySelector('h3').textContent);
+    backdrop.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.product-card').forEach(function (card) {
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(card);
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function (e) {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closeModal();
+  });
+}());
+</script>
 
 </body>
 </html>
