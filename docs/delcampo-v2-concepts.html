@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Del Campo — 8 conceptos para el home · Interloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Del Campo · ARCHIVO DE COMPARACIÓN (8 conceptos)
+   Cada concepto reemplaza la sección .dc-featured del home.
+   CSS prefijado dc1- … dc8- para evitar colisiones.
+   NO es archivo de producción: es para que el cliente elija.
+============================================================ */
+
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --accent-green-hover: #256328;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+
+  --dc-blue:         #1B3D87;
+  --dc-blue-deep:    #16336F;
+  --dc-yellow:       #F2C800;
+
+  /* Manual Ana Marina */
+  --verde-principal: #009E3C;
+  --verde-oscuro:    #2E7B37;
+  --amarillo-lima:   #C9CC3D;
+
+  --max-width:      1480px;
+  --gutter-tablet:  48px;
+  --gutter-mobile:  20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+.eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300; font-size: 12px;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--accent-warm);
+}
+
+/* ============================================================
+   SHARED · Utility bar + header
+============================================================ */
+.utility-bar {
+  height: 32px; background: var(--surface-warm);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+  color: var(--text-primary);
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+
+.main-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+}
+.main-header .header-inner {
+  height: 80px; max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo { display: inline-flex; align-items: center; height: 40px; }
+.brand-logo img { height: 40px; width: auto; display: block; }
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px;
+  letter-spacing: 0.02em; color: var(--text-primary);
+  padding: 28px 0; display: inline-block; transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; color: var(--accent-warm); }
+.hamburger { display: none; background: transparent; border: 0; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); margin: 5px 0; }
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+}
+@media (max-width: 640px) {
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+}
+
+/* ============================================================
+   Barra separadora entre conceptos
+============================================================ */
+.concept-label {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 56px var(--gutter-tablet) 20px;
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+}
+.concept-label .num {
+  font-family: 'Playfair Display', serif; font-weight: 600;
+  font-size: 22px; color: var(--text-primary);
+}
+.concept-label .name {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: 22px; color: var(--text-secondary);
+}
+.concept-label .tag {
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
+  background: var(--text-primary); padding: 5px 12px; border-radius: 100px;
+  margin-left: auto;
+}
+.concept-label .tag.is-anim { background: var(--accent-green); }
+.concept-label .tag.is-creative { background: var(--dc-blue); }
+.concept-label .tag.is-brand { background: var(--verde-principal); }
+.concept-label .note {
+  width: 100%; font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 13px; color: var(--accent-warm); margin-top: 6px;
+}
+
+/* ============================================================
+   Botones compartidos
+============================================================ */
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px;
+  background: #25D366; color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 15px;
+  border-radius: 4px; cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-wa:hover { background: #1ebe5a; }
+.btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+
+.btn-outline-light {
+  display: inline-flex; align-items: center;
+  padding: 14px 24px;
+  border: 1.5px solid rgba(255,255,255,0.7); color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px;
+  border-radius: 4px; cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.btn-outline-light:hover { background: #fff; color: var(--dc-blue); border-color: #fff; }
+
+.btn-outline-dark {
+  display: inline-flex; align-items: center;
+  padding: 14px 24px;
+  border: 1.5px solid var(--text-primary); color: var(--text-primary);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 15px;
+  border-radius: 4px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline-dark:hover { border-color: var(--accent-green); color: var(--accent-green); }
+
+/* ============================================================
+   CONCEPTO 1 — "Galería de marca" · Estático
+============================================================ */
+.dc1 {
+  background: var(--dc-blue);
+  padding: 96px var(--gutter-tablet);
+  text-align: center; color: #fff;
+}
+.dc1-inner { max-width: 1200px; margin: 0 auto; }
+.dc1-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 18px;
+}
+.dc1-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 72px); line-height: 1.05;
+  color: #fff; margin-bottom: 10px;
+}
+.dc1-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 22px; color: rgba(255,255,255,0.78);
+  margin-bottom: 64px;
+}
+.dc1-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 64px; }
+.dc1-poster {
+  aspect-ratio: 2 / 3; width: 100%; object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.32);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.dc1-poster:hover { transform: translateY(-6px); box-shadow: 0 28px 56px rgba(0,0,0,0.42); }
+.dc1-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,0.82);
+  max-width: 560px; margin: 0 auto 32px;
+}
+.dc1-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ============================================================
+   CONCEPTO 2 — "Split editorial asimétrico" · Estático
+============================================================ */
+.dc2 {
+  display: grid; grid-template-columns: 1.22fr 1fr;
+  background: var(--dc-blue); min-height: 640px; overflow: hidden;
+}
+.dc2-left {
+  padding: 80px 64px 80px var(--gutter-tablet);
+  color: #fff; position: relative;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.dc2-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 18px;
+}
+.dc2-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(56px, 7vw, 88px); line-height: 1.05; margin-bottom: 12px;
+}
+.dc2-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 24px; color: rgba(255,255,255,0.78); margin-bottom: 28px;
+}
+.dc2-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: 460px; margin-bottom: 36px;
+}
+.dc2-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+.dc2-stack { position: relative; height: 180px; margin-top: 8px; max-width: 360px; }
+.dc2-stack img {
+  position: absolute; width: 130px; aspect-ratio: 2/3; object-fit: cover;
+  border-radius: 4px; box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease;
+}
+.dc2-stack img:nth-child(1) { top: 0; left: 0; transform: rotate(-6deg); z-index: 1; }
+.dc2-stack img:nth-child(2) { top: 10px; left: 100px; transform: rotate(3deg); z-index: 2; }
+.dc2-stack img:nth-child(3) { top: -8px; left: 200px; transform: rotate(-2deg); z-index: 3; }
+.dc2-stack img:hover { transform: rotate(0deg) translateY(-6px); z-index: 5; }
+.dc2-right { position: relative; overflow: hidden; }
+.dc2-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+/* ============================================================
+   CONCEPTO 3 — "Entrance con stagger" · Animado
+============================================================ */
+.dc3 { background: var(--surface-warm); padding-bottom: 96px; position: relative; }
+.dc3-header {
+  background: var(--dc-blue); height: 200px;
+  display: flex; align-items: flex-start;
+  padding: 48px var(--gutter-tablet) 0; color: #fff;
+}
+.dc3-header-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; }
+.dc3-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.dc3-h {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(40px, 5vw, 56px); line-height: 1.05; color: #fff;
+}
+.dc3-row {
+  max-width: 1200px; margin: -130px auto 0;
+  padding: 0 var(--gutter-tablet);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  position: relative; z-index: 2;
+}
+.dc3-poster {
+  width: 100%; aspect-ratio: 2/3; object-fit: cover;
+  border-radius: 4px; box-shadow: 0 20px 48px rgba(0,0,0,0.18);
+  opacity: 0; transform: translateY(40px);
+  animation: dc3-fadeInUp 0.65s ease forwards;
+}
+.dc3-poster:nth-child(1) { animation-delay: 0ms; }
+.dc3-poster:nth-child(2) { animation-delay: 150ms; }
+.dc3-poster:nth-child(3) { animation-delay: 300ms; }
+@keyframes dc3-fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.dc3-footer { max-width: 720px; margin: 56px auto 0; padding: 0 var(--gutter-tablet); text-align: center; }
+.dc3-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 22px; color: var(--text-secondary); margin-bottom: 20px;
+}
+.dc3-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 15px; line-height: 1.7;
+  color: var(--text-secondary); margin-bottom: 28px;
+}
+.dc3-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; }
+
+/* ============================================================
+   CONCEPTO 4 — "Hover expand con reveal" · Animado
+============================================================ */
+.dc4 {
+  background: var(--dc-blue);
+  padding: 88px var(--gutter-tablet);
+  color: #fff; text-align: center;
+}
+.dc4-head { max-width: 760px; margin: 0 auto 48px; }
+.dc4-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 14px;
+}
+.dc4-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(40px, 5vw, 60px); line-height: 1.05; margin-bottom: 10px;
+}
+.dc4-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 20px; color: rgba(255,255,255,0.75);
+}
+.dc4-container {
+  max-width: 1280px; margin: 0 auto 56px;
+  display: flex; gap: 14px; min-height: 540px;
+}
+.dc4-card {
+  flex: 1; position: relative; overflow: hidden; border-radius: 6px;
+  cursor: pointer; transition: flex 0.45s ease;
+  background: #0e2a60;
+}
+.dc4-card:hover { flex: 2.2; }
+.dc4-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.dc4-card:hover img { transform: scale(1.04); }
+.dc4-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(20,48,108,0.96) 60%, rgba(20,48,108,0));
+  color: #fff; max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 22px; text-align: left;
+}
+.dc4-card:hover .dc4-overlay { max-height: 140px; padding: 16px 22px 22px; }
+.dc4-overlay .name { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 6px; }
+.dc4-overlay .small { font-family: 'Lexend', sans-serif; font-size: 13px; color: rgba(255,255,255,0.78); margin-bottom: 12px; }
+.dc4-overlay a {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Lexend', sans-serif; font-size: 13px;
+  color: var(--dc-yellow); letter-spacing: 0.04em; text-transform: uppercase;
+}
+.dc4-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; }
+
+/* ============================================================
+   CONCEPTO 5 — "Mural de marca" · Creativo
+============================================================ */
+.dc5 {
+  background: linear-gradient(180deg, #14306C 0%, var(--dc-blue) 60%, #1F4699 100%);
+  position: relative; overflow: hidden;
+  padding: 120px var(--gutter-tablet);
+  min-height: 720px; color: #fff; text-align: center;
+}
+.dc5-watermark {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(120px, 18vw, 240px);
+  line-height: 0.9; color: #fff;
+  opacity: 0.07; letter-spacing: -0.02em;
+  pointer-events: none; white-space: nowrap;
+}
+.dc5-stage {
+  position: relative; width: 100%; max-width: 1180px;
+  margin: 0 auto; height: 480px;
+}
+.dc5-stage img {
+  position: absolute; height: 100%; width: auto; aspect-ratio: 2/3;
+  object-fit: cover; border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+  transition: transform 0.5s ease;
+}
+.dc5-stage img.dc5-center { left: 50%; top: 0; transform: translateX(-50%); z-index: 3; }
+.dc5-stage img.dc5-left { left: 4%; top: 40px; transform: rotate(-8deg) translateX(-20%); height: 80%; z-index: 2; }
+.dc5-stage img.dc5-right { right: 4%; top: 30px; transform: rotate(6deg) translateX(20%); height: 80%; z-index: 2; }
+.dc5-stage img:hover { transform: rotate(0deg) translateX(0); z-index: 4; }
+.dc5-stage img.dc5-center:hover { transform: translateX(-50%) translateY(-8px); }
+.dc5-content { position: relative; z-index: 5; margin-top: 48px; }
+.dc5-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 14px;
+}
+.dc5-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 72px); line-height: 1.05; margin-bottom: 8px;
+}
+.dc5-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 22px; color: rgba(255,255,255,0.85); margin-bottom: 32px;
+}
+.dc5-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; }
+
+/* ============================================================
+   CONCEPTO 6 — "Manual de Ana Marina" · Identidad de marca
+   Sin azul Del Campo. Fondo blanco. Verde 009E3C + amarillo-lima.
+============================================================ */
+.dc6 {
+  background: #fff;
+  padding: 96px var(--gutter-tablet);
+  border-top: 1px solid var(--verde-principal);
+}
+.dc6-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: 80px; align-items: center;
+}
+.dc6-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 400;
+  font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--verde-principal); margin-bottom: 24px;
+}
+.dc6-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(56px, 6vw, 72px); line-height: 1.0;
+  color: var(--text-primary); margin-bottom: 6px;
+}
+.dc6-underline {
+  display: block; width: 64px; height: 3px;
+  background: var(--amarillo-lima);
+  margin: 18px 0 22px; border: none;
+}
+.dc6-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 22px; color: var(--text-secondary); margin-bottom: 22px;
+}
+.dc6-desc {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 15px; line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 32px; max-width: 420px;
+}
+.dc6-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.dc6-btn-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 22px;
+  background: var(--verde-principal); color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 14px;
+  border-radius: 2px; cursor: pointer;
+  transition: background 0.2s;
+}
+.dc6-btn-wa:hover { background: #007E2F; }
+.dc6-btn-wa svg { width: 16px; height: 16px; fill: currentColor; }
+.dc6-btn-out {
+  display: inline-flex; align-items: center;
+  padding: 14px 22px;
+  border: 1.5px solid var(--verde-principal); color: var(--verde-principal);
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 14px;
+  border-radius: 2px; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dc6-btn-out:hover { background: var(--verde-principal); color: #fff; }
+.dc6-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.dc6-poster {
+  width: 100%; aspect-ratio: 2/3; object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.dc6-poster:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.12); transform: translateY(-4px); }
+
+/* ============================================================
+   CONCEPTO 7 — "Inversión de marca" · Animado interactivo
+============================================================ */
+.dc7 {
+  background: #fff;
+  padding: 96px var(--gutter-tablet);
+  text-align: center;
+  transition: background 0.55s ease;
+  cursor: pointer;
+}
+.dc7:hover, .dc7.dc7-active { background: var(--dc-blue); }
+.dc7-inner { max-width: 1180px; margin: 0 auto; }
+.dc7-logos { position: relative; display: inline-block; margin-bottom: 24px; height: 88px; }
+.dc7-logo-normal, .dc7-logo-negativo {
+  height: 88px; width: auto; display: block;
+  transition: opacity 0.55s ease;
+}
+.dc7-logo-negativo {
+  position: absolute; inset: 0; opacity: 0;
+  filter: brightness(0) invert(1);
+}
+.dc7:hover .dc7-logo-normal, .dc7.dc7-active .dc7-logo-normal { opacity: 0; }
+.dc7:hover .dc7-logo-negativo, .dc7.dc7-active .dc7-logo-negativo { opacity: 1; }
+.dc7-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: color 0.55s ease; margin-bottom: 16px;
+}
+.dc7:hover .dc7-eyebrow, .dc7.dc7-active .dc7-eyebrow { color: var(--dc-yellow); }
+.dc7-title {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 68px); line-height: 1.05;
+  color: var(--text-primary);
+  transition: color 0.55s ease; margin-bottom: 8px;
+}
+.dc7-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 22px; color: var(--text-secondary);
+  transition: color 0.55s ease; margin-bottom: 48px;
+}
+.dc7:hover .dc7-title, .dc7.dc7-active .dc7-title { color: #fff; }
+.dc7:hover .dc7-tagline, .dc7.dc7-active .dc7-tagline { color: rgba(255,255,255,0.78); }
+.dc7-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 980px; margin: 0 auto 40px; }
+.dc7-poster {
+  width: 100%; aspect-ratio: 2/3; object-fit: cover;
+  border-radius: 4px; box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  transition: filter 0.55s ease, box-shadow 0.55s ease;
+}
+.dc7:hover .dc7-poster, .dc7.dc7-active .dc7-poster {
+  filter: brightness(1.08); box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+}
+.dc7-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; }
+.dc7 .btn-outline-dark { transition: border-color 0.4s, color 0.4s, background 0.4s; }
+.dc7:hover .btn-outline-dark, .dc7.dc7-active .btn-outline-dark {
+  border-color: rgba(255,255,255,0.8); color: #fff;
+}
+.dc7:hover .btn-outline-dark:hover, .dc7.dc7-active .btn-outline-dark:hover {
+  background: #fff; color: var(--dc-blue);
+}
+.dc7-hint {
+  margin-top: 26px;
+  font-family: 'Lexend', sans-serif; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-warm); transition: color 0.55s ease;
+}
+.dc7:hover .dc7-hint, .dc7.dc7-active .dc7-hint { color: rgba(255,255,255,0.6); }
+
+/* ============================================================
+   CONCEPTO 8 — "Tipografía que respira" · Animado interactivo
+============================================================ */
+.dc8 {
+  background: #fff;
+  transition: background 0.6s ease;
+  position: relative; overflow: hidden;
+  padding: 120px var(--gutter-tablet);
+  min-height: 560px; cursor: pointer;
+}
+.dc8.dc8-active, .dc8:hover { background: var(--dc-blue); }
+.dc8-poster-bg {
+  position: absolute; width: 220px; aspect-ratio: 2/3; object-fit: cover;
+  opacity: 0.12; transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none; border-radius: 2px;
+}
+.dc8-poster-bg.bg-1 { top: 6%;  left: 6%;  transform: rotate(-6deg); }
+.dc8-poster-bg.bg-2 { top: 18%; right: 8%; transform: rotate(5deg); }
+.dc8-poster-bg.bg-3 { bottom: 8%; left: 38%; transform: rotate(-2deg); }
+.dc8:hover .dc8-poster-bg, .dc8.dc8-active .dc8-poster-bg { opacity: 0.45; }
+.dc8:hover .dc8-poster-bg.bg-1, .dc8.dc8-active .dc8-poster-bg.bg-1 { transform: rotate(-4deg) translateY(-6px); }
+.dc8:hover .dc8-poster-bg.bg-2, .dc8.dc8-active .dc8-poster-bg.bg-2 { transform: rotate(4deg) translateY(-6px); }
+.dc8-inner { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; text-align: center; }
+.dc8-eyebrow {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--accent-warm); transition: color 0.6s ease; margin-bottom: 22px;
+}
+.dc8:hover .dc8-eyebrow, .dc8.dc8-active .dc8-eyebrow { color: var(--dc-yellow); }
+.dc8-big {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(64px, 9vw, 120px); line-height: 0.95;
+  letter-spacing: -0.01em; color: var(--text-primary);
+  transition: color 0.6s ease; margin-bottom: 16px;
+}
+.dc8:hover .dc8-big, .dc8.dc8-active .dc8-big { color: #fff; }
+.dc8-tagline {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 26px; color: var(--accent-warm);
+  transition: color 0.6s ease; margin-bottom: 36px;
+}
+.dc8:hover .dc8-tagline, .dc8.dc8-active .dc8-tagline { color: var(--amarillo-lima); }
+.dc8-products {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 14px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--text-secondary); transition: color 0.6s ease; margin-bottom: 24px;
+}
+.dc8:hover .dc8-products, .dc8.dc8-active .dc8-products { color: rgba(255,255,255,0.8); }
+.dc8-ctas {
+  display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+.dc8:hover .dc8-ctas, .dc8.dc8-active .dc8-ctas { opacity: 1; transform: translateY(0); }
+.dc8-hint {
+  display: block; margin-top: 32px;
+  font-family: 'Lexend', sans-serif; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: color 0.6s ease, opacity 0.6s ease;
+}
+.dc8:hover .dc8-hint, .dc8.dc8-active .dc8-hint { color: rgba(255,255,255,0.55); opacity: 0; }
+
+/* ============================================================
+   Responsive base
+============================================================ */
+@media (max-width: 900px) {
+  .dc1 { padding: 64px var(--gutter-mobile); }
+  .dc1-row { grid-template-columns: 1fr; gap: 28px; max-width: 320px; margin-left: auto; margin-right: auto; }
+  .dc2 { grid-template-columns: 1fr; min-height: auto; }
+  .dc2-right { min-height: 360px; }
+  .dc2-left { padding: 56px var(--gutter-mobile); }
+  .dc3-row { grid-template-columns: 1fr; gap: 22px; margin-top: -90px; }
+  .dc3-header { height: 220px; }
+  .dc4 { padding: 64px var(--gutter-mobile); }
+  .dc4-container { flex-direction: column; min-height: auto; }
+  .dc4-card { min-height: 380px; }
+  .dc4-card:hover { flex: 1; }
+  .dc4-card .dc4-overlay { max-height: 130px; padding: 14px 18px; }
+  .dc5 { padding: 80px var(--gutter-mobile); min-height: auto; }
+  .dc5-stage { height: 380px; }
+  .dc5-stage img.dc5-left { left: -4%; transform: rotate(-6deg); height: 70%; }
+  .dc5-stage img.dc5-right { right: -4%; transform: rotate(5deg); height: 70%; }
+  .dc6 { padding: 64px var(--gutter-mobile); }
+  .dc6-inner { grid-template-columns: 1fr; gap: 40px; }
+  .dc7, .dc8 { padding: 64px var(--gutter-mobile); }
+  .dc7-row { grid-template-columns: 1fr; gap: 22px; max-width: 320px; margin-left: auto; margin-right: auto; }
+  .dc8-big { font-size: 56px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVEGACIÓN (copia exacta de home-version-a.html)
+============================================================ -->
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html" aria-label="Interloom — Inicio">
+      <img src="assets/logo.png" alt="Interloom" />
+    </a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html" class="is-active">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html">Del Campo</a></li>
+        <li><a href="#">Divisiones</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- CONCEPTO 1 -->
+<div class="concept-label">
+  <span class="num">01</span><span class="name">Galería de marca</span>
+  <span class="tag">Estático</span>
+  <p class="note">Sección full-width azul con los 3 posters en fila. Premium, limpio, como retail boutique.</p>
+</div>
+<section class="dc1">
+  <div class="dc1-inner">
+    <div class="dc1-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc1-title">Del Campo</h2>
+    <p class="dc1-tagline">Lo natural a tu mesa</p>
+    <div class="dc1-row">
+      <img class="dc1-poster" src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+      <img class="dc1-poster" src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+      <img class="dc1-poster" src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca vegetal" />
+    </div>
+    <p class="dc1-desc">Arroces, aceites y manteca vegetal para el hogar peruano. Calidad de exportación en los productos de todos los días.</p>
+    <div class="dc1-actions">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="del-campo.html" class="btn-outline-light">Conocer la marca →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTO 2 -->
+<div class="concept-label">
+  <span class="num">02</span><span class="name">Split editorial asimétrico</span>
+  <span class="tag">Estático</span>
+  <p class="note">Layout 55/45. Texto y stack de posters chicos a la izquierda, poster grande de Arroces a la derecha full-bleed.</p>
+</div>
+<section class="dc2">
+  <div class="dc2-left">
+    <div class="dc2-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc2-title">Del Campo</h2>
+    <p class="dc2-tagline">Lo natural a tu mesa</p>
+    <p class="dc2-desc">Arroces, aceites y manteca vegetal para el hogar peruano. Calidad de exportación en los productos de todos los días.</p>
+    <div class="dc2-actions">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="del-campo.html" class="btn-outline-light">Conocer la marca →</a>
+    </div>
+    <div class="dc2-stack">
+      <img src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+      <img src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+      <img src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+    </div>
+  </div>
+  <div class="dc2-right">
+    <img src="assets/delcampo_hero.jpg" alt="Del Campo Arroces poster" />
+  </div>
+</section>
+
+<!-- CONCEPTO 3 -->
+<div class="concept-label">
+  <span class="num">03</span><span class="name">Entrance con stagger</span>
+  <span class="tag is-anim">Animado</span>
+  <p class="note">Franja azul header + 3 posters que "rompen el marco" con fadeInUp staggered (0/150/300ms).</p>
+</div>
+<section class="dc3">
+  <div class="dc3-header">
+    <div class="dc3-header-inner">
+      <div class="dc3-eyebrow">Marca propia · Mercado local</div>
+      <h2 class="dc3-h">Del Campo · Lo natural a tu mesa.</h2>
+    </div>
+  </div>
+  <div class="dc3-row">
+    <img class="dc3-poster" src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+    <img class="dc3-poster" src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+    <img class="dc3-poster" src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+  </div>
+  <div class="dc3-footer">
+    <p class="dc3-desc">Arroces, aceites y manteca vegetal para el hogar peruano. Calidad de exportación en los productos de todos los días.</p>
+    <div class="dc3-actions">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="del-campo.html" class="btn-outline-dark">Conocer la marca →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTO 4 -->
+<div class="concept-label">
+  <span class="num">04</span><span class="name">Hover expand con reveal</span>
+  <span class="tag is-anim">Animado</span>
+  <p class="note">3 cards azules. Hover sobre uno: se expande y revela overlay con CTA por producto.</p>
+</div>
+<section class="dc4">
+  <div class="dc4-head">
+    <div class="dc4-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc4-title">Del Campo</h2>
+    <p class="dc4-tagline">Pasá el cursor por cada producto.</p>
+  </div>
+  <div class="dc4-container">
+    <div class="dc4-card">
+      <img src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+      <div class="dc4-overlay">
+        <div class="name">Arroces</div>
+        <div class="small">Grano superior, calidad de exportación.</div>
+        <a href="https://wa.me/51000000000">Pedir por WhatsApp →</a>
+      </div>
+    </div>
+    <div class="dc4-card">
+      <img src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+      <div class="dc4-overlay">
+        <div class="name">Aceites</div>
+        <div class="small">Vegetal puro, embotellado en Lima.</div>
+        <a href="https://wa.me/51000000000">Pedir por WhatsApp →</a>
+      </div>
+    </div>
+    <div class="dc4-card">
+      <img src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+      <div class="dc4-overlay">
+        <div class="name">Manteca vegetal</div>
+        <div class="small">Para freír, hornear, cocinar bien.</div>
+        <a href="https://wa.me/51000000000">Pedir por WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+  <div class="dc4-actions">
+    <a href="https://wa.me/51000000000" class="btn-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="del-campo.html" class="btn-outline-light">Conocer la marca →</a>
+  </div>
+</section>
+
+<!-- CONCEPTO 5 -->
+<div class="concept-label">
+  <span class="num">05</span><span class="name">Mural de marca</span>
+  <span class="tag is-creative">Creativo</span>
+  <p class="note">Watermark "DEL CAMPO" gigante en blanco translúcido. 3 posters en composición teatral con rotaciones.</p>
+</div>
+<section class="dc5">
+  <div class="dc5-watermark" aria-hidden="true">DEL&nbsp;CAMPO</div>
+  <div class="dc5-stage">
+    <img class="dc5-left" src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+    <img class="dc5-center" src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+    <img class="dc5-right" src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+  </div>
+  <div class="dc5-content">
+    <div class="dc5-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc5-title">Del Campo</h2>
+    <p class="dc5-tagline">Lo natural a tu mesa</p>
+    <div class="dc5-actions">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="del-campo.html" class="btn-outline-light">Conocer la marca →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTO 6 -->
+<div class="concept-label">
+  <span class="num">06</span><span class="name">Manual de Ana Marina</span>
+  <span class="tag is-brand">Identidad</span>
+  <p class="note">80% blanco. Verde 009E3C + amarillo-lima como acentos. Tipografía: Playfair Display + Lexend (NO Recoleta).</p>
+</div>
+<section class="dc6">
+  <div class="dc6-inner">
+    <div class="dc6-text">
+      <div class="dc6-eyebrow">Marca propia · Interloom</div>
+      <h2 class="dc6-title">Del Campo</h2>
+      <hr class="dc6-underline" />
+      <p class="dc6-tagline">Lo natural a tu mesa</p>
+      <p class="dc6-desc">Arroces, aceites y manteca vegetal para el hogar peruano. Calidad de exportación en los productos de todos los días.</p>
+      <div class="dc6-actions">
+        <a href="https://wa.me/51000000000" class="dc6-btn-wa">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hacer un pedido
+        </a>
+        <a href="del-campo.html" class="dc6-btn-out">Conocer la marca →</a>
+      </div>
+    </div>
+    <div class="dc6-row">
+      <img class="dc6-poster" src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+      <img class="dc6-poster" src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+      <img class="dc6-poster" src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTO 7 -->
+<div class="concept-label">
+  <span class="num">07</span><span class="name">Inversión de marca</span>
+  <span class="tag is-anim">Animado · hover</span>
+  <p class="note">Sección arranca blanca, hover/click transiciona a azul Del Campo. Logo se invierte. Posters ganan brillo.</p>
+</div>
+<section class="dc7" id="dc7-section">
+  <div class="dc7-inner">
+    <div class="dc7-logos">
+      <img class="dc7-logo-normal" src="assets/logo.png" alt="Interloom" />
+      <img class="dc7-logo-negativo" src="assets/logo.png" alt="Interloom" aria-hidden="true" />
+    </div>
+    <div class="dc7-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc7-title">Del Campo</h2>
+    <p class="dc7-tagline">Lo natural a tu mesa</p>
+    <div class="dc7-row">
+      <img class="dc7-poster" src="assets/delcampo_hero.jpg" alt="Del Campo Arroces" />
+      <img class="dc7-poster" src="assets/delcampo_aceite.jpg" alt="Del Campo Aceites" />
+      <img class="dc7-poster" src="assets/delcampo_manteca.jpg" alt="Del Campo Manteca" />
+    </div>
+    <div class="dc7-actions">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="del-campo.html" class="btn-outline-dark">Conocer la marca →</a>
+    </div>
+    <div class="dc7-hint">Pasá el cursor (o tocá) para entrar al mundo Del Campo.</div>
+  </div>
+</section>
+
+<!-- CONCEPTO 8 -->
+<div class="concept-label">
+  <span class="num">08</span><span class="name">Tipografía que respira</span>
+  <span class="tag is-anim">Animado · hover</span>
+  <p class="note">Tipografía dominante sobre posters de fondo translúcidos. Hover transiciona a azul + CTAs emergen.</p>
+</div>
+<section class="dc8" id="dc8-section">
+  <img class="dc8-poster-bg bg-1" src="assets/delcampo_hero.jpg" alt="" aria-hidden="true" />
+  <img class="dc8-poster-bg bg-2" src="assets/delcampo_aceite.jpg" alt="" aria-hidden="true" />
+  <img class="dc8-poster-bg bg-3" src="assets/delcampo_manteca.jpg" alt="" aria-hidden="true" />
+  <div class="dc8-inner">
+    <div class="dc8-eyebrow">Marca propia · Mercado local</div>
+    <h2 class="dc8-big">Del Campo</h2>
+    <p class="dc8-tagline">Lo natural a tu mesa</p>
+    <p class="dc8-products">Arroces · Aceites · Manteca vegetal</p>
+    <div class="dc8-ctas">
+      <a href="https://wa.me/51000000000" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.4

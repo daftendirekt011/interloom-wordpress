@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Del Campo — Hero concepts (A · B · C)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Variables (mirror del-campo.html) ── */
+:root {
+  --text-primary:    #1D1D1B;
+  --text-secondary:  #4A3625;
+  --accent-warm:     #9F8A73;
+  --accent-green:    #2E7B37;
+  --surface-warm:    #FAF8F5;
+  --hairline:        #EDEAE3;
+  --white:           #FFFFFF;
+  --dc-blue:         #003399;
+  --dc-blue-soft:    #2A3F87;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 16px; color: var(--text-primary); background: #f0ece4; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Separador entre conceptos ── */
+.concept-sep {
+  background: #1D1D1B;
+  color: #fff;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.concept-sep .c-badge {
+  background: var(--dc-blue);
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  letter-spacing: .1em;
+}
+
+/* ── Mini nav (contexto visual) ── */
+.mini-nav {
+  height: 72px;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  gap: 32px;
+}
+.mini-nav img { height: 36px; width: auto; }
+.mini-nav .nav-items { display: flex; gap: 24px; margin-left: auto; }
+.mini-nav .nav-items span {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-primary);
+  opacity: .6;
+}
+.mini-nav .nav-items span.act {
+  opacity: 1;
+  color: var(--dc-blue);
+  border-bottom: 2px solid var(--dc-blue);
+  padding-bottom: 2px;
+}
+
+/* ── WA Button ── */
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 14px; padding: 14px 28px; border-radius: 2px;
+  cursor: pointer;
+}
+.btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+.btn-ghost {
+  display: inline-flex; align-items: center;
+  border: 1px solid currentColor;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 14px; padding: 14px 28px; border-radius: 2px;
+  cursor: pointer;
+}
+.btn-ghost-white {
+  display: inline-flex; align-items: center;
+  border: 1px solid rgba(255,255,255,.5); color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 14px; padding: 14px 28px; border-radius: 2px;
+}
+
+/* WA svg inline */
+.wa-svg { width:18px; height:18px; fill:currentColor; margin-right:10px; vertical-align:middle; }
+
+
+/* ============================================================
+   CONCEPTO A — "Los 5 posters"
+   Hero blanco, los posters en fila hablan solos.
+   Sin repetir copy del home.
+   Elementor: sección blanca + inner section 5 columnas + Image widget
+============================================================ */
+.hero-a {
+  background: var(--white);
+  padding: 56px 64px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.hero-a .a-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.hero-a .a-eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dc-blue);
+}
+.hero-a .a-ctas { display: flex; gap: 12px; }
+.hero-a .posters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+.hero-a .poster-wrap {
+  overflow: hidden;
+  border-radius: 3px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.hero-a .poster-wrap:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0,51,153,.15);
+}
+.hero-a .poster-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Poster central un poco más alto */
+.hero-a .poster-wrap:nth-child(3) { transform: translateY(-16px); }
+.hero-a .poster-wrap:nth-child(3):hover { transform: translateY(-24px); }
+
+
+/* ============================================================
+   CONCEPTO B — "Página azul"
+   Toda la sección en azul Del Campo.
+   Posters flotando sobre el azul.
+   Elementor: sección con fondo #003399 + columnas + Image widgets
+   Para página entera: Page Settings > Background Color en Elementor
+============================================================ */
+.hero-b {
+  background: var(--dc-blue);
+  padding: 64px 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+/* Textura sutil de fondo */
+.hero-b::before {
+  content: 'DEL CAMPO';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 220px;
+  font-weight: 400;
+  color: rgba(255,255,255,.04);
+  letter-spacing: -.02em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-b .b-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+.hero-b .b-text .b-eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 12px;
+}
+.hero-b .b-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.hero-b .b-text .b-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(255,255,255,.7);
+}
+.hero-b .b-ctas { display: flex; gap: 12px; align-items: center; }
+.hero-b .posters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: end;
+}
+.hero-b .poster-wrap {
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform .3s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,.35);
+}
+.hero-b .poster-wrap:hover { transform: translateY(-10px); }
+.hero-b .poster-wrap img { width: 100%; display: block; }
+/* Posters laterales ligeramente más bajos */
+.hero-b .poster-wrap:nth-child(1),
+.hero-b .poster-wrap:nth-child(5) { margin-top: 40px; }
+.hero-b .poster-wrap:nth-child(2),
+.hero-b .poster-wrap:nth-child(4) { margin-top: 20px; }
+
+
+/* ============================================================
+   CONCEPTO C — "Slideshow animado"
+   Los 5 posters rotan automáticamente, CSS puro.
+   Sin texto repetido — solo el nombre del producto activo.
+   Elementor: Slider Revolution (incluido en Bridge) con 5 slides.
+   Alternativa CSS pura documentada abajo.
+============================================================ */
+.hero-c {
+  background: var(--surface-warm);
+  border-bottom: 1px solid var(--hairline);
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+  display: flex;
+}
+
+/* Rail de slides */
+.hero-c .slide-rail {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+/* Cada slide */
+.hero-c .slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  opacity: 0;
+  animation: c-fade 20s infinite;
+}
+.hero-c .slide:nth-child(1) { animation-delay: 0s; }
+.hero-c .slide:nth-child(2) { animation-delay: 4s; }
+.hero-c .slide:nth-child(3) { animation-delay: 8s; }
+.hero-c .slide:nth-child(4) { animation-delay: 12s; }
+.hero-c .slide:nth-child(5) { animation-delay: 16s; }
+
+@keyframes c-fade {
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }
+  20%  { opacity: 1; }
+  25%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Panel izquierdo: poster */
+.hero-c .slide-poster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 40px 0;
+  background: var(--surface-warm);
+}
+.hero-c .slide-poster img {
+  max-height: 480px;
+  width: auto;
+  border-radius: 3px;
+  box-shadow: 0 32px 80px rgba(0,51,153,.12);
+}
+
+/* Panel derecho: info mínima */
+.hero-c .slide-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 56px;
+  background: var(--white);
+  border-left: 1px solid var(--hairline);
+}
+.hero-c .slide-num {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--dc-blue);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-c .slide-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.hero-c .slide-desc {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  max-width: 360px;
+}
+.hero-c .slide-cta {
+  display: flex;
+  gap: 12px;
+}
+
+/* Dots de navegación */
+.hero-c .c-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-c .c-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--dc-blue);
+  opacity: .25;
+}
+/* Dots activos según animación */
+.hero-c .c-dot:nth-child(1) { animation: dot-active 20s infinite 0s; }
+.hero-c .c-dot:nth-child(2) { animation: dot-active 20s infinite 4s; }
+.hero-c .c-dot:nth-child(3) { animation: dot-active 20s infinite 8s; }
+.hero-c .c-dot:nth-child(4) { animation: dot-active 20s infinite 12s; }
+.hero-c .c-dot:nth-child(5) { animation: dot-active 20s infinite 16s; }
+@keyframes dot-active {
+  0%   { opacity: .25; }
+  5%   { opacity: 1; width: 18px; border-radius: 3px; }
+  20%  { opacity: 1; width: 18px; border-radius: 3px; }
+  25%  { opacity: .25; width: 6px; border-radius: 50%; }
+  100% { opacity: .25; }
+}
+
+/* Necesita altura fija para que position:absolute funcione */
+.hero-c { height: 560px; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CONCEPTO A — Los 5 posters
+============================================================ -->
+<div class="concept-sep">
+  <span class="c-badge">A</span>
+  Los 5 posters · Estático · Fondo blanco
+  <span style="opacity:.4;font-size:10px;margin-left:auto;">Elementor: sección blanca + 5 columnas + Image widget + hover CSS</span>
+</div>
+
+<div class="mini-nav">
+  <img src="assets/logo.png" alt="Interloom">
+  <div class="nav-items">
+    <span>Inicio</span><span>Nosotros</span><span class="act">Del Campo</span><span>Divisiones</span><span>Contacto</span>
+  </div>
+</div>
+
+<section class="hero-a">
+  <div class="a-header">
+    <span class="a-eyebrow">Del Campo · Nuestros productos</span>
+    <div class="a-ctas">
+      <a class="btn-wa" href="#">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a class="btn-ghost" href="#" style="color:var(--dc-blue);border-color:var(--dc-blue);">Ver todos →</a>
+    </div>
+  </div>
+  <div class="posters">
+    <div class="poster-wrap"><img src="assets/delcampo_hero.jpg" alt="Arroces Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_arroz_rico.jpg" alt="Arroz Rico Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_aceite.jpg" alt="Aceite Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_girasol.jpg" alt="Aceite Girasol Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_manteca.jpg" alt="Manteca Del Campo"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONCEPTO B — Página azul
+============================================================ -->
+<div class="concept-sep" style="margin-top:2px;">
+  <span class="c-badge">B</span>
+  Página azul · Posters sobre azul · Nombre + tagline mínimos
+  <span style="opacity:.4;font-size:10px;margin-left:auto;">Elementor: Page Settings > Background #003399 · sección transparente + Image widgets</span>
+</div>
+
+<div class="mini-nav" style="background:#002280;border-color:rgba(255,255,255,.1);">
+  <img src="assets/logo.png" alt="Interloom" style="filter:brightness(0) invert(1);opacity:.9;">
+  <div class="nav-items">
+    <span style="color:rgba(255,255,255,.5)">Inicio</span>
+    <span style="color:rgba(255,255,255,.5)">Nosotros</span>
+    <span style="color:#fff;border-bottom:2px solid #fff;padding-bottom:2px;">Del Campo</span>
+    <span style="color:rgba(255,255,255,.5)">Divisiones</span>
+    <span style="color:rgba(255,255,255,.5)">Contacto</span>
+  </div>
+</div>
+
+<section class="hero-b">
+  <div class="b-top">
+    <div class="b-text">
+      <div class="b-eyebrow">Marca propia · Mercado local</div>
+      <h1>Del Campo</h1>
+      <p class="b-tagline">Lo natural a tu mesa</p>
+    </div>
+    <div class="b-ctas">
+      <a class="btn-wa" href="#">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a class="btn-ghost-white" href="#">Ver productos →</a>
+    </div>
+  </div>
+  <div class="posters">
+    <div class="poster-wrap"><img src="assets/delcampo_hero.jpg" alt="Arroces Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_arroz_rico.jpg" alt="Arroz Rico Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_aceite.jpg" alt="Aceite Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_girasol.jpg" alt="Aceite Girasol Del Campo"></div>
+    <div class="poster-wrap"><img src="assets/delcampo_manteca.jpg" alt="Manteca Del Campo"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONCEPTO C — Slideshow animado
+============================================================ -->
+<div class="concept-sep" style="margin-top:2px;">
+  <span class="c-badge">C</span>
+  Slideshow CSS · Un poster por vez · Nombre del producto · Auto-avanza cada 4s
+  <span style="opacity:.4;font-size:10px;margin-left:auto;">Bridge: Slider Revolution (5 slides) · Alternativa: CSS puro con @keyframes</span>
+</div>
+
+<div class="mini-nav">
+  <img src="assets/logo.png" alt="Interloom">
+  <div class="nav-items">
+    <span>Inicio</span><span>Nosotros</span><span class="act">Del Campo</span><span>Divisiones</span><span>Contacto</span>
+  </div>
+</div>
+
+<section class="hero-c">
+  <div class="slide-rail">
+
+    <!-- Slide 1 -->
+    <div class="slide">
+      <div class="slide-poster">
+        <img src="assets/delcampo_hero.jpg" alt="Arroces Del Campo">
+      </div>
+      <div class="slide-info">
+        <div class="slide-num">01 / 05 · Arroces</div>
+        <h2 class="slide-name">Arroces<br>importados</h2>
+        <p class="slide-desc">Variedades seleccionadas con el mismo estándar de calidad que exportamos al mundo.</p>
+        <div class="slide-cta">
+          <a class="btn-wa" href="#" style="font-size:13px;padding:12px 22px;">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedido
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-poster">
+        <img src="assets/delcampo_arroz_rico.jpg" alt="Arroz Rico">
+      </div>
+      <div class="slide-info">
+        <div class="slide-num">02 / 05 · Arroces</div>
+        <h2 class="slide-name">Arroz<br>Rico</h2>
+        <p class="slide-desc">Grano seleccionado, cocción perfecta. La elección del hogar peruano.</p>
+        <div class="slide-cta">
+          <a class="btn-wa" href="#" style="font-size:13px;padding:12px 22px;">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedido
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-poster">
+        <img src="assets/delcampo_aceite.jpg" alt="Aceite Del Campo">
+      </div>
+      <div class="slide-info">
+        <div class="slide-num">03 / 05 · Aceites</div>
+        <h2 class="slide-name">Aceite<br>Del Campo</h2>
+        <p class="slide-desc">Refinado y ligero, ideal para la cocina peruana de todos los días.</p>
+        <div class="slide-cta">
+          <a class="btn-wa" href="#" style="font-size:13px;padding:12px 22px;">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedido
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+      <div class="slide-poster">
+        <img src="assets/delcampo_girasol.jpg" alt="Aceite Girasol">
+      </div>
+      <div class="slide-info">
+        <div class="slide-num">04 / 05 · Aceites</div>
+        <h2 class="slide-name">Aceite<br>de Girasol</h2>
+        <p class="slide-desc">Suave y liviano, perfecto para frituras y aderezos.</p>
+        <div class="slide-cta">
+          <a class="btn-wa" href="#" style="font-size:13px;padding:12px 22px;">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedido
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+      <div class="slide-poster">
+        <img src="assets/delcampo_manteca.jpg" alt="Manteca Del Campo">
+      </div>
+      <div class="slide-info">
+        <div class="slide-num">05 / 05 · Manteca</div>
+        <h2 class="slide-name">Manteca<br>vegetal</h2>
+        <p class="slide-desc">Calidad de exportación en la alacena peruana. Rendimiento y sabor garantizados.</p>
+        <div class="slide-cta">
+          <a class="btn-wa" href="#" style="font-size:13px;padding:12px 22px;">
+            <svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedido
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /slide-rail -->
+
+  <!-- Dots -->
+  <div class="c-dots" aria-hidden="true">
+    <div class="c-dot"></div>
+    <div class="c-dot"></div>
+    <div class="c-dot"></div>
+    <div class="c-dot"></div>
+    <div class="c-dot"></div>
+  </div>
+
+</section>
+
+<div style="height:40px;background:#f0ece4;"></div>
+
+</body>
+</html>
