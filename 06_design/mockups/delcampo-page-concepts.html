@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Del Campo — 10 opciones de hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lexend:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   INTERLOOM — Del Campo · 10 opciones del HERO de la página
+   Cada bloque .hopt-N es el primer fold de del-campo.html.
+   Sin slogans largos. Mínima info. Solo posters + eyebrow + CTAs.
+============================================================ */
+
+:root {
+  --text-primary: #1D1D1B;
+  --text-secondary: #4A3625;
+  --accent-warm: #9F8A73;
+  --accent-green: #2E7B37;
+  --surface-warm: #FAF8F5;
+  --hairline: #EDEAE3;
+  --white: #FFFFFF;
+
+  --dc-blue: #1B3D87;
+  --dc-blue-deep: #14306C;
+  --dc-yellow: #F2C800;
+
+  --max-width: 1480px;
+  --content-width: 1280px;
+  --gutter-tablet: 48px;
+  --gutter-mobile: 20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--white); }
+body {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 300; font-size: 16px; line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ---------- Nav (mínimo, para contexto) ---------- */
+.utility-bar {
+  height: 32px; background: var(--surface-warm);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 12px;
+}
+.utility-bar a:hover { color: var(--accent-green); }
+.utility-bar .util-right { display: flex; align-items: center; gap: 20px; }
+.utility-bar .util-icons { display: flex; gap: 14px; align-items: center; }
+.utility-bar .util-icons a { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; }
+.utility-bar svg { width: 14px; height: 14px; fill: currentColor; }
+.main-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--hairline);
+}
+.main-header .header-inner {
+  height: 80px; max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--gutter-tablet);
+}
+.brand-logo img { height: 40px; width: auto; display: block; }
+.primary-nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px;
+  color: var(--text-primary); padding: 28px 0; display: inline-block;
+}
+.nav-links a:hover { color: var(--accent-green); }
+.nav-links a.is-active { position: relative; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 22px;
+  height: 2px; background: var(--accent-green);
+}
+.nav-divider { width: 1px; height: 16px; background: #E6E2DA; }
+.lang-toggle { font-family: 'Lexend', sans-serif; font-weight: 300; font-size: 14px; color: var(--accent-warm); }
+.lang-toggle .active { color: var(--text-primary); }
+.lang-toggle .sep { margin: 0 6px; }
+.hamburger { display: none; background: transparent; border: 0; padding: 8px; }
+
+/* ---------- Separador entre opciones ---------- */
+.option-divider {
+  background: #111; color: #fff;
+  padding: 28px var(--gutter-tablet);
+  text-align: center;
+}
+.option-divider .num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 52px);
+  color: var(--dc-yellow); line-height: 1;
+}
+.option-divider .lbl {
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-top: 6px;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fadeUp    { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideL    { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideR    { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn   { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+@keyframes ticker    { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes float     { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* ---------- Botones ---------- */
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  background: #25D366; color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 500; font-size: 14px;
+  border-radius: 4px; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+.btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+
+.btn-blue-out {
+  display: inline-flex; align-items: center;
+  padding: 14px 24px;
+  border: 1.5px solid var(--dc-blue); color: var(--dc-blue);
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 14px;
+  border-radius: 4px; transition: background 0.25s, color 0.25s;
+}
+.btn-blue-out:hover { background: var(--dc-blue); color: #fff; }
+
+.btn-light-out {
+  display: inline-flex; align-items: center;
+  padding: 14px 24px;
+  border: 1.5px solid rgba(255,255,255,0.7); color: #fff;
+  font-family: 'Lexend', sans-serif; font-weight: 400; font-size: 14px;
+  border-radius: 4px; transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.btn-light-out:hover { background: #fff; color: var(--dc-blue); border-color: #fff; }
+
+.btn-yellow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  background: var(--dc-yellow); color: var(--dc-blue-deep);
+  font-family: 'Lexend', sans-serif; font-weight: 500; font-size: 14px;
+  border-radius: 4px; cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn-yellow:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+.btn-yellow svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ============================================================
+   ============ HERO 01 — Mosaico bleed 3-up + watermark ====
+============================================================ */
+.hopt1 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  min-height: 720px;
+  display: flex; flex-direction: column;
+}
+.hopt1 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 28vw, 460px);
+  color: #fff; opacity: 0.06;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+}
+.hopt1-head {
+  position: relative; z-index: 3;
+  text-align: center; color: #fff;
+  padding: 60px var(--gutter-tablet) 24px;
+}
+.hopt1-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 14px;
+}
+.hopt1-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(56px, 7vw, 96px); line-height: 0.95;
+}
+.hopt1-row {
+  position: relative; z-index: 2;
+  flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; padding: 0;
+}
+.hopt1-col {
+  position: relative; overflow: hidden;
+  border-right: 2px solid var(--dc-blue);
+  background: #fff;
+  animation: fadeUp 0.7s ease both;
+}
+.hopt1-col:nth-child(1) { animation-delay: 0.1s; }
+.hopt1-col:nth-child(2) { animation-delay: 0.25s; }
+.hopt1-col:nth-child(3) { animation-delay: 0.4s; }
+.hopt1-col:last-child { border-right: none; }
+.hopt1-col img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transition: transform 0.6s ease;
+}
+.hopt1-col:hover img { transform: scale(1.04); }
+.hopt1-foot {
+  position: relative; z-index: 4;
+  padding: 28px var(--gutter-tablet);
+  background: var(--dc-blue);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ============ HERO 02 — Mural watermark + 5 posters =======
+============================================================ */
+.hopt2 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  padding: 80px var(--gutter-tablet) 100px;
+  min-height: 720px;
+}
+.hopt2 .ghost {
+  position: absolute;
+  top: 56%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 32vw, 540px);
+  color: #fff; opacity: 0.07;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+}
+.hopt2-stage {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  height: 520px;
+}
+.hopt2-stage img {
+  position: absolute;
+  height: 100%; width: auto;
+  aspect-ratio: 700/992; object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 28px 56px rgba(0,0,0,0.4);
+  transition: transform 0.55s ease, box-shadow 0.55s ease;
+}
+.hopt2-stage .p3 { left: 50%; top: 0; transform: translateX(-50%); z-index: 5; animation: scaleIn 0.9s ease 0.3s both; }
+.hopt2-stage .p2 { left: 22%; top: 38px; transform: rotate(-5deg) translateX(-14%); height: 86%; z-index: 4; animation: slideL 1s ease 0.45s both; }
+.hopt2-stage .p1 { left: 0; top: 76px; transform: rotate(-11deg) translateX(-32%); height: 72%; z-index: 3; animation: slideL 1.1s ease 0.6s both; }
+.hopt2-stage .p4 { right: 22%; top: 38px; transform: rotate(5deg) translateX(14%); height: 86%; z-index: 4; animation: slideR 1s ease 0.45s both; }
+.hopt2-stage .p5 { right: 0; top: 76px; transform: rotate(11deg) translateX(32%); height: 72%; z-index: 3; animation: slideR 1.1s ease 0.6s both; }
+.hopt2-stage img:hover {
+  transform: rotate(0deg) translateX(0) translateY(-12px);
+  z-index: 6;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+.hopt2-stage .p3:hover { transform: translateX(-50%) translateY(-12px); }
+.hopt2-foot {
+  position: relative; z-index: 6;
+  text-align: center; color: #fff;
+  margin-top: 64px;
+  animation: fadeUp 0.9s ease 0.9s both;
+}
+.hopt2-foot .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 18px;
+}
+.hopt2-foot .actions { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ============================================================
+   ============ HERO 03 — Inversión de marca (hover) ========
+============================================================ */
+.hopt3 {
+  background: #fff;
+  position: relative; overflow: hidden;
+  padding: 100px var(--gutter-tablet);
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.6s ease;
+}
+.hopt3:hover, .hopt3.is-active { background: var(--dc-blue); }
+.hopt3 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(180px, 24vw, 380px);
+  color: var(--dc-blue); opacity: 0.05;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+  transition: color 0.6s ease, opacity 0.6s ease;
+}
+.hopt3:hover .ghost, .hopt3.is-active .ghost { color: #fff; opacity: 0.10; }
+.hopt3-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; }
+.hopt3-eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-blue); margin-bottom: 12px;
+  transition: color 0.6s ease;
+}
+.hopt3:hover .hopt3-eb, .hopt3.is-active .hopt3-eb { color: var(--dc-yellow); }
+.hopt3-h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 80px); line-height: 0.95;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  transition: color 0.6s ease;
+}
+.hopt3:hover .hopt3-h1, .hopt3.is-active .hopt3-h1 { color: #fff; }
+.hopt3-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  margin-bottom: 48px;
+}
+.hopt3-poster {
+  aspect-ratio: 700/992; overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  transition: box-shadow 0.6s ease, filter 0.6s ease, transform 0.4s ease;
+}
+.hopt3:hover .hopt3-poster, .hopt3.is-active .hopt3-poster {
+  filter: brightness(1.06);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.4);
+}
+.hopt3-poster:hover { transform: translateY(-6px); }
+.hopt3-poster img { width: 100%; height: 100%; object-fit: cover; }
+.hopt3-actions { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.hopt3 .btn-blue-out { transition: color 0.6s, border-color 0.6s, background 0.6s; }
+.hopt3:hover .btn-blue-out, .hopt3.is-active .btn-blue-out {
+  color: #fff; border-color: rgba(255,255,255,0.7);
+}
+.hopt3:hover .btn-blue-out:hover, .hopt3.is-active .btn-blue-out:hover {
+  background: #fff; color: var(--dc-blue); border-color: #fff;
+}
+.hopt3-hint {
+  margin-top: 28px;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: color 0.6s ease;
+}
+.hopt3:hover .hopt3-hint, .hopt3.is-active .hopt3-hint { color: rgba(255,255,255,0.45); }
+
+/* ============================================================
+   ============ HERO 04 — Marquee infinito (15 posters) =====
+============================================================ */
+.hopt4 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  padding: 60px 0 80px;
+}
+.hopt4-head {
+  text-align: center; color: #fff;
+  padding: 0 var(--gutter-tablet) 48px;
+  position: relative; z-index: 2;
+}
+.hopt4-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt4-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt4-mq {
+  overflow: hidden; padding: 12px 0;
+  position: relative; z-index: 2;
+}
+.hopt4-mq::before, .hopt4-mq::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 5;
+}
+.hopt4-mq::before { left: 0; background: linear-gradient(to right, var(--dc-blue), transparent); }
+.hopt4-mq::after { right: 0; background: linear-gradient(to left, var(--dc-blue), transparent); }
+.hopt4-track {
+  display: flex; gap: 22px;
+  width: max-content;
+  animation: ticker 90s linear infinite;
+}
+.hopt4-track.reverse { animation-direction: reverse; animation-duration: 110s; }
+.hopt4-mq:hover .hopt4-track { animation-play-state: paused; }
+.hopt4-track img {
+  height: 280px; width: auto;
+  aspect-ratio: 700/992;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease;
+}
+.hopt4-track img:hover { transform: translateY(-8px) scale(1.04); }
+.hopt4-foot {
+  position: relative; z-index: 2;
+  text-align: center;
+  margin-top: 56px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ============ HERO 05 — Grid 7 posters asimétrico =========
+============================================================ */
+.hopt5 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  padding: 80px var(--gutter-tablet) 100px;
+}
+.hopt5 .ghost {
+  position: absolute;
+  bottom: -8%; left: -2%;
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: clamp(200px, 28vw, 420px);
+  color: #fff; opacity: 0.06;
+  line-height: 0.82; white-space: nowrap; pointer-events: none;
+}
+.hopt5-head {
+  position: relative; z-index: 2; color: #fff;
+  max-width: var(--content-width); margin: 0 auto 48px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.hopt5-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt5-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt5-head .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.hopt5-grid {
+  position: relative; z-index: 2;
+  max-width: var(--content-width); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  height: 640px;
+}
+.hopt5-cell {
+  overflow: hidden; border-radius: 4px;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+  animation: fadeUp 0.7s ease both;
+}
+.hopt5-cell:nth-child(1) { grid-row: span 2; animation-delay: 0.05s; }
+.hopt5-cell:nth-child(2) { animation-delay: 0.15s; }
+.hopt5-cell:nth-child(3) { animation-delay: 0.25s; }
+.hopt5-cell:nth-child(4) { animation-delay: 0.35s; }
+.hopt5-cell:nth-child(5) { animation-delay: 0.45s; }
+.hopt5-cell:nth-child(6) { animation-delay: 0.55s; }
+.hopt5-cell:nth-child(7) { animation-delay: 0.65s; }
+.hopt5-cell img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.55s ease;
+}
+.hopt5-cell:hover img { transform: scale(1.06); }
+
+/* ============================================================
+   ============ HERO 06 — Stack diagonal de 7 posters =======
+============================================================ */
+.hopt6 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  min-height: 760px;
+  padding: 60px var(--gutter-tablet);
+}
+.hopt6 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 32vw, 520px);
+  color: #fff; opacity: 0.06;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+}
+.hopt6-head {
+  position: relative; z-index: 5; text-align: center; color: #fff;
+  margin-bottom: 24px;
+}
+.hopt6-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt6-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt6-fan {
+  position: relative; z-index: 4;
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  height: 520px;
+}
+.hopt6-fan img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%; width: auto;
+  aspect-ratio: 700/992;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+  transform-origin: bottom center;
+  transition: transform 0.5s ease, z-index 0s 0.5s;
+}
+.hopt6-fan img:nth-child(1) { transform: translateX(-50%) rotate(-24deg) translateX(-180px); z-index: 1; animation: fadeUp 0.7s ease 0.05s both; }
+.hopt6-fan img:nth-child(2) { transform: translateX(-50%) rotate(-16deg) translateX(-120px); z-index: 2; animation: fadeUp 0.7s ease 0.15s both; }
+.hopt6-fan img:nth-child(3) { transform: translateX(-50%) rotate(-8deg)  translateX(-60px);  z-index: 3; animation: fadeUp 0.7s ease 0.25s both; }
+.hopt6-fan img:nth-child(4) { transform: translateX(-50%) rotate(0deg);                       z-index: 4; animation: fadeUp 0.7s ease 0.35s both; }
+.hopt6-fan img:nth-child(5) { transform: translateX(-50%) rotate(8deg)   translateX(60px);   z-index: 3; animation: fadeUp 0.7s ease 0.45s both; }
+.hopt6-fan img:nth-child(6) { transform: translateX(-50%) rotate(16deg)  translateX(120px);  z-index: 2; animation: fadeUp 0.7s ease 0.55s both; }
+.hopt6-fan img:nth-child(7) { transform: translateX(-50%) rotate(24deg)  translateX(180px);  z-index: 1; animation: fadeUp 0.7s ease 0.65s both; }
+.hopt6-fan img:hover {
+  transform: translateX(-50%) rotate(0deg) translateY(-16px);
+  z-index: 10;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.55);
+  transition: transform 0.4s ease, z-index 0s;
+}
+.hopt6-foot {
+  position: relative; z-index: 5;
+  text-align: center; margin-top: 40px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ============ HERO 07 — Hover expand row de 7 =============
+============================================================ */
+.hopt7 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  padding: 60px var(--gutter-tablet) 80px;
+}
+.hopt7-head {
+  text-align: center; color: #fff; margin-bottom: 40px;
+}
+.hopt7-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt7-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt7-row {
+  display: flex; gap: 8px;
+  max-width: 1480px; margin: 0 auto;
+  min-height: 500px;
+}
+.hopt7-tile {
+  position: relative; flex: 1; overflow: hidden;
+  border-radius: 4px;
+  background: var(--dc-blue-deep);
+  cursor: pointer;
+  transition: flex 0.5s ease;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.3);
+}
+.hopt7-tile:hover { flex: 3.5; }
+.hopt7-tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.55s ease;
+}
+.hopt7-tile:hover img { transform: scale(1.04); }
+.hopt7-tile .lbl {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 18px;
+  background: linear-gradient(to top, rgba(20,48,108,0.96), transparent);
+  color: #fff;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.hopt7-tile:hover .lbl { opacity: 1; transform: translateY(0); }
+.hopt7-tile .lbl .ln {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 4px;
+}
+.hopt7-tile .lbl .nm {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: 22px;
+}
+.hopt7-foot {
+  text-align: center; margin-top: 48px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ============ HERO 08 — Mural + Inversión combinados ======
+   La idea favorita: mural con watermark + hover invierte fondo
+============================================================ */
+.hopt8 {
+  background: #fff;
+  position: relative; overflow: hidden;
+  padding: 80px var(--gutter-tablet) 100px;
+  min-height: 760px;
+  cursor: pointer;
+  transition: background 0.7s ease;
+}
+.hopt8:hover, .hopt8.is-active { background: var(--dc-blue); }
+.hopt8 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 30vw, 500px);
+  color: var(--dc-blue); opacity: 0.05;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+  transition: color 0.7s ease, opacity 0.7s ease;
+}
+.hopt8:hover .ghost, .hopt8.is-active .ghost { color: #fff; opacity: 0.10; }
+.hopt8-head {
+  position: relative; z-index: 5;
+  text-align: center; margin-bottom: 32px;
+}
+.hopt8-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-blue); margin-bottom: 10px;
+  transition: color 0.7s ease;
+}
+.hopt8:hover .hopt8-head .eb, .hopt8.is-active .hopt8-head .eb { color: var(--dc-yellow); }
+.hopt8-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+  color: var(--text-primary);
+  transition: color 0.7s ease;
+}
+.hopt8:hover .hopt8-head h1, .hopt8.is-active .hopt8-head h1 { color: #fff; }
+.hopt8-stage {
+  position: relative; z-index: 4;
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  height: 480px;
+}
+.hopt8-stage img {
+  position: absolute;
+  height: 100%; width: auto;
+  aspect-ratio: 700/992;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 18px 36px rgba(27,61,135,0.15);
+  transition: transform 0.55s ease, box-shadow 0.7s ease, filter 0.7s ease;
+}
+.hopt8:hover .hopt8-stage img, .hopt8.is-active .hopt8-stage img {
+  box-shadow: 0 28px 56px rgba(0,0,0,0.45);
+  filter: brightness(1.04);
+}
+.hopt8-stage .p4 { left: 50%; top: 0; transform: translateX(-50%); z-index: 5; }
+.hopt8-stage .p3 { left: 28%; top: 30px; transform: rotate(-5deg) translateX(-14%); height: 88%; z-index: 4; }
+.hopt8-stage .p2 { left: 8%;  top: 56px; transform: rotate(-10deg) translateX(-26%); height: 78%; z-index: 3; }
+.hopt8-stage .p1 { left: 0;   top: 90px; transform: rotate(-16deg) translateX(-44%); height: 66%; z-index: 2; }
+.hopt8-stage .p5 { right: 28%; top: 30px; transform: rotate(5deg) translateX(14%); height: 88%; z-index: 4; }
+.hopt8-stage .p6 { right: 8%;  top: 56px; transform: rotate(10deg) translateX(26%); height: 78%; z-index: 3; }
+.hopt8-stage .p7 { right: 0;   top: 90px; transform: rotate(16deg) translateX(44%); height: 66%; z-index: 2; }
+.hopt8-foot {
+  position: relative; z-index: 6;
+  text-align: center; margin-top: 56px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+.hopt8 .btn-blue-out { transition: color 0.7s, border-color 0.7s, background 0.7s; }
+.hopt8:hover .btn-blue-out, .hopt8.is-active .btn-blue-out {
+  color: #fff; border-color: rgba(255,255,255,0.7);
+}
+.hopt8:hover .btn-blue-out:hover, .hopt8.is-active .btn-blue-out:hover {
+  background: #fff; color: var(--dc-blue); border-color: #fff;
+}
+.hopt8-hint {
+  position: relative; z-index: 6;
+  text-align: center; margin-top: 22px;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: color 0.7s ease;
+}
+.hopt8:hover .hopt8-hint, .hopt8.is-active .hopt8-hint { color: rgba(255,255,255,0.45); }
+
+/* ============================================================
+   ============ HERO 09 — Stage centro + abanico horizontal =
+============================================================ */
+.hopt9 {
+  background: linear-gradient(180deg, var(--dc-blue-deep) 0%, var(--dc-blue) 60%, #2A4FA0 100%);
+  position: relative; overflow: hidden;
+  padding: 70px var(--gutter-tablet) 90px;
+  min-height: 780px;
+}
+.hopt9 .ghost {
+  position: absolute;
+  bottom: -8%; left: 50%; transform: translateX(-50%);
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: clamp(180px, 24vw, 380px);
+  color: #fff; opacity: 0.07;
+  line-height: 0.82; letter-spacing: -0.02em;
+  white-space: nowrap; pointer-events: none;
+}
+.hopt9-head {
+  position: relative; z-index: 5;
+  text-align: center; color: #fff; margin-bottom: 40px;
+}
+.hopt9-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt9-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt9-stage {
+  position: relative; z-index: 4;
+  width: 100%; max-width: 1400px; margin: 0 auto;
+  height: 520px;
+}
+.hopt9-stage img {
+  position: absolute; top: 50%;
+  height: 90%; width: auto;
+  aspect-ratio: 700/992;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 28px 56px rgba(0,0,0,0.45);
+  transition: transform 0.5s ease, z-index 0s 0.5s;
+}
+.hopt9-stage .p4 { left: 50%; transform: translate(-50%, -50%); height: 100%; z-index: 6; animation: scaleIn 0.9s ease 0.3s both; }
+.hopt9-stage .p3 { left: 36%; transform: translate(-50%, -50%) rotate(-4deg); height: 88%; z-index: 5; animation: slideL 1s ease 0.4s both; }
+.hopt9-stage .p5 { left: 64%; transform: translate(-50%, -50%) rotate(4deg);  height: 88%; z-index: 5; animation: slideR 1s ease 0.4s both; }
+.hopt9-stage .p2 { left: 22%; transform: translate(-50%, -50%) rotate(-8deg); height: 78%; z-index: 4; animation: slideL 1.1s ease 0.55s both; }
+.hopt9-stage .p6 { left: 78%; transform: translate(-50%, -50%) rotate(8deg);  height: 78%; z-index: 4; animation: slideR 1.1s ease 0.55s both; }
+.hopt9-stage .p1 { left: 8%;  transform: translate(-50%, -50%) rotate(-12deg); height: 68%; z-index: 3; animation: slideL 1.2s ease 0.7s both; }
+.hopt9-stage .p7 { left: 92%; transform: translate(-50%, -50%) rotate(12deg);  height: 68%; z-index: 3; animation: slideR 1.2s ease 0.7s both; }
+.hopt9-stage img:hover {
+  transform: translate(-50%, -56%) rotate(0deg);
+  z-index: 10;
+  transition: transform 0.4s ease, z-index 0s;
+}
+.hopt9-foot {
+  position: relative; z-index: 6;
+  text-align: center; margin-top: 56px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ============ HERO 10 — Combinación final =================
+   Grid + watermark + hover invierte + entrada en cascada
+============================================================ */
+.hopt10 {
+  background: #fff;
+  position: relative; overflow: hidden;
+  padding: 70px var(--gutter-tablet) 90px;
+  cursor: pointer;
+  transition: background 0.7s ease;
+}
+.hopt10:hover, .hopt10.is-active { background: var(--dc-blue); }
+.hopt10 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 32vw, 540px);
+  color: var(--dc-blue); opacity: 0.05;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+  transition: color 0.7s ease, opacity 0.7s ease;
+}
+.hopt10:hover .ghost, .hopt10.is-active .ghost { color: #fff; opacity: 0.10; }
+.hopt10-head {
+  position: relative; z-index: 4;
+  max-width: var(--content-width); margin: 0 auto 40px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.hopt10-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-blue); margin-bottom: 10px;
+  transition: color 0.7s ease;
+}
+.hopt10:hover .hopt10-head .eb, .hopt10.is-active .hopt10-head .eb { color: var(--dc-yellow); }
+.hopt10-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+  color: var(--text-primary);
+  transition: color 0.7s ease;
+}
+.hopt10:hover .hopt10-head h1, .hopt10.is-active .hopt10-head h1 { color: #fff; }
+.hopt10-head .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.hopt10-grid {
+  position: relative; z-index: 3;
+  max-width: var(--content-width); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 14px;
+}
+.hopt10-cell {
+  position: relative; overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+  animation: fadeUp 0.7s ease both;
+  transition: box-shadow 0.7s ease, transform 0.4s ease;
+}
+.hopt10-cell:hover { transform: translateY(-6px); }
+.hopt10:hover .hopt10-cell, .hopt10.is-active .hopt10-cell {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+.hopt10-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease, filter 0.7s ease; }
+.hopt10-cell:hover img { transform: scale(1.06); }
+.hopt10:hover .hopt10-cell img, .hopt10.is-active .hopt10-cell img { filter: brightness(1.05); }
+.hopt10-cell.tall { grid-row: span 2; }
+.hopt10-cell.wide { grid-column: span 2; }
+.hopt10-cell:nth-child(1) { animation-delay: 0.05s; }
+.hopt10-cell:nth-child(2) { animation-delay: 0.15s; }
+.hopt10-cell:nth-child(3) { animation-delay: 0.25s; }
+.hopt10-cell:nth-child(4) { animation-delay: 0.35s; }
+.hopt10-cell:nth-child(5) { animation-delay: 0.45s; }
+.hopt10-cell:nth-child(6) { animation-delay: 0.55s; }
+.hopt10-cell:nth-child(7) { animation-delay: 0.65s; }
+.hopt10-hint {
+  position: relative; z-index: 4;
+  text-align: center; margin-top: 36px;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: color 0.7s ease;
+}
+.hopt10:hover .hopt10-hint, .hopt10.is-active .hopt10-hint { color: rgba(255,255,255,0.45); }
+.hopt10 .btn-blue-out { transition: color 0.7s, border-color 0.7s, background 0.7s; }
+.hopt10:hover .btn-blue-out, .hopt10.is-active .btn-blue-out {
+  color: #fff; border-color: rgba(255,255,255,0.7);
+}
+.hopt10:hover .btn-blue-out:hover, .hopt10.is-active .btn-blue-out:hover {
+  background: #fff; color: var(--dc-blue); border-color: #fff;
+}
+
+/* ============================================================
+   ============ HERO 11 — Apple TV tilt + WP expand =========
+   Hover: tilt 3D (mousemove via JS). Click: expand fullscreen.
+============================================================ */
+.hopt11 {
+  background: var(--dc-blue);
+  position: relative; overflow: hidden;
+  padding: 70px var(--gutter-tablet) 90px;
+  min-height: 760px;
+  perspective: 1400px;
+}
+.hopt11 .ghost {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(220px, 32vw, 520px);
+  color: #fff; opacity: 0.06;
+  line-height: 0.82; letter-spacing: -0.03em;
+  white-space: nowrap; pointer-events: none;
+}
+.hopt11-head {
+  position: relative; z-index: 5;
+  text-align: center; color: #fff;
+  margin-bottom: 48px;
+}
+.hopt11-head .eb {
+  font-family: 'Lexend', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dc-yellow); margin-bottom: 12px;
+}
+.hopt11-head h1 {
+  font-family: 'Playfair Display', serif; font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+}
+.hopt11-stage {
+  position: relative; z-index: 4;
+  max-width: 1320px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: nowrap;
+  height: 460px;
+}
+.hopt11-card {
+  position: relative;
+  flex: 0 0 220px;
+  aspect-ratio: 700/992;
+  border-radius: 8px; overflow: hidden;
+  box-shadow:
+    0 18px 36px rgba(0,0,0,0.4),
+    0 4px 8px rgba(0,0,0,0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(.2,.8,.3,1.05),
+              box-shadow 0.4s ease,
+              flex-basis 0.45s ease;
+  cursor: zoom-in;
+  will-change: transform;
+  background: var(--dc-blue-deep);
+  animation: fadeUp 0.7s ease both;
+}
+.hopt11-card:nth-child(1) { animation-delay: 0.05s; }
+.hopt11-card:nth-child(2) { animation-delay: 0.15s; }
+.hopt11-card:nth-child(3) { animation-delay: 0.25s; }
+.hopt11-card:nth-child(4) { animation-delay: 0.35s; }
+.hopt11-card:nth-child(5) { animation-delay: 0.45s; }
+.hopt11-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  pointer-events: none;
+  transform: translateZ(40px);
+  transition: transform 0.45s ease;
+}
+/* Mientras se mueve el mouse el JS aplica transform inline, le bajamos la transition */
+.hopt11-card.is-tilting {
+  transition: box-shadow 0.3s ease;
+}
+.hopt11-card.is-tilting {
+  box-shadow:
+    0 32px 60px rgba(0,0,0,0.5),
+    0 8px 16px rgba(0,0,0,0.3);
+}
+/* Brillo que sigue el cursor */
+.hopt11-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0) 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.hopt11-card.is-tilting::after { opacity: 1; }
+
+/* Estado expandido (Windows Phone style) */
+.hopt11-card.is-expanded {
+  position: fixed;
+  top: 50%; left: 50%;
+  width: min(58vh, 80vw);
+  height: auto;
+  flex: none;
+  margin: 0;
+  z-index: 9999;
+  transform: translate(-50%, -50%) !important;
+  cursor: zoom-out;
+  box-shadow:
+    0 60px 120px rgba(0,0,0,0.65),
+    0 20px 40px rgba(0,0,0,0.4);
+  animation: hopt11-pop 0.45s cubic-bezier(.2,.8,.3,1.1) both;
+}
+.hopt11-card.is-expanded img { transform: none; }
+.hopt11-card.is-expanded::after { opacity: 0 !important; }
+@keyframes hopt11-pop {
+  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  60%  { opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.hopt11-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(13, 30, 70, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0; pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.4s ease;
+  cursor: zoom-out;
+}
+.hopt11-backdrop.is-active { opacity: 1; pointer-events: auto; }
+.hopt11-close-hint {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+  opacity: 0; transition: opacity 0.4s ease 0.2s;
+  pointer-events: none;
+}
+.hopt11-backdrop.is-active ~ .hopt11-close-hint,
+.hopt11-close-hint.is-active { opacity: 1; }
+
+.hopt11-foot {
+  position: relative; z-index: 5;
+  text-align: center; margin-top: 56px;
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+.hopt11-instructions {
+  position: relative; z-index: 5;
+  text-align: center; margin-top: 24px;
+  font-family: 'Lexend', sans-serif; font-weight: 300;
+  font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.hopt11-instructions span { color: var(--dc-yellow); }
+
+/* ============================================================
+   Responsive
+============================================================ */
+@media (max-width: 900px) {
+  .nav-links, .nav-divider, .lang-toggle { display: none; }
+  .hamburger { display: inline-block; }
+  .main-header .header-inner { padding: 0 var(--gutter-mobile); height: 64px; }
+  .utility-bar { padding: 0 var(--gutter-mobile); font-size: 11px; }
+
+  .hopt1-row { grid-template-columns: 1fr; }
+  .hopt1-col { border-right: none; border-bottom: 2px solid var(--dc-blue); aspect-ratio: 700/992; }
+  .hopt1-col:last-child { border-bottom: none; }
+  .hopt2-stage { height: 360px; }
+  .hopt2-stage .p1, .hopt2-stage .p5 { display: none; }
+  .hopt3-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .hopt4-track img { height: 200px; }
+  .hopt5-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; height: auto; }
+  .hopt5-cell { aspect-ratio: 700/992; }
+  .hopt5-cell:nth-child(1) { grid-row: span 1; }
+  .hopt6-fan { height: 360px; }
+  .hopt6-fan img:nth-child(1), .hopt6-fan img:nth-child(7) { display: none; }
+  .hopt7-row { flex-direction: column; min-height: auto; }
+  .hopt7-tile { min-height: 280px; }
+  .hopt7-tile:hover { flex: 1; }
+  .hopt8-stage { height: 340px; }
+  .hopt8-stage .p1, .hopt8-stage .p7 { display: none; }
+  .hopt9-stage { height: 360px; }
+  .hopt9-stage .p1, .hopt9-stage .p7 { display: none; }
+  .hopt10-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  .hopt10-cell.wide { grid-column: span 2; }
+  .hopt11-stage { flex-wrap: wrap; height: auto; gap: 16px; }
+  .hopt11-card { flex: 0 0 calc(50% - 8px); }
+  .hopt11-card.is-expanded { width: 86vw; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="util-left"><a href="mailto:contacto@interloom.com.pe">contacto@interloom.com.pe</a></div>
+  <div class="util-right">
+    <a href="tel:+5113111730">(511) 311-1730</a>
+    <div class="util-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.18a4.82 4.82 0 1 1 0 9.64 4.82 4.82 0 0 1 0-9.64zm0 1.8a3.02 3.02 0 1 0 0 6.04 3.02 3.02 0 0 0 0-6.04zm6.13-2.04a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="header-inner">
+    <a class="brand-logo" href="home-version-a.html"><img src="assets/logo.png" alt="Interloom" /></a>
+    <nav class="primary-nav">
+      <ul class="nav-links">
+        <li><a href="home-version-a.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="del-campo.html" class="is-active">Del Campo</a></li>
+        <li><a href="#">Divisiones</a></li>
+        <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="lang-toggle"><span class="active">ES</span><span class="sep">|</span><span>EN</span></div>
+      <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- =================== HERO 01 — Mosaico bleed 3-up + watermark =================== -->
+<div class="option-divider"><div class="num">01</div><div class="lbl">Opción 1</div></div>
+
+<section class="hopt1">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt1-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt1-row">
+    <div class="hopt1-col"><img src="assets/dc-arroz-delcampo.jpg" alt="" /></div>
+    <div class="hopt1-col"><img src="assets/dc-aceite-900.jpg" alt="" /></div>
+    <div class="hopt1-col"><img src="assets/dc-manteca.jpg" alt="" /></div>
+  </div>
+  <div class="hopt1-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+</section>
+
+<!-- =================== HERO 02 — Mural watermark + 5 posters flotantes =================== -->
+<div class="option-divider"><div class="num">02</div><div class="lbl">Opción 2</div></div>
+
+<section class="hopt2">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt2-stage">
+    <img class="p1" src="assets/dc-girasol-900.jpg" alt="" />
+    <img class="p2" src="assets/dc-aceite-900.jpg" alt="" />
+    <img class="p3" src="assets/dc-arroz-delcampo.jpg" alt="" />
+    <img class="p4" src="assets/dc-manteca.jpg" alt="" />
+    <img class="p5" src="assets/dc-arroz-rico.jpg" alt="" />
+  </div>
+  <div class="hopt2-foot">
+    <div class="eb">Marca propia · Mercado local</div>
+    <div class="actions">
+      <a href="#" class="btn-yellow">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="#" class="btn-light-out">Ver catálogo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- =================== HERO 03 — Inversión de marca (hover) =================== -->
+<div class="option-divider"><div class="num">03</div><div class="lbl">Opción 3</div></div>
+
+<section class="hopt3" id="hopt3">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt3-inner">
+    <div class="hopt3-eb">Marca propia · Mercado local</div>
+    <h1 class="hopt3-h1">Del Campo</h1>
+    <div class="hopt3-row">
+      <div class="hopt3-poster"><img src="assets/dc-arroz-celeste.jpg" alt="" /></div>
+      <div class="hopt3-poster"><img src="assets/dc-arroz-rico.jpg" alt="" /></div>
+      <div class="hopt3-poster"><img src="assets/dc-aceite-900.jpg" alt="" /></div>
+      <div class="hopt3-poster"><img src="assets/dc-girasol-900.jpg" alt="" /></div>
+      <div class="hopt3-poster"><img src="assets/dc-manteca.jpg" alt="" /></div>
+    </div>
+    <div class="hopt3-actions">
+      <a href="#" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hacer un pedido
+      </a>
+      <a href="#" class="btn-blue-out">Ver catálogo →</a>
+    </div>
+    <div class="hopt3-hint">Pasá el cursor (o tocá) para entrar al mundo Del Campo</div>
+  </div>
+</section>
+
+<!-- =================== HERO 04 — Marquee infinito (15 posters) =================== -->
+<div class="option-divider"><div class="num">04</div><div class="lbl">Opción 4</div></div>
+
+<section class="hopt4">
+  <div class="hopt4-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+
+  <div class="hopt4-mq">
+    <div class="hopt4-track">
+      <img src="assets/dc-arroz-delcampo.jpg" alt="" />
+      <img src="assets/dc-aceite-900.jpg" alt="" />
+      <img src="assets/dc-arroz-rico.jpg" alt="" />
+      <img src="assets/dc-girasol-900.jpg" alt="" />
+      <img src="assets/dc-manteca.jpg" alt="" />
+      <img src="assets/dc-arroz-celeste.jpg" alt="" />
+      <img src="assets/dc-aceite-5lt.jpg" alt="" />
+      <img src="assets/dc-arroz-embolsado.jpg" alt="" />
+      <!-- duplicar para loop continuo -->
+      <img src="assets/dc-arroz-delcampo.jpg" alt="" />
+      <img src="assets/dc-aceite-900.jpg" alt="" />
+      <img src="assets/dc-arroz-rico.jpg" alt="" />
+      <img src="assets/dc-girasol-900.jpg" alt="" />
+      <img src="assets/dc-manteca.jpg" alt="" />
+      <img src="assets/dc-arroz-celeste.jpg" alt="" />
+      <img src="assets/dc-aceite-5lt.jpg" alt="" />
+      <img src="assets/dc-arroz-embolsado.jpg" alt="" />
+    </div>
+  </div>
+
+  <div class="hopt4-mq" style="margin-top:18px;">
+    <div class="hopt4-track reverse">
+      <img src="assets/dc-arroz-olimar.jpg" alt="" />
+      <img src="assets/dc-aceite-fritura.jpg" alt="" />
+      <img src="assets/dc-arroz-parbolizado.jpg" alt="" />
+      <img src="assets/dc-girasol-20lt.jpg" alt="" />
+      <img src="assets/dc-aceite-3-5lt.jpg" alt="" />
+      <img src="assets/dc-azucar.jpg" alt="" />
+      <img src="assets/dc-duraznos.jpg" alt="" />
+      <img src="assets/dc-manteca.jpg" alt="" />
+      <img src="assets/dc-arroz-olimar.jpg" alt="" />
+      <img src="assets/dc-aceite-fritura.jpg" alt="" />
+      <img src="assets/dc-arroz-parbolizado.jpg" alt="" />
+      <img src="assets/dc-girasol-20lt.jpg" alt="" />
+      <img src="assets/dc-aceite-3-5lt.jpg" alt="" />
+      <img src="assets/dc-azucar.jpg" alt="" />
+      <img src="assets/dc-duraznos.jpg" alt="" />
+      <img src="assets/dc-manteca.jpg" alt="" />
+    </div>
+  </div>
+
+  <div class="hopt4-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+</section>
+
+<!-- =================== HERO 05 — Grid 7 asimétrico =================== -->
+<div class="option-divider"><div class="num">05</div><div class="lbl">Opción 5</div></div>
+
+<section class="hopt5">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt5-head">
+    <div>
+      <div class="eb">Marca propia · Mercado local</div>
+      <h1>Del Campo</h1>
+    </div>
+    <div class="actions">
+      <a href="#" class="btn-yellow">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedido
+      </a>
+      <a href="#" class="btn-light-out">Catálogo →</a>
+    </div>
+  </div>
+  <div class="hopt5-grid">
+    <div class="hopt5-cell"><img src="assets/dc-arroz-delcampo.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-arroz-rico.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-aceite-900.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-manteca.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-girasol-900.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-aceite-5lt.jpg" alt="" /></div>
+    <div class="hopt5-cell"><img src="assets/dc-arroz-celeste.jpg" alt="" /></div>
+  </div>
+</section>
+
+<!-- =================== HERO 06 — Stack diagonal abanico =================== -->
+<div class="option-divider"><div class="num">06</div><div class="lbl">Opción 6</div></div>
+
+<section class="hopt6">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt6-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt6-fan">
+    <img src="assets/dc-girasol-900.jpg" alt="" />
+    <img src="assets/dc-aceite-5lt.jpg" alt="" />
+    <img src="assets/dc-aceite-900.jpg" alt="" />
+    <img src="assets/dc-arroz-delcampo.jpg" alt="" />
+    <img src="assets/dc-manteca.jpg" alt="" />
+    <img src="assets/dc-arroz-rico.jpg" alt="" />
+    <img src="assets/dc-arroz-celeste.jpg" alt="" />
+  </div>
+  <div class="hopt6-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+</section>
+
+<!-- =================== HERO 07 — Hover expand row 7 =================== -->
+<div class="option-divider"><div class="num">07</div><div class="lbl">Opción 7</div></div>
+
+<section class="hopt7">
+  <div class="hopt7-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt7-row">
+    <div class="hopt7-tile">
+      <img src="assets/dc-arroz-delcampo.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 01</div><div class="nm">Arroz</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-arroz-rico.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 01</div><div class="nm">Arroz Rico</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-arroz-celeste.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 01</div><div class="nm">Arroz Celeste</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-aceite-900.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 02</div><div class="nm">Aceite Vegetal</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-girasol-900.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 02</div><div class="nm">Aceite de Girasol</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-aceite-fritura.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 02</div><div class="nm">Aceite Máxima Fritura</div></div>
+    </div>
+    <div class="hopt7-tile">
+      <img src="assets/dc-manteca.jpg" alt="" />
+      <div class="lbl"><div class="ln">Línea 03</div><div class="nm">Manteca Vegetal</div></div>
+    </div>
+  </div>
+  <div class="hopt7-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+</section>
+
+<!-- =================== HERO 08 — Mural + Inversión combinados =================== -->
+<div class="option-divider"><div class="num">08</div><div class="lbl">Opción 8</div></div>
+
+<section class="hopt8" id="hopt8">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt8-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt8-stage">
+    <img class="p1" src="assets/dc-girasol-20lt.jpg" alt="" />
+    <img class="p2" src="assets/dc-aceite-5lt.jpg" alt="" />
+    <img class="p3" src="assets/dc-girasol-900.jpg" alt="" />
+    <img class="p4" src="assets/dc-arroz-delcampo.jpg" alt="" />
+    <img class="p5" src="assets/dc-aceite-900.jpg" alt="" />
+    <img class="p6" src="assets/dc-arroz-rico.jpg" alt="" />
+    <img class="p7" src="assets/dc-manteca.jpg" alt="" />
+  </div>
+  <div class="hopt8-foot">
+    <a href="#" class="btn-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-blue-out">Ver catálogo →</a>
+  </div>
+  <div class="hopt8-hint">Pasá el cursor (o tocá) para entrar al mundo Del Campo</div>
+</section>
+
+<!-- =================== HERO 09 — Stage centro + abanico horizontal =================== -->
+<div class="option-divider"><div class="num">09</div><div class="lbl">Opción 9</div></div>
+
+<section class="hopt9">
+  <div class="ghost">a tu mesa</div>
+  <div class="hopt9-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt9-stage">
+    <img class="p1" src="assets/dc-azucar.jpg" alt="" />
+    <img class="p2" src="assets/dc-girasol-900.jpg" alt="" />
+    <img class="p3" src="assets/dc-aceite-900.jpg" alt="" />
+    <img class="p4" src="assets/dc-arroz-delcampo.jpg" alt="" />
+    <img class="p5" src="assets/dc-manteca.jpg" alt="" />
+    <img class="p6" src="assets/dc-arroz-rico.jpg" alt="" />
+    <img class="p7" src="assets/dc-duraznos.jpg" alt="" />
+  </div>
+  <div class="hopt9-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+</section>
+
+<!-- =================== HERO 10 — Combinación final =================== -->
+<div class="option-divider"><div class="num">10</div><div class="lbl">Opción 10</div></div>
+
+<section class="hopt10" id="hopt10">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt10-head">
+    <div>
+      <div class="eb">Marca propia · Mercado local</div>
+      <h1>Del Campo</h1>
+    </div>
+    <div class="actions">
+      <a href="#" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedido
+      </a>
+      <a href="#" class="btn-blue-out">Catálogo →</a>
+    </div>
+  </div>
+  <div class="hopt10-grid">
+    <div class="hopt10-cell tall"><img src="assets/dc-arroz-delcampo.jpg" alt="" /></div>
+    <div class="hopt10-cell"><img src="assets/dc-aceite-900.jpg" alt="" /></div>
+    <div class="hopt10-cell"><img src="assets/dc-arroz-rico.jpg" alt="" /></div>
+    <div class="hopt10-cell wide"><img src="assets/dc-girasol-900.jpg" alt="" /></div>
+    <div class="hopt10-cell"><img src="assets/dc-aceite-5lt.jpg" alt="" /></div>
+    <div class="hopt10-cell"><img src="assets/dc-manteca.jpg" alt="" /></div>
+    <div class="hopt10-cell"><img src="assets/dc-arroz-celeste.jpg" alt="" /></div>
+  </div>
+  <div class="hopt10-hint">Pasá el cursor (o tocá) para entrar al mundo Del Campo</div>
+</section>
+
+<!-- =================== HERO 11 — Apple TV tilt + Windows Phone expand =================== -->
+<div class="option-divider"><div class="num">11</div><div class="lbl">Opción 11 · Tilt 3D + Expand</div></div>
+
+<section class="hopt11">
+  <div class="ghost">DEL CAMPO</div>
+  <div class="hopt11-head">
+    <div class="eb">Marca propia · Mercado local</div>
+    <h1>Del Campo</h1>
+  </div>
+  <div class="hopt11-stage" id="hopt11-stage">
+    <div class="hopt11-card"><img src="assets/dc-arroz-delcampo.jpg" alt="" /></div>
+    <div class="hopt11-card"><img src="assets/dc-arroz-rico.jpg" alt="" /></div>
+    <div class="hopt11-card"><img src="assets/dc-aceite-900.jpg" alt="" /></div>
+    <div class="hopt11-card"><img src="assets/dc-girasol-900.jpg" alt="" /></div>
+    <div class="hopt11-card"><img src="assets/dc-manteca.jpg" alt="" /></div>
+  </div>
+  <div class="hopt11-foot">
+    <a href="#" class="btn-yellow">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hacer un pedido
+    </a>
+    <a href="#" class="btn-light-out">Ver catálogo →</a>
+  </div>
+  <div class="hopt11-instructions">Pasá el cursor sobre un poster <span>·</span> click para verlo grande</div>
+</section>
+
+<!-- Backdrop fullscreen para el expand -->
+<div class="hopt11-backdrop" id="hopt11-backdrop"></div>
+<div class="hopt11-close-hint" id="hopt11-close-hint">Click o ESC para cerrar</div>
+
+<script>
+(function(){
+  // ----- Toggle táctil para hover-invert en Opciones 3, 8 y 10 -----
+  ['hopt3','hopt8','hopt10'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function(){ this.classList.toggle('is-active'); });
+  });
+
+  // ----- Opción 11: tilt 3D Apple TV + expand fullscreen Windows Phone -----
+  var stage    = document.getElementById('hopt11-stage');
+  var backdrop = document.getElementById('hopt11-backdrop');
+  var hint     = document.getElementById('hopt11-close-hint');
+  if (!stage || !backdrop) return;
+
+  var cards    = stage.querySelectorAll('.hopt11-card');
+  var MAX_TILT = 12;       // grados máximos de inclinación
+  var SCALE    = 1.06;     // escala al hover
+  var hasFineCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function closeAll() {
+    cards.forEach(function(c){ c.classList.remove('is-expanded'); });
+    backdrop.classList.remove('is-active');
+    if (hint) hint.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+
+  function expandCard(card) {
+    cards.forEach(function(c){ c.classList.remove('is-expanded'); });
+    card.style.transform = '';
+    card.classList.remove('is-tilting');
+    card.classList.add('is-expanded');
+    backdrop.classList.add('is-active');
+    if (hint) hint.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  cards.forEach(function(card){
+    var raf = null;
+
+    if (hasFineCursor) {
+      card.addEventListener('mousemove', function(e){
+        if (card.classList.contains('is-expanded')) return;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function(){
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;      // 0 → 1
+          var py = (e.clientY - r.top)  / r.height;     // 0 → 1
+          var rotY = (px - 0.5) * 2 * MAX_TILT;          // izq/der
+          var rotX = (py - 0.5) * 2 * -MAX_TILT;         // arriba/abajo
+          card.classList.add('is-tilting');
+          card.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(' + SCALE + ')';
+          card.style.setProperty('--mx', (px * 100) + '%');
+          card.style.setProperty('--my', (py * 100) + '%');
+        });
+      });
+      card.addEventListener('mouseleave', function(){
+        if (raf) cancelAnimationFrame(raf);
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
+      });
+    }
+
+    card.addEventListener('click', function(e){
+      e.stopPropagation();
+      if (card.classList.contains('is-expanded')) {
+        closeAll();
+      } else {
+        expandCard(card);
+      }
+    });
+  });
+
+  backdrop.addEventListener('click', closeAll);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeAll();
+  });
+})();
+</script>
+
+</body>
+</html>
