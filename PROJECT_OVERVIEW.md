@@ -3,7 +3,7 @@
 **Client:** Interloom (Grupo Interloom, Lima – Perú)  
 **Project type:** WordPress redesign — minimalist, modern, bilingual  
 **Kicked off:** May 6, 2026  
-**Status:** 🟡 Setup done — Design analysis starts May 7
+**Status:** 🟢 Mockups aprobados — WordPress build starts May 22
 
 ---
 
@@ -28,11 +28,12 @@ Interloom is a 30+ year Peruvian agrotrading group with 5 business divisions. Th
 | Date | What |
 |------|------|
 | **May 6** ✅ | Setup, asset organization, current site review |
-| **May 7** | Site audit deep-dive, WP strategy, start wireframes |
-| **May 9 (Fri)** | First version to show (internal) |
-| TBD | Client review |
-| TBD | Development begins on staging |
-| TBD | Go-live |
+| **May 7** ✅ | Site audit, WP strategy, wireframes |
+| **May 9** ✅ | First internal version shown |
+| **May 22** ✅ | Mockups aprobados por cliente — inicio de build en WordPress |
+| TBD | Staging setup en SiteGround → build WP (Bridge + Elementor) |
+| TBD | QA + revisión cliente en staging |
+| TBD | Go-live en producción (Duplicator Pro migration) |
 
 ---
 
@@ -91,8 +92,10 @@ interloom/
 - **Product section:** LDC-style sidebar navigation for divisions/products
 - **DEL CAMPO:** WhatsApp Business CTA button
 
-### New Site Architecture
-Home → Acerca de Nosotros → Nuestras Divisiones (5) → Sostenibilidad y Certificaciones → Clientes → Contacto
+### New Site Architecture (final — as built in mockups)
+Home → Nosotros → **Del Campo** (top-level) → **Divisiones ▾** (4: Ingredientes · Secos · Frescos · Greenclover) → Sostenibilidad → Clientes → Contacto
+
+> ⚠️ Change from original plan: Del Campo es un ítem de navegación top-level, no está dentro de Divisiones. El dropdown "Divisiones" tiene solo 4 ítems de exportación.
 
 ### What the Client Likes
 - Cono Group: structure, confidence, typography
@@ -102,14 +105,18 @@ Home → Acerca de Nosotros → Nuestras Divisiones (5) → Sostenibilidad y Cer
 
 ---
 
-## Assets Still Needed
+## Assets Status
 
 - [x] **Logo files from Anita** — .ai, .pdf, horizontal PNG, transparent PNG, isologo PNG ✅
 - [x] **Recoleta font file** — Recoleta-RegularDEMO.otf ✅
-- [ ] **Product photography** — from client (they have existing photos)
-- [ ] **Hero/section imagery** — existing or stock aligned with brand
-- [ ] **Certification logos** — high-res versions (USDA, EU Bio, BRC, Kiwa, Kosher, SMETA)
-- [ ] **Content per division** — product descriptions, markets, capacidades logísticas
+- [x] **Hero/section imagery** — all heroes present in `06_design/mockups/assets/` ✅
+- [x] **Product photography** — all division product photos present ✅
+- [x] **Certification logos** — USDA, EU Bio, BRC, SMETA, Kiwa ✅ · Kosher (PNG — verify resolution)
+- [x] **Team photos** — Antonio, Alexia, Aranzazu, Juan José ✅
+- [ ] **Client logos** — for Clientes page (pending client delivery)
+- [ ] **Greenclover US address** — for Contacto offices strip
+- [ ] **Del Campo copy** — Líneas 04 y 05 todavía tienen Lorem Ipsum en el HTML
+- [ ] **Nosotros historia copy** — texto real de la empresa (actual texto es placeholder)
 
 ---
 
